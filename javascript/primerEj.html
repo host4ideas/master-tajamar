@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.6.1.slim.js"
+		integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+	<div style="border: 1px solid black; border-radius: 5px; padding: 5px;">
+		<input type="text" id="caja1">
+		<input type="text" id="caja2">
+		<input type="text" id="caja3">
+		<!-- Suma -->
+		<button type="button" onclick="calcular()">Evaluar números</button>
+		<!-- Tabla de multiplicar -->
+		<h1 id="resultadoMayor"></h1>
+		<h1 id="resultadoMenor"></h1>
+		<h1 id="resultadoIntermedio"></h1>
+	</div>
+
+	<script type="text/javascript">
+		const caja1 = document.getElementById("caja1");
+		const caja2 = document.getElementById("caja2");
+		const caja3 = document.getElementById("caja3");
+
+		const resultadoMayor = document.getElementById("resultadoMayor");
+		const resultadoMenor = document.getElementById("resultadoMenor");
+		const resultadoIntermedio = document.getElementById("resultadoIntermedio");
+
+		const calcular = () => {
+			const value1 = parseInt(caja1.value);
+			const value2 = parseInt(caja2.value);
+			const value3 = parseInt(caja3.value);
+
+			let mayor = value1;
+			let menor = value2;
+			let intermedio = value3;
+
+			const valores = [value1, value2, value3];
+
+			for (let i = 0; i < valores.length; i++) {
+				if (valores[i] < menor) {
+					menor = valores[i];
+				} else if (valores[i] > mayor) {
+					mayor = valores[i];
+				}
+			}
+
+			intermedio = Math.round(mayor / 2);
+
+			resultadoMayor.innerHTML = "Mayor:" + mayor;
+			resultadoMenor.innerHTML = "Menor: " + menor;
+			resultadoIntermedio.innerHTML = "Intermedio: " + intermedio;
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div style="border: 1px solid black; border-radius: 5px; padding: 5px;">
+		<input type="text" id="calculo">
+		<!-- Suma -->
+		<button type="button" onclick="calcular()">Evaluar números</button>
+		<!-- Tabla de multiplicar -->
+		<h1 id="resultado"></h1>
+	</div>
+	<script type="text/javascript">
+		const inputCalculo = document.getElementById("calculo");
+		const resultado = document.getElementById("resultado");
+
+		function calcular() {
+			const numeros = inputCalculo.value;
+
+			let suma = 0;
+			for (let i = 0; i < numeros.length; i++) {
+				suma += parseInt(numeros[i]);
+			}
+
+			resultado.innerHTML = suma;
+		}
+	</script>
+</body>
+
+</html>

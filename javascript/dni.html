@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div style="border: 1px solid black; border-radius: 5px; padding: 5px;">
+		<input type="text" id="numerosDni">
+		<!-- Suma -->
+		<button type="button" onclick="calcular()">Evaluar números</button>
+		<!-- Tabla de multiplicar -->
+		<h1 id="resultado"></h1>
+	</div>
+	<script type="text/javascript">
+		const letras = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E", "T"];
+		const inputNumeros = document.getElementById("numerosDni");
+		const resultado = document.getElementById("resultado");
+
+		function calcular() {
+			const numeros = parseInt(inputNumeros.value);
+
+			if (numeros == null) {
+				inputNumeros.style.backgroundColor = "red";
+			} else {
+				const numeroDni = numeros - (parseInt((numeros / 23)) * 23);
+				resultado.innerHTML = letras[numeroDni];
+			}
+		}
+	</script>
+</body>
+
+</html>
