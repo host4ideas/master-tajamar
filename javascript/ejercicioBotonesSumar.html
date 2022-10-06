@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>Sumar botones</h1>
+	<button id="boton4" value="4">Sumar 4</button>
+	<button id="boton6" value="6">Sumar 6</button>
+	<button id="boton1" value="1">Sumar 1</button>
+	<button id="boton2" value="2">Sumar 2</button>
+	<h1 id="resultado"></h1>
+
+	<script>
+		const boton4 = document.getElementById("boton4");
+		const boton6 = document.getElementById("boton6");
+		const boton1 = document.getElementById("boton1");
+		const boton2 = document.getElementById("boton2");
+		const resultadoFinal = document.getElementById("resultado");
+
+		window.addEventListener("load", function () {
+			var resultado = 0;
+
+			// boton4.addEventListener("click", function () {
+			// 	console.log(resultado)
+			// 	resultado += 4;
+			// 	resultadoFinal.innerHTML = "La suma es " + resultado;
+			// });
+
+			// boton6.addEventListener("click", function () {
+			// 	resultado += 6;
+			// 	resultadoFinal.innerHTML = "La suma es " + resultado;
+			// });
+
+			// boton2.addEventListener("click", function () {
+			// 	resultado += 2;
+			// 	resultadoFinal.innerHTML = "La suma es " + resultado;
+			// });
+
+			// boton1.addEventListener("click", function () {
+			// 	resultado += 1;
+			// 	resultadoFinal.innerHTML = "La suma es " + resultado;
+			// });
+
+			const botones = document.getElementsByTagName("button");
+
+			for (const boton of botones) {
+				boton.addEventListener("click", function () {
+					resultado += parseInt(this.value);
+					resultadoFinal.innerHTML = "La suma es " + resultado;
+					this.style.backgroundColor = "red";
+				});
+			}
+
+			for (const indice in botones) {
+				botones[indice].addEventListener("click", function () {
+					resultado += parseInt(this.value);
+					resultadoFinal.innerHTML = "La suma es " + resultado;
+					this.style.backgroundColor = "red";
+				});
+			}
+		});
+	</script>
+</body>
+
+</html>

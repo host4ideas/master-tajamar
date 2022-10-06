@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>DOM Formularios</h1>
+	<input type="radio" name="colores" value="red">
+	<input type="radio" name="colores" value="yellow">
+	<input type="radio" name="colores" value="orange">
+
+	<button onclick="mostrarColor()">
+		Color seleccionado
+	</button>
+
+	<h1 id="resultadoColor">Soy un TITULO</h1>
+	<hr />
+	<label for="deportes">Deporte favorito</label>
+	<select name="deportes" id="deportes" multiple>
+		<option value="Petanca">Petanca</option>
+		<option value="Curling">Curling</option>
+		<option value="Tenis">Tenis</option>
+		<option value="Futbol">Futbol</option>
+	</select>
+	<button type="button" onclick="mostrarDeporte()">Deporte seleccionado</button>
+	<h1 id="resultadoDeporte"></h1>
+	<script>
+		const resultadoDeporte = document.getElementById("resultadoDeporte");
+		const resultadoColor = document.getElementById("resultadoColor");
+		const selectColor = document.getElementById("deportes");
+
+		let deporte;
+
+		function mostrarColor() {
+			const inputColores = document.getElementsByName("colores");
+			for (const inputColor of inputColores) {
+				if (inputColor.checked) {
+					resultadoColor.style.color = inputColor.value;
+				}
+			}
+		}
+
+		function mostrarDeporte() {
+			resultadoDeporte.innerHTML = "";
+			for (const option of selectColor.options) {
+				if (option.selected) {
+					resultadoDeporte.innerHTML += `${option.value}, `;
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>

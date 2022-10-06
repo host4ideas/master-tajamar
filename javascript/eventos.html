@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>Eventos delegados</h1>
+	<h1 style="color: blue;" id="resultado"></h1>
+	<button type="button" onclick="asociarEvento()">Asociar eventos</button>
+	<button type="button" id="botonAcciones">Realizar cosas</button>
+	<button type="button" id="botonAcciones2">Realizar cosas</button>
+	<script type="text/javascript">
+		const button = document.getElementById("botonAcciones");
+		const button2 = document.getElementById("botonAcciones2");
+
+		let contador = 0;
+
+		// window.onload = function () {
+		// 	button.addEventListener("click", mostrarMensaje);
+		// 	button2.addEventListener("click", mostrarMensaje);
+		// }
+
+		window.addEventListener("load", function () {
+			button.addEventListener("click", mostrarMensaje);
+			button2.addEventListener("click", mostrarMensaje);
+		});
+
+		const asociarEvento = () => {
+			contador++;
+			document.getElementById("resultado").innerHTML = "Eventos asociados: " + contador;
+			/*
+				Con funciones declarativas no existen pilas de llamadas
+			*/
+			/*
+				Con onclick se quedará sólo con el último evento
+			*/
+			// button.onclick = mostrarMensaje;
+			// button.onclick = mostrarMensaje2;
+
+			/*
+				Con addEventListener se ejecutarán los dos eventos
+			*/
+			// button.addEventListener("click", mostrarMensaje);
+			// button.addEventListener("click", mostrarMensaje2);
+
+			/*
+				Con onclick no hay pilas de llamadas en ningún caso
+			*/
+			// button.onclick = () => alert("Mensaje en función anonima");
+
+			/*
+				Con funciones anónimas existen pilas de llamadas solo con addEventListener con la misma función ya que no tienen nombre
+				Aquí this hará referencia a window, ya que lamda hace referencia a window
+			*/
+			// button.addEventListener("click", (event) => alert("Mensaje en función anonima: " + event.target.innerText));
+			/*
+				Aquí this hará referencia a window, ya que lamda hace referencia a window
+			*/
+			// button.addEventListener("click", function () { alert("Mensaje en función anonima: " + this.innerText) });
+
+			// button.addEventListener("click", mostrarMensajeThis);
+			// button2.addEventListener("click", mostrarMensajeThis);
+		}
+
+		// Funcion para mostrar un mensaje
+		const mostrarMensaje = () => {
+			alert("Mensaje molesto...1")
+		}
+
+		// Funcion para mostrar un mensaje
+		function mostrarMensajeThis() {
+			alert("Mensaje molesto...1: " + this.innerHTML);
+			this.style.backgroundColor = "yellow";
+		}
+
+		const mostrarMensaje2 = () => {
+			alert("Mensaje molesto...2")
+		}
+	</script>
+</body>
+
+</html>
