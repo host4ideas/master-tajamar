@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<label for="numberOfImages">Introduce la cantidad de imágenes para generar</label>
+	<input type="range" name="numberOfImages" id="numberOfImages" max="10" min="1" onchange="generarImagenes()">
+	<p id="valorRango"> </p>
+	<div id="resultado"></div>
+	<script>
+		const numeroImagenes = document.getElementById("numberOfImages");
+		const valorRango = document.getElementById("valorRango");
+		const borrarImagenes = document.getElementById("borrarImagenes");
+
+		function generarImagenes() {
+			var resultado = document.getElementById("resultado");
+			valorRango.innerHTML = numeroImagenes.value;
+			resultado.innerHTML = "";
+
+			for (let i = 0; i < numeroImagenes.value; i++) {
+				const img = document.createElement("img");
+				img.src = "./images/image1.webp";
+				img.width = "300";
+				img.height = "300";
+				img.addEventListener("click", function () {
+					this.remove();
+				})
+				resultado.appendChild(img);
+			}
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>Sumar valores cajas con Random</h1>
+	<input type="radio" name="parImpar" id="sumarPar" checked>Par
+	<input type="radio" name="parImpar" id="sumarImpar">Impar
+	<div id="inputs">
+	</div>
+	<button onclick="calcular()">Sumar cajas</button>
+	<h1 id="resultado"></h1>
+
+	<script>
+		var resultadoFinal = 0;
+
+		window.onload = function () {
+			const inputs = document.getElementById("inputs");
+			const resultado = document.getElementById("resultado");
+
+			for (let i = 0; i < 4; i++) {
+				const input = document.createElement("input");
+				input.type = "number";
+				input.name = "inputNumero";
+				input.style.display = "block";
+				input.value = parseInt(Math.random() * 100);
+				if (i === 0 || (i % 2) === 0) {
+					input.style.backgroundColor = "pink";
+					input.isImpar = true;
+				} else {
+					input.style.backgroundColor = "yellow";
+					input.isPar = true;
+				}
+				inputs.appendChild(input);
+			}
+
+		}
+
+		function calcular() {
+			const sumarPar = document.getElementById("sumarPar");
+			const sumarImpar = document.getElementById("sumarImpar");
+
+			resultadoFinal = 0;
+
+			for (let i = 1; i < inputs.childNodes.length; i++) {
+				if (sumarPar.checked && inputs.childNodes[i].isPar) {
+					resultadoFinal += parseInt(inputs.childNodes[i].value);
+				} else if (sumarImpar.checked && inputs.childNodes[i].isImpar) {
+					resultadoFinal += parseInt(inputs.childNodes[i].value);
+				}
+			}
+			resultado.innerHTML = resultadoFinal;
+		}
+
+	</script>
+</body>
+
+</html>

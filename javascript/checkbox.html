@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<label for="numeroCheckboxes">Introduce la cantidad de imágenes para generar</label>
+	<input type="range" name="numeroCheckboxes" id="numeroCheckboxes" max="10" min="1" onchange="generarImagenes()">
+	<p id="valorRango"> </p>
+	<div id="checkboxes"></div>
+	<div id="resultado">La suma es: 0</div>
+	<script>
+		const numeroCheckboxes = document.getElementById("numeroCheckboxes");
+		const valorRango = document.getElementById("valorRango");
+		const borrarImagenes = document.getElementById("borrarImagenes");
+		const checkboxes = document.getElementById("checkboxes");
+		const resultado = document.getElementById("resultado");
+
+		var resultadoFinal = 0;
+
+		function generarImagenes() {
+			valorRango.innerHTML = numeroCheckboxes.value;
+
+			for (let i = 0; i < numeroCheckboxes.value; i++) {
+				const checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.value = parseInt(Math.random() * 100);
+				checkboxes.appendChild(checkbox);
+
+				const mostrarValor = document.createElement("label");
+				mostrarValor.innerHTML = checkbox.value;
+				checkboxes.appendChild(mostrarValor);
+
+				checkbox.onchange = function () {
+					if (checkbox.checked) {
+						resultadoFinal += parseInt(checkbox.value);
+						console.log(resultadoFinal)
+					} else {
+						resultadoFinal -= parseInt(checkbox.value);
+					}
+					resultado.innerHTML = `La suma es: ${resultadoFinal}`;
+				}
+
+				checkboxes.appendChild(checkbox);
+			}
+		}
+	</script>
+</body>
+
+</html>
