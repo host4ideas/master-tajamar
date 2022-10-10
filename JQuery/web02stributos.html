@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./jquery-3.6.1.min.js"></script>
+        <style>
+            img {
+                width: 150px;
+                height: 150px;
+            }
+            .azul {
+                color: blue;
+            }
+        </style>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1 id="cambiarEstilos">Haz click para cambiar estilos</h1>
+        <h1 id="cambiarEstilos2">Haz click para cambiar estilos</h1>
+        <img src="./images/image2.jpg" />
+        <img src="./images/image2.jpg" />
+        <img src="./images/image2.jpg" />
+        <img src="./images/image2.jpg" />
+        <img src="./images/image2.jpg" />
+        <script>
+            $(document).ready(function () {
+                $("img").mouseover(function () {
+                    $(this).attr("src", "./images/image1.webp");
+                });
+
+                $("img").mouseleave(function () {
+                    $(this).attr("src", "./images/image2.jpg");
+                });
+
+                $("#cambiarEstilos").click(function () {
+                    $(this).css({
+                        color: "yellow",
+                        backgroundColor: "green",
+                    });
+                });
+
+                $("#cambiarEstilos2").hover(
+                    function () {
+                        $(this).addClass("azul");
+                    },
+                    function () {
+                        $(this).removeClass("azul");
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>

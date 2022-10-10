@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./jquery-3.6.1.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Generar controles</h1>
+        <label for="cajaTexto">Introduzca un tipo de elemento para crear</label>
+        <input type="text" name="cajaTexto" id="cajaTexto" />
+        <button type="button" id="botonCrear">Generar</button>
+        <div id="padre"></div>
+        <script>
+            $(document).ready(function () {
+                $("#botonCrear").click(function () {
+                    let valorInput = $("#cajaTexto").val();
+
+                    if (valorInput) {
+                        console.log("test");
+                        let h1 = $("<h1>", {
+                            text: valorInput,
+                            style: "color: blue",
+                        });
+                        h1.appendTo($("#padre"));
+
+                        $("h1").click(function () {
+                            let valorInput = $("#cajaTexto").val();
+                            $(this).text(valorInput);
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

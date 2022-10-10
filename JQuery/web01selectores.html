@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./jquery-3.6.1.min.js"></script>
+        <style>
+            .azul {
+                color: blue;
+            }
+        </style>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1 class="azul">SELECTORES JQUERY</h1>
+        <h1 id="titulo1">Titulo 1</h1>
+        <p>Aprendiendo jQuery...</p>
+        <p class="azul">Soy azul</p>
+        <button type="button">Soy un boton</button>
+        <script>
+            /*
+				SELECTORES
+			*/
+            // $(document).ready(function () {
+            //     $("h1").hide();
+            // });
+            // $("#titulo1").hide();
+
+            /*
+				EVENTOS
+			*/
+            $("button").click(function () {
+                $("p").hide();
+            });
+            $(".azul").click(function () {
+                $(this).fadeOut(500);
+            });
+        </script>
+    </body>
+</html>

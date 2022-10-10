@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./jquery-3.6.1.min.js"></script>
+        <style>
+            img {
+                height: 150px;
+                width: 150px;
+            }
+        </style>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>Generar controles dinámicos</h1>
+        <input type="range" min="1" max="10" />
+        <p id="cantidadControles"></p>
+        <div id="resultado"></div>
+        <script>
+            $(document).ready(function () {
+                $("input").change(function () {
+                    $("#resultado").html("");
+
+                    const numControles = parseInt($("input").val());
+
+                    $("#cantidadControles").html(numControles);
+
+                    for (let i = 0; i < numControles; i++) {
+                        const img = $("<img>", { src: "./images/image1.webp" });
+
+                        $("#resultado").append(img);
+
+                        $("img").mouseover(function () {
+                            $(this).attr("src", "./images/image2.jpg");
+                        });
+
+                        $("img").mouseleave(function () {
+                            $(this).attr("src", "./images/image1.webp");
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
