@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+            integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+            crossorigin="anonymous"
+        ></script>
+
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>CUSTOMER DATABASE</h1>
+        <div id="botones"></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>DIRECCION</th>
+                    <th>EMAIL</th>
+                    <th>CODIGOPOSTAL</th>
+                    <th>PAGINAWEB</th>
+                    <th>IMAGENCLIENTE</th>
+                </tr>
+            </thead>
+            <tbody id="info"></tbody>
+        </table>
+        <script src="./jquery-3.6.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                function getInfoCliente(idCliente) {
+                    let html = "";
+                    $.get("./documents/ClientesXML.xml", function (data) {
+                        const clientes = $(data);
+                        $(data)
+                            .find('CLIENTE[IDCLIENTE="' + idCliente + '"]')
+                            .each(function () {
+                                const cliente = $(this);
+                                const deptNo = cliente.attr("IDCLIENTE");
+                                const nombre = cliente
+                                    .find("NOMBRE")
+                                    .first()
+                                    .text();
+                                const direccion = cliente
+                                    .find("DIRECCION")
+                                    .first()
+                                    .text();
+                                const email = cliente
+                                    .find("EMAIl")
+                                    .first()
+                                    .text();
+                                const codigoPostal = cliente
+                                    .find("CODIGOPOSTAL")
+                                    .first()
+                                    .text();
+                                const paginaWeb = cliente
+                                    .find("PAGINAWEB")
+                                    .first()
+                                    .text();
+                                const imgCliente = cliente
+                                    .find("IMAGENCLIENTE")
+                                    .first()
+                                    .text();
+                                html += `<tr>
+											<th scope="col">${nombre}</th>
+                        					<th scope="col">${direccion}</th>
+                        					<th scope="col">${email}</th>
+                        					<th scope="col">${codigoPostal}</th>
+                        					<th scope="col"><a href='${paginaWeb}'>${paginaWeb}</a></th>
+                        					<th scope="col"><img src='${imgCliente}' alt='Imagen Usuario'/></th>
+                        				</tr>`;
+                            });
+                        $("#info").html(html);
+                    });
+                }
+
+                $.get("./documents/ClientesXML.xml", function (data) {
+                    const clientes = $(data).find("CLIENTE");
+
+                    clientes.each(function (index) {
+                        const clientID = $(this).attr("IDCLIENTE");
+                        const button = $("<button>");
+                        button.html("Cliente: " + clientID);
+                        button.appendTo($("#botones"));
+                        button.click(function () {
+                            getInfoCliente(clientID);
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

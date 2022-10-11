@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Lectura documentos</h1>
+        <button type="button" id="botonEmpleados">CARGAR EMPLEADOS</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>NUMERO</th>
+                    <th>NOMBRE</th>
+                    <th>LOCALIDAD</th>
+                </tr>
+            </thead>
+            <tbody id="info"></tbody>
+        </table>
+        <script src="./jquery-3.6.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#botonEmpleados").click(function () {
+                    let html = "";
+                    $.get("./documents/departamentos.xml", function (data) {
+                        $(data)
+                            .find("DEPT")
+                            .each(function () {
+                                const departamento = $(this);
+                                const deptNo = departamento.attr("DEPT_NO");
+                                const nombre = departamento
+                                    .find("DNOMBRE")
+                                    .first()
+                                    .text();
+                                const loc = departamento
+                                    .find("LOC")
+                                    .first()
+                                    .text();
+
+                                html += `<tr>
+											<th>${deptNo}</th>
+											<th>${nombre}</th>
+											<th>${loc}</th>
+										</tr>`;
+                            });
+                        $("#info").html(html);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

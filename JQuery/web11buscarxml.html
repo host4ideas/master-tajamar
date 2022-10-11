@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Lectura documentos</h1>
+        <label for="cajaID">Introduzca ID:</label>
+        <input type="text" name="cajaID" id="cajaID" />
+        <button type="button" id="botonBuscarID">Buscar departamento</button>
+
+        <label for="cajaLocalidad">Introduzca localidad::</label>
+        <input type="text" name="cajaID" id="cajaLocalidad" />
+        <button type="button" id="botonBuscarLocalidad">
+            Buscar departamento
+        </button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>NUMERO</th>
+                    <th>NOMBRE</th>
+                    <th>LOCALIDAD</th>
+                </tr>
+            </thead>
+            <tbody id="info"></tbody>
+        </table>
+        <script src="./jquery-3.6.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#botonBuscarID").click(function () {
+                    const idBuscar = $("#cajaID").val();
+
+                    let html = "";
+
+                    $.get("./documents/departamentos.xml", function (data) {
+                        $(data)
+                            .find('DEPT[DEPT_NO="' + idBuscar + '"]')
+                            .each(function () {
+                                const departamento = $(this);
+                                const deptNo = departamento.attr("DEPT_NO");
+                                const nombre = departamento
+                                    .find("DNOMBRE")
+                                    .first()
+                                    .text();
+                                const loc = departamento
+                                    .find("LOC")
+                                    .first()
+                                    .text();
+
+                                html += `<tr>
+											<th>${deptNo}</th>
+											<th>${nombre}</th>
+											<th>${loc}</th>
+										</tr>`;
+                            });
+                        $("#info").html(html);
+                    });
+                });
+                $("#botonBuscarLocalidad").click(function () {
+                    const localidadBuscar = $("#cajaLocalidad")
+                        .val()
+                        .toUpperCase();
+
+                    let html = "";
+
+                    $.get("./documents/departamentos.xml", function (data) {
+                        if (
+                            $(data).find(
+                                "DEPT:contains(" + localidadBuscar + ")"
+                            ).length > 0
+                        ) {
+                            $(data)
+                                .find("DEPT:contains(" + localidadBuscar + ")")
+                                .each(function () {
+                                    const departamento = $(this);
+                                    const deptNo = departamento.attr("DEPT_NO");
+                                    const nombre = departamento
+                                        .find("DNOMBRE")
+                                        .first()
+                                        .text();
+                                    const loc = departamento
+                                        .find("LOC")
+                                        .first()
+                                        .text();
+
+                                    html += `<tr>
+											<th>${deptNo}</th>
+											<th>${nombre}</th>
+											<th>${loc}</th>
+										</tr>`;
+                                });
+                        } else {
+                            html =
+                                "No hay departamentos con " + localidadBuscar;
+                        }
+                        $("#info").html(html);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
