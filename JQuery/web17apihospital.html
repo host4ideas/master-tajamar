@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            /* table {
+                border: 1px solid black;
+				padding: 5px;
+            } */
+
+            th {
+                border: 1px solid black;
+                padding: 5px;
+            }
+        </style>
+        <script src="./jquery-3.6.1.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Ejemplo CRUD jQuery</h1>
+
+        <br />
+        <hr />
+        <br />
+
+        <label for="cajaNumero">Numero: </label>
+        <input type="text" name="cajaNumero" id="cajaNumero" />
+
+        <label for="cajaNombre">Nombre: </label>
+        <input type="text" name="cajaNombre" id="cajaNombre" />
+
+        <label for="cajaLocalidad">Localidad: </label>
+        <input type="text" name="cajaLocalidad" id="cajaLocalidad" />
+
+        <br />
+        <br />
+
+        <div>
+            <button id="botonCargar">Cargar</button>
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <table style="border: 1px solid black">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nombre</th>
+                    <th>Localidad</th>
+                </tr>
+            </thead>
+            <tbody id="resultado"></tbody>
+        </table>
+        <table style="border: 1px solid black">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Apellido</th>
+                    <th>Oficio</th>
+                    <th>Salario</th>
+                    <th>Departamento</th>
+                </tr>
+            </thead>
+            <tbody id="empleado"></tbody>
+        </table>
+        <script>
+            /*
+				Departamentos: https://apicruddepartamentoscore.azurewebsites.net/index.html
+				Empleados: https://apiempleadosspgs.azurewebsites.net/
+			*/
+
+            function cargarDepartamentos() {
+                let url = "https://apicruddepartamentoscore.azurewebsites.net";
+                let request = url + "/api/departamentos";
+
+                $.ajax({
+                    url: request,
+                    method: "GET",
+                    dataType: "json",
+                    headers: {
+                        "Access-Control-Allow-Origin": true,
+                    },
+                    success: function (data) {
+                        let html = "";
+
+                        $.each(data, function (indice, departamento) {
+                            const fila = $("<tr>");
+
+                            const deptNum = $("<th>", {
+                                text: departamento.numero,
+                            });
+                            const deptNom = $("<th>", {
+                                text: departamento.nombre,
+                            });
+                            const deptLoc = $("<th>", {
+                                text: departamento.localidad,
+                            });
+
+                            const deptEmpleados = $("<th>");
+                            const linkEmpleados = $("<a>", {
+                                text: "Cargar empleados",
+                                href: "#",
+                            });
+                            linkEmpleados.click(function () {
+                                cargarEmpleados(departamento.numero);
+                            });
+                            deptEmpleados.append(linkEmpleados);
+
+                            fila.append(deptNum);
+                            fila.append(deptNom);
+                            fila.append(deptLoc);
+                            fila.append(deptEmpleados);
+
+                            $("#resultado").append(fila);
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error.message);
+                    },
+                });
+            }
+
+            function cargarEmpleados(departamento) {
+                console.log(departamento);
+                let url = "https://apiempleadosspgs.azurewebsites.net/";
+                let request =
+                    url +
+                    "/api/empleados/EmpleadosDepartamento/" +
+                    departamento;
+
+                $.ajax({
+                    url: request,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        let html = "";
+                        $.each(data, function (indice, empleado) {
+                            if (empleado.departamento == departamento) {
+                                html += `
+                 							 <tr>
+                 								 <th>${empleado.idEmpleado}</th>
+                 								 <th>${empleado.apellido}</th>
+                 								 <th>${empleado.oficio}</th>
+                 								 <th>${empleado.salario}</th>
+                 								 <th>${empleado.departamento}</th>
+                 							 </tr>
+                 						 `;
+                            }
+                        });
+                        $("#empleado").html(html);
+                    },
+                    error: function (error) {
+                        console.log(error.message);
+                    },
+                });
+            }
+
+            $(document).ready(function () {
+                cargarDepartamentos();
+            });
+        </script>
+    </body>
+</html>

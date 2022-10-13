@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Lectura de JSON simple</h1>
+        <button type="button" id="botonLeer">Leer documento</button>
+        <ul id="resultado"></ul>
+        <script src="./jquery-3.6.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#botonLeer").click(function () {
+                    $.ajax({
+                        url: "documents/clientes.json",
+                        method: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log("Leyendo servicio");
+                            let html = "";
+                            $.each(data.mascotas, function (indice, cliente) {
+                                html += `<li>Key: ${indice}, Value: ${cliente.nombre}</li>`;
+                            });
+                            $("#resultado").html(html);
+                        },
+                        error: function (error) {
+                            console.log(error.message);
+                        },
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
