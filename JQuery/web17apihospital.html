@@ -242,8 +242,6 @@
             }
 
             function insertHospital(hospital, hospitalsInMemory) {
-                console.log(hospital);
-
                 $.ajax({
                     url: url + "webresources/hospitales/post",
                     type: "POST",
@@ -303,8 +301,6 @@
             }
 
             function loadHospital(hospital, hospitalsInMemory) {
-                console.log(hospital);
-
                 const tr = $("<tr>");
                 const inputs = [];
 
@@ -344,8 +340,6 @@
                 tr.append(tdUpdate);
                 tr.append(tdDelete);
 
-                console.log(tr.html());
-
                 $("#resultado").append(tr);
             }
 
@@ -356,7 +350,6 @@
                 loadHospitals(hospitalsInMemory);
 
                 $("#searchBtn").click(function () {
-                    console.log(hospitalsInMemory);
                     const index = $("#selectSearch").prop("selectedIndex");
                     $("#resultado").html("");
                     loadHospital(hospitalsInMemory[index], hospitalsInMemory);
@@ -403,7 +396,7 @@
                         //             }
                         //         }
 
-                        let randomID = parseInt(Msth.random() * 100);
+                        let randomID = parseInt(Math.random() * 100);
 
                         objetoInsertar = {
                             camas: numBeds,
@@ -412,8 +405,6 @@
                             nombre: newName,
                             telefono: newNumber,
                         };
-
-                        console.log(objetoInsertar);
 
                         insertHospital(objetoInsertar, hospitalsInMemory);
                         //     },
