@@ -37,6 +37,24 @@
         <script src="./jquery-3.6.1.min.js"></script>
         <script>
             $(document).ready(function () {
+                $.get("./documents/ClientesXML.xml", function (data) {
+                    const clientes = $(data).find("CLIENTE");
+
+                    clientes.each(function (index) {
+                        const clientID = $(this).attr("IDCLIENTE");
+                        const clientName = $(this)
+                            .find("NOMBRE")
+                            .first()
+                            .text();
+                        const button = $("<button>");
+                        button.html("Cliente: " + clientName);
+                        button.appendTo($("#botones"));
+                        button.click(function () {
+                            getInfoCliente(clientID);
+                        });
+                    });
+                });
+
                 function getInfoCliente(idCliente) {
                     let html = "";
                     $.get("./documents/ClientesXML.xml", function (data) {
@@ -71,31 +89,17 @@
                                     .first()
                                     .text();
                                 html += `<tr>
-											<th scope="col">${nombre}</th>
-                        					<th scope="col">${direccion}</th>
-                        					<th scope="col">${email}</th>
-                        					<th scope="col">${codigoPostal}</th>
-                        					<th scope="col"><a href='${paginaWeb}'>${paginaWeb}</a></th>
-                        					<th scope="col"><img src='${imgCliente}' alt='Imagen Usuario'/></th>
-                        				</tr>`;
+                                            <th scope="col">${nombre}</th>
+                                            <th scope="col">${direccion}</th>
+                                            <th scope="col">${email}</th>
+                                            <th scope="col">${codigoPostal}</th>
+                                            <th scope="col"><a href='${paginaWeb}'>${paginaWeb}</a></th>
+                                            <th scope="col"><img src='${imgCliente}' alt='Imagen Usuario'/></th>
+                                        </tr>`;
                             });
                         $("#info").html(html);
                     });
                 }
-
-                $.get("./documents/ClientesXML.xml", function (data) {
-                    const clientes = $(data).find("CLIENTE");
-
-                    clientes.each(function (index) {
-                        const clientID = $(this).attr("IDCLIENTE");
-                        const button = $("<button>");
-                        button.html("Cliente: " + clientID);
-                        button.appendTo($("#botones"));
-                        button.click(function () {
-                            getInfoCliente(clientID);
-                        });
-                    });
-                });
             });
         </script>
     </body>
