@@ -2,15 +2,28 @@ import "./App.css";
 import SumarNumeros from "../SumarNumeros";
 import SaludoHijo from "../SaludoHijo";
 import Matematicas from "../Matematicas";
+import Car from "../Car";
 
 function App() {
-    const metodoPadre = (descripcion) => {
-        console.log("Soy: " + descripcion);
-    };
+    // const metodoPadre = (descripcion) => {
+    //     console.log("Soy: " + descripcion);
+    // };
 
     return (
         <div className="App">
-            <input id="input1" type={"text"}></input>
+            <Car
+                marca="Audi"
+                modelo="Q4"
+                aceleracion="20"
+                velocidadMaxima="240"
+            />
+            <Car
+                marca="Pontiac"
+                modelo="Firebird"
+                aceleracion="40"
+                velocidadMaxima="280"
+            />
+            {/* <input id="input1" type={"text"}></input>
             <span>+</span>
             <input id="input2" type={"text"}></input>
             <SumarNumeros input1={"input1"} input2={"input2"} />
@@ -25,7 +38,7 @@ function App() {
             <span>Multiplicar</span>
             <input id="input3" type={"text"}></input>
             <input id="input4" type={"text"}></input>
-            <input id="input5" type={"text"}></input>
+            <input id="input5" type={"text"}></input> */}
         </div>
     );
 }
