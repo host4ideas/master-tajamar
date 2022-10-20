@@ -1,6 +1,8 @@
 import Contador from "./components/Contador";
 import DibujosComplejos from "./components/DibujosComplejos";
 import PadreDeportes from "./components/PadreDeportes";
+import NumerosPadre from "./components/NumerosPadre";
+import Comics from "./components/Comics";
 import "./App.css";
 
 function App() {
@@ -8,7 +10,9 @@ function App() {
         <div className="App">
             {/* <Contador inicio="1" /> */}
             {/* <DibujosComplejos /> */}
-            <PadreDeportes />
+            {/* <PadreDeportes /> */}
+            {/* <NumerosPadre /> */}
+            <Comics />
         </div>
     );
 }
