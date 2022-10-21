@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 
 export default class FormSimple extends Component {
-    state = {
-        user: null,
-    };
-
     inputNombre = React.createRef();
     inputEdad = React.createRef();
 
     handleSubmit = (ev) => {
         ev.preventDefault();
 
-        this.setState({
-            user: {
-                nombre: this.inputNombre.current.value,
-                edad: this.inputEdad.current.value,
-            },
-        });
+        this.props.userLogin(
+            this.inputNombre.current.value,
+            this.inputEdad.current.value
+        );
     };
 
     render() {
@@ -24,11 +18,11 @@ export default class FormSimple extends Component {
             <div>
                 <h1 className="App-header">Ejemplo simple forms</h1>
 
-                {this.state.user && (
+                {this.props.user && (
                     <div>
                         <h2>
-                            Usuario: {this.state.user.nombre}, Edad:{" "}
-                            {this.state.user.edad}
+                            Usuario: {this.props.user.nombre}, Edad:{" "}
+                            {this.props.user.edad}
                         </h2>
                     </div>
                 )}

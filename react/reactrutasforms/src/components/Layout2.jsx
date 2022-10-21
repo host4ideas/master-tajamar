@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Outlet, Link } from "react-router-dom";
 
-export default class Layout extends Component {
+export default class Layout2 extends Component {
     render() {
         return (
             <>
                 <nav>
-                    <h2>Layout 1</h2>
+                    <h2>Layout 2</h2>
                     <ul>
                         <li>
                             <Link to="/home">Home</Link>
