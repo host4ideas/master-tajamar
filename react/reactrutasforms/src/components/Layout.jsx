@@ -16,6 +16,12 @@ export default class Layout extends Component {
                         <li>
                             <Link to="/music">Music</Link>
                         </li>
+                        <li>
+                            <Link to="/formulario">Formulario</Link>
+                        </li>
+                        <li>
+                            <Link to="/collatz">Conjetura de Collatz</Link>
+                        </li>
                     </ul>
                 </nav>
 

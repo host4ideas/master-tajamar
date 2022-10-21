@@ -5,7 +5,7 @@ export default class Cine extends Component {
     render() {
         return (
             <div>
-                <h1>Cine</h1>
+                <h1 className="App-header">Cine</h1>
                 <img src={cineImage} alt="Cine" />
             </div>
         );

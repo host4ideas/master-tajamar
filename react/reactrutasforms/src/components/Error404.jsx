@@ -5,7 +5,7 @@ export default class Error404 extends Component {
     render() {
         return (
             <div>
-                <h1>Page not found</h1>
+                <h1 className="App-header">Page not found</h1>
                 <img src={error404Image} alt="Error 404" />
             </div>
         );
