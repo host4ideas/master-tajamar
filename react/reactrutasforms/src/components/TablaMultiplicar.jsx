@@ -50,6 +50,7 @@ export default class TablaMultiplicar extends Component {
     render() {
         return (
             <div>
+                <h1 className="App-header">Tabla de multiplicar</h1>
                 <label htmlFor="selectNumeros">Selecciona un número</label>
                 <select
                     name=""
