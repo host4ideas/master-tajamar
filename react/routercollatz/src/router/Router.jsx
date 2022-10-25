@@ -5,16 +5,30 @@ import Layout from "../components/Layout";
 
 export default class Router extends Component {
     render() {
-        function GetCollatzElement() {
+        const GetCollatzElement = () => {
             const { numero } = useParams();
 
-            return <Collatz num={numero} />;
-        }
+            return (
+                <Collatz
+                    theme={this.props.theme}
+                    setTheme={this.props.setTheme}
+                    num={numero}
+                />
+            );
+        };
 
         return (
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Layout />}>
+                    <Route
+                        path="/"
+                        element={
+                            <Layout
+                                theme={this.props.theme}
+                                setTheme={this.props.setTheme}
+                            />
+                        }
+                    >
                         <Route
                             path="collatz/:numero"
                             element={<GetCollatzElement />}
