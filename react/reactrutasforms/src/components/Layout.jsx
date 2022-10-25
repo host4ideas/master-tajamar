@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 export default class Layout extends Component {
+
     render() {
         return (
             <>
@@ -18,7 +19,9 @@ export default class Layout extends Component {
                             <Link to="/music">Music</Link>
                         </li>
                         <li>
-                            <Link to="/formulario">Formulario - Cambiar usuario</Link>
+                            <Link to="/formulario">
+                                Formulario - Cambiar usuario
+                            </Link>
                         </li>
                         <li>
                             <Link to="/collatz">Conjetura de Collatz</Link>

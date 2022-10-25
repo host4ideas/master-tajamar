@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Outlet, Link } from "react-router-dom";
 import homeImage from "../assets/images/home.webp";
 
 export default class Home extends Component {
