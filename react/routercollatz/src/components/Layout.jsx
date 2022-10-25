@@ -47,7 +47,7 @@ export default class Layout extends Component {
             <>
                 <div>
                     <nav
-                        className="nav btn-group pt-3 mb-1"
+                        className="nav btn-group pt-3 px-3 mb-1"
                     >
                         {this.state.links}
                     </nav>
