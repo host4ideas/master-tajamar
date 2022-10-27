@@ -15,8 +15,17 @@
         <title>Jugadores</title>
     </head>
     <body>
-        <div>
-            <table className="table">
+        <!-- Menu -->
+        <div id="menu"></div>
+
+        <script>
+            $(document).ready(function () {
+                $("#menu").load("./menu.html");
+            });
+        </script>
+        <!-- Jugadores info -->
+        <div class="container">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -35,38 +44,33 @@
 
             function detallesEquipo() {
                 const idEquipo = getParamFromUrl("idEquipo");
-                console.log(idEquipo);
 
                 const request =
-                    Global.urlChampios +
-                    `api/Jugadores/JugadoresEquipo/${this.props.idEquipo}`;
+                    Global.urlChampions +
+                    `api/Jugadores/JugadoresEquipo/${idEquipo}`;
 
                 $.ajax({
                     url: request,
                     method: "GET",
                     dataType: "json",
                     success: function (data) {
-                        console.log("Leyendo servicio");
                         let html = "";
 
                         $.each(data, function (indice, jugador) {
-                            console.log(equipo);
-
                             html += `
-                         				<li>
-                         					<tr>
+                         				<tr>
                          					<td>${jugador.nombre}</td>
                          					<td>
                          						<img
                          							width='150'
                          							src='${jugador.imagen}'
-                         							alt=""
+                         							alt="Jugador"
                          						/>
                          					</td>
                          					<td>
                          						<a
-                         							className="btn btn-outline-danger"
-                         							href=/detallesJugador/${jugador.idJugador}
+                         							class="btn btn-outline-danger"
+                         							href='/detallesJugador.html?idJugador=${jugador.idJugador}'
                          						>
                          							Detalles
                          						</a>

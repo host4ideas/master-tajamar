@@ -15,7 +15,16 @@
         <title>Detalles Equipo</title>
     </head>
     <body>
-        <div id="equipos"></div>
+        <!-- Menu -->
+        <div id="menu"></div>
+
+        <script>
+            $(document).ready(function () {
+                $("#menu").load("./menu.html");
+            });
+        </script>
+        <!-- Equipos info -->
+        <div class="container-fluid" id="equipos"></div>
         <script>
             $(document).ready(function () {
                 detallesEquipo();
@@ -23,7 +32,6 @@
 
             function detallesEquipo() {
                 const idEquipo = getParamFromUrl("idEquipo");
-                console.log(idEquipo);
 
                 const request = Global.urlChampions + `api/Equipos/${idEquipo}`;
 
@@ -32,27 +40,27 @@
                     method: "GET",
                     dataType: "json",
                     success: function (equipo) {
-                        console.log("Leyendo servicio");
-
                         let html = "";
 
                         html += `
 								<h1>${equipo.nombre}</h1>
 								<h2>Champions: ${equipo.champions}</h2>
 								<p>${equipo.descripcion}</p>
-								<img width='200' src='${equipo.imagen}' alt="Equipo" />
-								<a
-									class="btn btn-primary"
-									href="./jugadoresEquipo.html?idEquipo=${equipo.idEquipo}"
-								>
-									Jugadores
-								</a>
-								<a
-									class="btn btn-primary"
-									href="./jugadoresEquipo.html?idEquipo${equipo.idEquipo}"
-								>
-									Volver
-								</a>
+                                <div style="text-align: center;"><img style="max-width: 300px;" src='${equipo.imagen}' alt="Equipo" /></div>
+								<div class="d-flex flex-column justify-content-center m-5">
+                                    <a
+                                        class="btn btn-primary m-1"
+                                        href="./jugadoresEquipo.html?idEquipo=${equipo.idEquipo}"
+                                    >
+                                        Jugadores
+                                    </a>
+                                    <a
+                                        class="btn btn-primary m-1"
+                                        href="./home.html"
+                                    >
+                                        Volver
+                                    </a>
+                                </div>
 							`;
                         $("#equipos").html(html);
                     },
