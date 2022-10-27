@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="./jquery-3.6.1.min.js"></script>
+	<script src="./bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+	<link
+		rel="stylesheet"
+		href="./bootstrap-5.2.2-dist/css/bootstrap.css"
+	/>
+	<title>Apuestas</title>
+</head>
+<body>
+	<div id="menu"></div>
+
+	<div>
+		<h1>Champions</h1>
+		<img width="500" src="assets/images/home-image.jpg" alt="" />
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			$("#menu").load("./menu.html");
+		});
+	</script>
+	
+	<div>
+		<Link className="btn btn-danger" href="./nuevaApuesta">
+			Realizar apuesta
+		</Link>
+		<table className="table">
+			<thead>
+				<tr>
+					<th>Usuario</th>
+					<th>Resultado</th>
+					<th>Fecha</th>
+				</tr>
+			</thead>
+			<tbody>
+				{this.state?.apuestas?.map((apuesta, index) => {
+					return (
+						<tr>
+							<td>{apuesta.usuario}</td>
+							<td>{apuesta.resultado}</td>
+							<td>{apuesta.fecha}</td>
+						</tr>
+					);
+				})}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

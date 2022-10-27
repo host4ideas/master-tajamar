@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="./home.html">
+                        <img
+                            width="50"
+                            src="./assets/images/champions-icon.png"
+                            alt="Champions"
+                        />
+                    </a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                    >
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="./home.html">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./apuestas.html">
+                                    Apuestas
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <span
+                                    class="nav-link dropdown-toggle"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Equipos
+                                </span>
+                                <ul
+                                    class="dropdown-menu"
+                                    id="dropdownEquipos"
+                                ></ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <script src="./js/Global.js"></script>
+        <script>
+            $(document).ready(function () {
+                cargarEquipos();
+            });
+
+            function cargarEquipos() {
+                const request = Global.urlChampions + "/api/Equipos";
+                $.ajax({
+                    url: request,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log("Leyendo servicio");
+                        let html = "";
+
+                        $.each(data, function (indice, equipo) {
+                            console.log(equipo);
+
+                            html += `
+							<li>
+                                        <a
+                                            className="dropdown-item"
+                                            href="./detallesEquipo.html?idEquipo=${equipo.idEquipo}"
+                                        >
+                                            ${equipo.nombre}
+                                        </a>
+                                    </li>
+								`;
+                        });
+                        $("#dropdownEquipos").html(html);
+                    },
+                    error: function (error) {
+                        console.log(error.message);
+                    },
+                });
+            }
+        </script>
+    </body>
+</html>

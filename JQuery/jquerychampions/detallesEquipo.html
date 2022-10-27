@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./jquery-3.6.1.min.js"></script>
+        <script src="./bootstrap-5.2.2-dist/js/bootstrap.bundle.js"></script>
+        <link
+            rel="stylesheet"
+            href="./bootstrap-5.2.2-dist/css/bootstrap.css"
+        />
+        <script src="./js/getParamFromUrl.js"></script>
+        <script src="./js/Global.js"></script>
+        <title>Detalles Equipo</title>
+    </head>
+    <body>
+        <div id="equipos"></div>
+        <script>
+            $(document).ready(function () {
+                detallesEquipo();
+            });
+
+            function detallesEquipo() {
+                const idEquipo = getParamFromUrl("idEquipo");
+                console.log(idEquipo);
+
+                const request = Global.urlChampions + `api/Equipos/${idEquipo}`;
+
+                $.ajax({
+                    url: request,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (equipo) {
+                        console.log("Leyendo servicio");
+
+                        let html = "";
+
+                        html += `
+								<h1>${equipo.nombre}</h1>
+								<h2>Champions: ${equipo.champions}</h2>
+								<p>${equipo.descripcion}</p>
+								<img width='200' src='${equipo.imagen}' alt="Equipo" />
+								<a
+									class="btn btn-primary"
+									href="./jugadoresEquipo.html?idEquipo=${equipo.idEquipo}"
+								>
+									Jugadores
+								</a>
+								<a
+									class="btn btn-primary"
+									href="./jugadoresEquipo.html?idEquipo${equipo.idEquipo}"
+								>
+									Volver
+								</a>
+							`;
+                        $("#equipos").html(html);
+                    },
+                    error: function (error) {
+                        console.log(error.message);
+                    },
+                });
+            }
+        </script>
+    </body>
+</html>

@@ -1,38 +1,12 @@
 import React, { Component } from "react";
-import axios from "axios";
-import Global from "../Global";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default class Departamentos extends Component {
     state = {
-        departamentos: [],
-        loading: true,
         newLocation: null,
     };
 
     redirectToHome = React.createRef();
-
-    getDepartamentos = () => {
-        const request = Global.urlDepartamentos + "/api/Departamentos";
-        axios
-            .get(request)
-            .then((response) => {
-                this.setState({
-                    loading: false,
-                    departamentos: response.data,
-                });
-            })
-            .catch((error) => {
-                console.error(error);
-                this.setState({
-                    loading: false,
-                });
-            });
-    };
-
-    componentDidMount() {
-        this.getDepartamentos();
-    }
 
     showDetails = (numero, nombre, localidad) => {
         this.setState({
@@ -42,7 +16,7 @@ export default class Departamentos extends Component {
     };
 
     render() {
-        if (this.state.loading) {
+        if (this.props.loading) {
             return (
                 <div>
                     <h1
@@ -88,7 +62,7 @@ export default class Departamentos extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.departamentos.map(
+                            {this.props.departamentos.map(
                                 (departamento, index) => {
                                     return (
                                         <tr
@@ -151,7 +125,6 @@ export default class Departamentos extends Component {
                                                     to={this.state.newLocation}
                                                     ref={this.redirectToHome}
                                                 >
-                                                    Test
                                                 </NavLink>
                                             </td>
                                         </tr>

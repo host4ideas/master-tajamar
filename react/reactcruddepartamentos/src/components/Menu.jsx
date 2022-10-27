@@ -55,6 +55,51 @@ export default class Menu extends Component {
                                             Crear departamento
                                         </Link>
                                     </li>
+                                    <li class="nav-item dropdown">
+                                        <span
+                                            className={
+                                                this.props.theme === "dark"
+                                                    ? "nav-link dropdown-toggle"
+                                                    : "nav-link text-white dropdown-toggle"
+                                            }
+                                            role="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                        >
+                                            Dropdown
+                                        </span>
+                                        <ul
+                                            classname="dropdown-menu bg-black"
+                                            className={
+                                                this.props.theme === "dark"
+                                                    ? "dropdown-menu"
+                                                    : "dropdown-menu bg-black text-white"
+                                            }
+                                        >
+                                            {this.props.departamentos.map(
+                                                (departamento, index) => {
+                                                    return (
+                                                        <li>
+                                                            <Link
+                                                                className={
+                                                                    this.props
+                                                                        .theme ===
+                                                                    "dark"
+                                                                        ? "dropdown-item"
+                                                                        : "dropdown-item text-white"
+                                                                }
+                                                                to={`empleados/${departamento.numero}`}
+                                                            >
+                                                                {
+                                                                    departamento.nombre
+                                                                }
+                                                            </Link>
+                                                        </li>
+                                                    );
+                                                }
+                                            )}
+                                        </ul>
+                                    </li>
                                     <li className="nav-item">
                                         <ThemeBtn
                                             theme={this.props.theme}
