@@ -1,25 +1,45 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeComponentVue from "./components/HomeComponent.vue";
-import CineComponentVue from "./components/CineComponent.vue";
-import MusicaComponentVue from "./components/MusicaComponent.vue";
-import HelloWorldVue from "./components/HelloWorld.vue";
+import HomePage from "./views/HomePage.vue";
+import CinePage from "./views/CinePage.vue";
+import MusicaPage from "./views/MusicaPage.vue";
+import NotFoundPage from "./views/NotFoundPage.vue";
+import CicloVidaPage from "./components/CicloVidaPage.vue";
+import DirectivasPage from "./views/DirectivasPage.vue";
+import ConmutadaPage from "./views/ConmutadaPage.vue";
+import FiltersPage from "./views/FiltersPage.vue";
 
 const routes = [
     {
         path: "/",
-        component: HomeComponentVue,
+        component: HomePage,
     },
     {
         path: "/cine",
-        component: CineComponentVue,
+        component: CinePage,
     },
     {
         path: "/musica",
-        component: MusicaComponentVue,
+        component: MusicaPage,
+    },
+    {
+        path: "/ciclo-vida",
+        component: CicloVidaPage,
+    },
+    {
+        path: "/directivas",
+        component: DirectivasPage,
+    },
+    {
+        path: "/propiedad-conmutada",
+        component: ConmutadaPage,
+    },
+    {
+        path: "/filters",
+        component: FiltersPage,
     },
     {
         path: "/:pathMatch(.*)*",
-        component: <HelloWorldVue msg="No deberias de estar aqui..." />,
+        component: <NotFoundPage msg="No deberias de estar aqui..." />,
     },
 ];
 

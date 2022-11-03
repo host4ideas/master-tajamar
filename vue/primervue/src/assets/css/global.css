@@ -1,0 +1,8 @@
+h1 {
+	color: blueviolet;
+}
+
+footer h1,
+header h1 {
+	color: aqua;
+}
