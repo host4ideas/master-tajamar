@@ -1,7 +1,12 @@
 <template>
     <main>
         <label for="inputNumero"></label>
-        <input type="text" id="inputNumero" v-model="numero" />
+        <input
+            type="text"
+            id="inputNumero"
+            v-model="numero"
+            @keypress.enter="mostrarTabla"
+        />
         <table>
             <thead>
                 <tr>
@@ -27,7 +32,7 @@ export default {
     methods: {
         mostrarTabla() {
             this.resultados = "";
-            
+
             for (let i = 0; i <= 10; i++) {
                 this.resultados += `
                 <tr>
