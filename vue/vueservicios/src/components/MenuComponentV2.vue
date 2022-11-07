@@ -32,26 +32,8 @@
                             Empleados
                         </router-link>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            Oficios
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li v-for="oficio in data.oficios" :key="oficio">
-                                <router-link
-                                    class="dropdown-item"
-                                    :to="`/empleados-oficio/${oficio}`"
-                                >
-                                    {{ oficio }}
-                                </router-link>
-                            </li>
-                        </ul>
+                    <li class="nav-item" id="links">
+                        {{ oficiosLinks }}
                     </li>
                 </ul>
             </div>
@@ -59,25 +41,44 @@
     </nav>
 </template>
 
-<script setup>
-import { onMounted, inject, reactive } from "vue";
+<script>
 import axios from "axios";
+// import { createVNode } from "vue";
+import { compile, h } from "vue/dist/vue.esm-bundler.js";
 
-const urlEmpleados = inject("urlEmpleados");
+export default {
+    data() {
+        return {
+            oficios: [],
+            compile: compile,
+            h: h,
+        };
+    },
+    inject: ["urlEmpleados"],
+    methods: {
+        getOficios() {
+            const request = this.urlEmpleados + `/api/Empleados/oficios`;
 
-const data = reactive({
-    oficios: [],
-});
-
-const getOficios = () => {
-    const request = urlEmpleados + `/api/Empleados/oficios`;
-
-    axios.get(request).then((res) => {
-        data.oficios = res.data;
-    });
+            axios.get(request).then((res) => {
+                this.oficios = res.data;
+            });
+        },
+    },
+    computed: {
+        oficiosLinks() {
+            const links = this.oficios.map((oficio) => {
+                return h(
+                    compile(
+                        `<router-link to="/empleados-oficio/${oficio}">${oficio}</router-link>`
+                    )
+                );
+            });
+            console.log(links);
+            return links;
+        },
+    },
+    mounted() {
+        this.getOficios();
+    },
 };
-
-onMounted(() => {
-    getOficios();
-});
 </script>

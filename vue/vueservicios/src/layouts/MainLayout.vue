@@ -3,7 +3,9 @@
         <img alt="Vue logo" src="../assets/logo.png" />
         <div>
             <header>
-                <MenuComponent />
+                <!-- <MenuComponent /> -->
+                <MenuComponentV2 />
+                <!-- <MenuComponentV3 /> -->
             </header>
             <main>
                 <slot></slot>
@@ -13,7 +15,9 @@
 </template>
 
 <script setup>
-import MenuComponent from "../components/MenuComponent.vue";
+// import MenuComponent from "../components/MenuComponent.vue";
+import MenuComponentV2 from "../components/MenuComponentV2.vue";
+// import MenuComponentV3 from "../components/MenuComponentV3.vue";
 </script>
 
 <style scoped>

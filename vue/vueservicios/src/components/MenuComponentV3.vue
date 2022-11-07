@@ -42,16 +42,15 @@
                         >
                             Oficios
                         </a>
-                        <ul class="dropdown-menu">
-                            <li v-for="oficio in data.oficios" :key="oficio">
+                        <!-- <li v-for="oficio in data.oficios" :key="oficio">
                                 <router-link
                                     class="dropdown-item"
                                     :to="`/empleados-oficio/${oficio}`"
                                 >
                                     {{ oficio }}
                                 </router-link>
-                            </li>
-                        </ul>
+                            </li> -->
+                        <ul class="dropdown-menu" v-html="oficiosLinks"></ul>
                     </li>
                 </ul>
             </div>
@@ -60,7 +59,7 @@
 </template>
 
 <script setup>
-import { onMounted, inject, reactive } from "vue";
+import { onMounted, inject, reactive, computed } from "vue";
 import axios from "axios";
 
 const urlEmpleados = inject("urlEmpleados");
@@ -76,6 +75,23 @@ const getOficios = () => {
         data.oficios = res.data;
     });
 };
+
+const oficiosLinks = computed(() => {
+    return data.oficios
+        .map((oficio) => {
+            return `
+                <li v-for="oficio in data.oficios" :key="oficio">
+                    <router-link
+                        class="dropdown-item"
+                        :to="/empleados-oficio/${oficio}"
+                    >
+                        ${oficio}
+                    </router-link>
+                </li>
+            `;
+        })
+        .join("");
+});
 
 onMounted(() => {
     getOficios();
