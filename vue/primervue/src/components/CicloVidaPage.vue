@@ -21,7 +21,7 @@ export default {
     mounted() {
         console.log("Componente montado");
     },
-    uunmounted() {
+    unmounted() {
         console.log("Componente destruido");
     },
     updated() {
