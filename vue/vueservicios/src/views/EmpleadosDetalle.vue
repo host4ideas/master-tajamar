@@ -41,11 +41,11 @@
 </template>
 
 <script setup>
-import { inject } from "vue";
 import { reactive, onMounted } from "vue";
-import axios from "axios";
+import empleadosService from "../services/EmpleadosService";
 
-const urlEmpleados = inject("urlEmpleados");
+// import { inject } from "vue";
+// const urlEmpleados = inject("urlEmpleados");
 
 const data = reactive({
     empleados: [],
@@ -54,15 +54,9 @@ const data = reactive({
 });
 
 onMounted(() => {
-    const request = urlEmpleados + "/api/Empleados";
-    axios
-        .get(request)
-        .then((res) => {
-            data.empleados = res.data;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    empleadosService.getEmpleados().then((empleados) => {
+        data.empleados = empleados;
+    });
 });
 
 const handleForm = () => {
@@ -75,14 +69,8 @@ const handleForm = () => {
 			"departamento": 10
 		}
 	*/
-    const request = urlEmpleados + `/api/Empleados/${data.empleadoID}`;
-    axios
-        .get(request)
-        .then((res) => {
-            data.empleadoSeleccionado = res.data;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    empleadosService.findEmpleado(data.empleadoID).then((empleado) => {
+        data.empleadoSeleccionado = empleado;
+    });
 };
 </script>

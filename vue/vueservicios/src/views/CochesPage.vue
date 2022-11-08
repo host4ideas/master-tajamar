@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import cochesService from "../services/CochesService";
 
 export default {
     data() {
@@ -21,12 +21,8 @@ export default {
     inject: ["urlCoches"],
     compatConfig: { MODE: 3 },
     methods: {
-        loadCoches() {
-            const request = this.urlCoches + "/webresources/coches";
-
-            axios.get(request).then((res) => {
-                this.coches = res.data;
-            });
+        async loadCoches() {
+            this.coches = await cochesService.getCoches2();
         },
     },
     mounted() {

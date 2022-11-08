@@ -24,26 +24,22 @@
 </template>
 
 <script setup>
-import { reactive, inject, onMounted, watchEffect } from "vue";
+import { reactive, onMounted, watchEffect } from "vue";
 import { useRoute } from "vue-router";
-import axios from "axios";
+import empleadosService from "../services/EmpleadosService";
 
 const route = useRoute();
 
-const urlEmpleados = inject("urlEmpleados");
+// import { inject } from "vue";
+// const urlEmpleados = inject("urlEmpleados");
 
 const data = reactive({
     empleados: [],
 });
 
-const getEmpladosPorOficio = () => {
+const getEmpladosPorOficio = async () => {
     const oficio = route.params?.oficio;
-
-    const request = urlEmpleados + `/api/Empleados/EmpleadosOficio/${oficio}`;
-
-    axios.get(request).then((res) => {
-        data.empleados = res.data;
-    });
+    data.empleados = await empleadosService.getEmpleadosOficio(oficio);
 };
 
 onMounted(() => {
