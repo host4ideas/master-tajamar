@@ -1,0 +1,73 @@
+<div>
+  <h1>Ejemplo directivas Angular</h1>
+
+  <!-- Deportes -->
+  <button (click)="quitarEle(sports)">Splice sports</button>
+  <button (click)="resetSports()">Reset sports</button>
+
+  <!-- Deportes -->
+  <h2>Número de deportes {{ sports.length }}</h2>
+  <div *ngIf="sports.length > 5; else menorQue">
+    <p style="color: red">Array <b>mayor</b> que 5</p>
+
+    <ul>
+      <li
+        *ngFor="let sport of sports; let i = index"
+        [ngStyle]="{ 'font-size.px': i + 10 }"
+      >
+        Index: {{ i }}, Deporte: {{ sport }}
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #menorQue>
+    <p style="color: red">Array <b>menor</b> que 5</p>
+
+    <ul>
+      <li
+        *ngFor="let sport of sports; let i = index"
+        [ngStyle]="{ 'font-size.px': i + 10 }"
+      >
+        Index: {{ i }}, Deporte: {{ sport }}
+      </li>
+    </ul>
+  </ng-template>
+
+  <!-- Numeros -->
+  <h2>Número de numeros {{ numeros.length }}</h2>
+  <button (click)="quitarEle(numeros)">Splice numeros</button>
+  <button (click)="resetNumeros()">Reset numeros</button>
+
+  <!-- Numeros -->
+  <div *ngIf="numeros.length > 5; then mayorQueNums; else menorQueNums"></div>
+
+  <ng-template #mayorQueNums>
+    <p style="color: red">Array <b>mayor</b> que 5</p>
+
+    <ul>
+      <li
+        *ngFor="let num of numeros; let i = index"
+        [class.estilo-par]="num % 2 == 0"
+        [class.estilo-impar]="num % 2 != 0"
+      >
+        Index: {{ i }}, Número: {{ num }}
+      </li>
+    </ul>
+  </ng-template>
+
+  <ng-template #menorQueNums>
+    <p style="color: red">Array <b>menor</b> que 5</p>
+
+    <ul>
+      <li
+        *ngFor="let num of numeros; let i = index"
+        [ngClass]="{
+          'estilo-impar': num % 2 == 0,
+          'estilo-par': num % 2 != 0
+        }"
+      >
+        Index: {{ i }}, Número: {{ num }}
+      </li>
+    </ul>
+  </ng-template>
+</div>

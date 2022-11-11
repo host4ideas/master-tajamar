@@ -1,0 +1,11 @@
+.estilo-par {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+}
+
+.estilo-impar {
+  background-color: fuchsia;
+  color: black;
+  font-weight: bold;
+}

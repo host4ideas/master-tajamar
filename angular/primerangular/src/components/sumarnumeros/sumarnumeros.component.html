@@ -1,0 +1,16 @@
+<div style="width: 700px; margin: 0 auto">
+  <h1>Sumar números</h1>
+
+  <form #sumarForm="ngForm">
+    <label for="">Introduce numero 1: </label>
+    <input type="number" name="cajaNumero1" #cajaNumero1 />
+    <br />
+    <label for="">Introduce numero 2</label>
+    <input type="number" name="cajaNumero2" #cajaNumero2 />
+    <br />
+    <button type="submit" (click)="sumarNumeros()">Sumar</button>
+  </form>
+
+  <hr />
+  <h2 style="color: blue">Suma es: {{ sumaTotal }}</h2>
+</div>

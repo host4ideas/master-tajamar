@@ -1,0 +1,65 @@
+<div>
+  <h1>Formulario</h1>
+  <h2>{{ mensaje }}</h2>
+  <form #userForm="ngForm">
+    <!-- Nombre -->
+    <label for="inputNombre"> Nombre: </label>
+    <input
+      type="text"
+      name="cajaNombre"
+      #cajaNombre="ngModel"
+      [(ngModel)]="user.nombre"
+      required
+    />
+    <label
+      for="inputNombre"
+      style="color: red"
+      *ngIf="!cajaNombre.valid && cajaNombre.touched"
+    >
+      El nombre es obligatorio
+    </label>
+
+    <!-- Apellidos -->
+    <label for="inputApellidos">Apellidos: </label>
+    <input
+      type="text"
+      name="cajaApellidos"
+      #cajaApellidos="ngModel"
+      pattern="^[A-Z][a-z]{0,99}"
+      [(ngModel)]="user.apellidos"
+      required
+    />
+    <label
+      for="inputApellidos"
+      style="color: red"
+      *ngIf="!cajaApellidos.valid && cajaApellidos.touched"
+    >
+      El apellido es obligatorio y debe de estar en mayúscula
+    </label>
+
+    <!-- Edad -->
+    <label for="inputEdad">Edad: </label>
+    <input
+      type="number"
+      name="cajaEdad"
+      #cajaEdad="ngModel"
+      [(ngModel)]="user.edad"
+      required
+    />
+    <label
+      for="inputEdad"
+      style="color: red"
+      *ngIf="user.edad < 18 || user.edad > 120"
+    >
+      La edad debe de ser mayor que 18 y menor que 120
+    </label>
+
+    <button type="submit" [disabled]="!userForm.valid">Crear usuario</button>
+
+    <hr />
+
+    <h2 style="color: yellowgreen">Nombre: {{ user.nombre }}</h2>
+    <h2 style="color: orange">Apellidos: {{ user.apellidos }}</h2>
+    <h2 style="color: burlywood">Edad: {{ user.edad }}</h2>
+  </form>
+</div>
