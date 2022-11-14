@@ -1,0 +1,23 @@
+<div>
+  <form (ngSubmit)="onSubmit()" #tablaForm="ngForm">
+    <label for="cajaNumero">Introduce un número</label>
+    <input type="number" name="cajaNumero" id="cajaNumero" #cajaNumero required />
+
+    <button type="submit" [disabled]="!tablaForm.valid">Mostar tabla</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Operación</th>
+        <th>Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of resultados; let i = index">
+        <td>{{ numeroInput }} X {{ i }}</td>
+        <td>{{ resultado }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,12 @@
+<nav>
+  <ul>
+    <li *ngFor="let number of numbers">
+      <a
+        [routerLink]="['/collatz/' + number]"
+        routerLinkActive="router-link-active"
+      >
+        Calcular collatz de {{ number }}
+      </a>
+    </li>
+  </ul>
+</nav>

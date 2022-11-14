@@ -7,6 +7,7 @@
     <input
       type="text"
       name="cajaNombre"
+      pattern="^[A-Z][a-z]{0,99}"
       #cajaNombre="ngModel"
       [(ngModel)]="user.nombre"
       required
@@ -18,6 +19,7 @@
     >
       El nombre es obligatorio
     </label>
+    <br />
 
     <!-- Apellidos -->
     <label for="inputApellidos">Apellidos: </label>
@@ -36,6 +38,7 @@
     >
       El apellido es obligatorio y debe de estar en mayúscula
     </label>
+    <br />
 
     <!-- Edad -->
     <label for="inputEdad">Edad: </label>
@@ -53,6 +56,7 @@
     >
       La edad debe de ser mayor que 18 y menor que 120
     </label>
+    <br />
 
     <button type="submit" [disabled]="!userForm.valid">Crear usuario</button>
 

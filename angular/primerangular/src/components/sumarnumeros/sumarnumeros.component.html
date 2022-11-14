@@ -3,12 +3,18 @@
 
   <form #sumarForm="ngForm">
     <label for="">Introduce numero 1: </label>
-    <input type="number" name="cajaNumero1" #cajaNumero1 />
+    <input type="number" name="cajaNumero1" #cajaNumero1 required />
     <br />
     <label for="">Introduce numero 2</label>
-    <input type="number" name="cajaNumero2" #cajaNumero2 />
+    <input type="number" name="cajaNumero2" #cajaNumero2 required />
     <br />
-    <button type="submit" (click)="sumarNumeros()">Sumar</button>
+    <button
+      type="submit"
+      (click)="sumarNumeros()"
+      [disabled]="!sumarForm.valid"
+    >
+      Sumar
+    </button>
   </form>
 
   <hr />
