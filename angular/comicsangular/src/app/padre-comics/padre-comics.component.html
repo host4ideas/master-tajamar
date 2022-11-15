@@ -1,0 +1,46 @@
+<div>
+  <h1>Librería de comics</h1>
+  <hr />
+  <div>
+    <h2>Comic favorito</h2>
+    <app-hijo-comic
+      *ngIf="this.comicFav"
+      [comic]="this.comicFav"
+      (seleccionarComic)="seleccionarComic($event)"
+      (seleccionarComicFav)="seleccionarComicFav($event)"
+      (deleteComic)="deleteComic($event)"
+    ></app-hijo-comic>
+  </div>
+  <hr />
+  <br />
+  <form #actualizarComicForm="ngForm">
+    <label for="">Introduce titulo </label>
+    <input type="text" name="cajaNumero1" #cajaTitulo required />
+    <br />
+    <label for="">Introduce descripcion</label>
+    <input type="text" name="cajaNumero2" #cajaDescripcion required />
+    <br />
+    <label for="">Introduce imagen</label>
+    <input type="text" name="cajaImagen" #cajaImagen required />
+    <br />
+    <button
+      type="submit"
+      (click)="actualizarComic()"
+      [disabled]="!actualizarComicForm.valid"
+    >
+      Actualizar comic
+    </button>
+  </form>
+  <br />
+  <hr />
+  <div>
+    <div *ngFor="let comic of comics">
+      <app-hijo-comic
+        [comic]="comic"
+        (seleccionarComic)="seleccionarComic($event)"
+        (seleccionarComicFav)="seleccionarComicFav($event)"
+        (deleteComic)="deleteComic($event)"
+      ></app-hijo-comic>
+    </div>
+  </div>
+</div>

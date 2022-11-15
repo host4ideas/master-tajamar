@@ -1,0 +1,8 @@
+<div>
+  <h3>Titulo: {{ comic.titulo }}</h3>
+  <img width="200" src="{{ comic.imagen }}" alt="" />
+  <h3>Descripción: {{ comic.descripcion }}</h3>
+  <button (click)="enviarComic()">Actualizar comic</button>
+  <button (click)="enviarComicFav()">Favorito</button>
+  <button (click)="enviarComicParaDelete()">Delete</button>
+</div>
