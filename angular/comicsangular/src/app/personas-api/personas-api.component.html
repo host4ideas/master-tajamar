@@ -1,0 +1,18 @@
+<div>
+  <h1>Personas</h1>
+  <div class="card-group m-5">
+    <div
+      class
+      *ngFor="let persona of personas"
+      class="card"
+      style="width: 18rem"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ persona.Nombre }}</h5>
+        <p class="card-text">ID: {{ persona.IdPersona }}</p>
+        <p class="card-text">Email: {{ persona.Email }}</p>
+        <p class="card-text">Edad: {{ persona.Edad }}</p>
+      </div>
+    </div>
+  </div>
+</div>

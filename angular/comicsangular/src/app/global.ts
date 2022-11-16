@@ -1,4 +1,3 @@
-export const environment = {
-  production: true,
+export const global = {
   URL_API_PERSONAS: 'https://servicioapipersonasmvcpgs.azurewebsites.net',
 };
