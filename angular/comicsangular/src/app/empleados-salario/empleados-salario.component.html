@@ -1,0 +1,36 @@
+<div>
+  <form (ngSubmit)="mostrarEmpleadosSalario()" #form="ngForm">
+    <label for="cajaSalario"></label>
+    <input
+      type="text"
+      id="cajaSalario"
+      name="cajaSalario"
+      #cajaSalario
+      required
+    />
+
+    <button type="submit" [disabled]="!form.form.valid">
+      Buscar por salario
+    </button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Apellido</th>
+        <th>Oficio</th>
+        <th>Salario</th>
+        <th>Departamento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of empleados">
+        <td>{{ empleado.idEmpleado }}</td>
+        <td>{{ empleado.apellido }}</td>
+        <td>{{ empleado.oficio }}</td>
+        <td>{{ empleado.salario }}</td>
+        <td>{{ empleado.departamento }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

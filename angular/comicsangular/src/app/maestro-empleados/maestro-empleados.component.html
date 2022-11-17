@@ -1,0 +1,33 @@
+<div>
+  <table *ngIf="empleados" class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Apellido</th>
+        <th>Oficio</th>
+        <th>Salario</th>
+        <th>Departamento</th>
+        <th>Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of empleados">
+        <td>{{ empleado.idEmpleado }}</td>
+        <td>{{ empleado.apellido }}</td>
+        <td>{{ empleado.oficio }}</td>
+        <td>{{ empleado.salario }}</td>
+        <td>{{ empleado.departamento }}</td>
+        <td>
+          <button
+            class="btn btn-success"
+            type="button"
+            [routerLink]="['/detalles-empleados/', empleado.idEmpleado]"
+            routerLinkActive="router-link-active"
+          >
+            Detalles
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

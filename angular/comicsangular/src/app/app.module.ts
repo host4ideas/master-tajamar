@@ -13,9 +13,16 @@ import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComicsInyeccionComponent } from './comics-inyeccion/comics-inyeccion.component';
 import { PersonasApiComponent } from './personas-api/personas-api.component';
-// Providers
+// Services
 import { ComicsService } from './services/comics.service';
 import { PersonasService } from './services/personas.service';
+import { EmpleadosService } from './services/empleados.service';
+import { EmpleadosSalarioComponent } from './empleados-salario/empleados-salario.component';
+import { EmpleadosOficioComponent } from './empleados-oficio/empleados-oficio.component';
+import { EmpleadosPlantillaComponent } from './empleados-plantilla/empleados-plantilla.component';
+import { PlantillaService } from './services/plantilla.service';
+import { MaestroEmpleadosComponent } from './maestro-empleados/maestro-empleados.component';
+import { DetallesEmpleadoComponent } from './detalles-empleado/detalles-empleado.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +33,11 @@ import { PersonasService } from './services/personas.service';
     HomeComponent,
     ComicsInyeccionComponent,
     PersonasApiComponent,
+    EmpleadosSalarioComponent,
+    EmpleadosOficioComponent,
+    EmpleadosPlantillaComponent,
+    MaestroEmpleadosComponent,
+    DetallesEmpleadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +46,12 @@ import { PersonasService } from './services/personas.service';
     NgbModule,
     HttpClientModule,
   ],
-  providers: [ComicsService, PersonasService],
+  providers: [
+    ComicsService,
+    PersonasService,
+    EmpleadosService,
+    PlantillaService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

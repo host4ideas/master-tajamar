@@ -1,0 +1,4 @@
+--- PERSONAS
+https://servicioapipersonasmvcpgs.azurewebsites.net/api/personas
+--- EMPLEADOS
+https://apiempleadosfullstack.azurewebsites.net/

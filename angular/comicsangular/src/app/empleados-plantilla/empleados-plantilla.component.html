@@ -1,0 +1,41 @@
+<div>
+  <form #form="ngForm">
+    <select
+      name="selectedFunciones"
+	  id="selectedFunciones"
+      #selectFuncion
+      [(ngModel)]="selectedFunciones"
+      (ngModelChange)="getPlantillaFunciones()"
+      multiple
+    >
+      <option *ngFor="let funcion of funciones" [ngValue]="funcion">
+        {{ funcion }}
+      </option>
+    </select>
+	<button type="button" (click)="reset()">Reset</button>
+  </form>
+  <table class="table" *ngIf="plantilla && plantilla.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Hospital</th>
+        <th>Sala</th>
+        <th>Apellido</th>
+        <th>Funcion</th>
+        <th>Turno</th>
+        <th>Salario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of plantilla">
+        <td>{{ empleado.idEmpleado }}</td>
+        <td>{{ empleado.idHospital }}</td>
+        <td>{{ empleado.idSala }}</td>
+        <td>{{ empleado.apellido }}</td>
+        <td>{{ empleado.funcion }}</td>
+        <td>{{ empleado.turno }}</td>
+        <td>{{ empleado.salario }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

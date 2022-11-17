@@ -1,0 +1,37 @@
+<div>
+  <h1>Oficios</h1>
+  <form #form="ngForm">
+    <label for="selectOficio">Selecciona un oficio</label>
+    <br />
+    <select
+      #selectOficio
+      name="selectOficio"
+      id="selectOficio"
+      (change)="getEmpleadosOficio()"
+    >
+      <option *ngFor="let oficio of oficios" [value]="oficio">
+        {{ oficio }}
+      </option>
+    </select>
+  </form>
+  <table class="table" *ngIf="empleados">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Apellido</th>
+        <th>Oficio</th>
+        <th>Salario</th>
+        <th>Departamento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of empleados">
+        <td>{{ empleado.idEmpleado }}</td>
+        <td>{{ empleado.apellido }}</td>
+        <td>{{ empleado.oficio }}</td>
+        <td>{{ empleado.salario }}</td>
+        <td>{{ empleado.departamento }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
