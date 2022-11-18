@@ -1,4 +1,11 @@
 --- PERSONAS
-https://servicioapipersonasmvcpgs.azurewebsites.net/api/personas
+https://servicioapipersonasmvcpgs.azurewebsites.net
+
 --- EMPLEADOS
-https://apiempleadosfullstack.azurewebsites.net/
+https://apiempleadosfullstack.azurewebsites.net
+
+--- DEPARTAMENTOS
+https://apicruddepartamentoscore.azurewebsites.net
+
+--- PLANTILLA
+https://apiplantillacore.azurewebsites.net
