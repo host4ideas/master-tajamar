@@ -1,0 +1,57 @@
+<div>
+  <!-- {
+		"idhospital": 22,
+		"nombre": "la pazzzz",
+		"direccion": "castellana 1000",
+		"telefono": "45268752",
+		"camas": 4000
+	  }, -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Camas</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hospital of hospitales">
+        <td>{{ hospital.idhospital }}</td>
+        <td>{{ hospital.nombre }}</td>
+        <td>{{ hospital.direccion }}</td>
+        <td>{{ hospital.telefono }}</td>
+        <td>{{ hospital.camas }}</td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+            type="button"
+            [routerLink]="['/delete', hospital.idhospital]"
+            routerLinkActive="router-link-active"
+          >
+            🗑️
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-warning"
+            type="button"
+            [routerLink]="[
+              '/update',
+              hospital.idhospital,
+              hospital.nombre,
+              hospital.direccion,
+              hospital.telefono,
+              hospital.camas
+            ]"
+            routerLinkActive="router-link-active"
+          >
+            ✏️
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

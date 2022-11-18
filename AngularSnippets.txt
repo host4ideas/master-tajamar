@@ -1,0 +1,154 @@
+--- SERVICE CRUD ---
+
+// Angular
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// Environment variables
+import { environment } from 'src/environments/environment';
+// Model
+import { Hospital } from '../models/Hospital';
+
+// Para hacerlo global si necesidad de importarlo en app module
+@Injectable({
+  providedIn: 'root',
+})
+export class HospitalesService {
+  constructor(private _http: HttpClient) {}
+
+  /**
+   * Petición get para recoger todos los elementos
+   * @returns {Observable<any>} Observable al cual nos suscribiremos en el componente
+   */
+  getHospitales(): Observable<any> {
+    const request = environment.API_HOSPITALES + '/webresources/hospitales';
+    return this._http.get(request);
+  }
+
+  /**
+   * Petición get para recoger solo un elemento
+   * @param {string} id ID del elemento para la petición
+   * @returns {Observable<any>} Observable al cual nos suscribiremos en el componente
+   */
+  findHospital(id: string): Observable<any> {
+    const request =
+      environment.API_HOSPITALES + '/webresources/hospitales/' + id;
+    return this._http.get(request);
+  }
+
+  /**
+   * Petición delete para eliminar un elemento
+   * @param {string} id ID del elemento para la petición
+   * @returns {Observable<any>} Observable al cual nos suscribiremos en el componente
+   */
+  deleteHospital(id: string): Observable<any> {
+    const request =
+      environment.API_HOSPITALES + '/webresources/hospitales/' + id;
+    return this._http.delete(request);
+  }
+
+  /**
+   * Petición put para actualizar un elemento
+   * @param {Hospital} hospital Nuevo hospital para actualizar
+   * @returns {Observable<any>} Observable al cual nos suscribiremos en el componente
+   */
+  updateHospital(hospital: Hospital): Observable<any> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const request = environment.API_HOSPITALES + '/webresources/hospitales/put';
+    return this._http.put(request, JSON.stringify(hospital), {
+      headers: header,
+    });
+  }
+
+  /**
+   * Petición post para insertar un elemento
+   * @param {Hospital} hospital Nuevo hospital para insertar
+   * @returns {Observable<any>} Observable al cual nos suscribiremos en el componente
+   */
+  createHospital(hospital: Hospital): Observable<any> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const request =
+      environment.API_HOSPITALES + '/webresources/hospitales/post';
+    return this._http.post(request, JSON.stringify(hospital), {
+      headers: header,
+    });
+  }
+}
+
+
+--- COMPONENT FORM Y PARAMS ---
+
+// Base
+import {
+  Component,
+  OnInit,
+  ɵViewRef,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
+// Model
+import { Empleado } from '../models/empleado';
+// Service
+import { EmpleadosService } from '../services/empleados.service';
+// Rutas
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-empleados-oficio',
+  templateUrl: './empleados-oficio.component.html',
+  styleUrls: ['./empleados-oficio.component.css'],
+})
+export class EmpleadosOficioComponent implements OnInit {
+  // Form inputs
+  @ViewChild("cajanumero") cajaNumero!: ElementRef;
+  @ViewChild("cajanombre") cajaNombre!: ElementRef;
+  @ViewChild("cajalocalidad") cajaLocalidad!: ElementRef;
+
+  constructor(private empleadosService: EmpleadosService, private route: ActivatedRoute, private router: Router) {}
+
+  redirect(num: number) {
+    this.router.navigate(['numerodoble', num]);
+  }
+
+  ngOnInit(): void {
+    this.empleadosService
+      .getOficios()
+      .subscribe((response) => (this.oficios = response));
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      // Parseamos a número
+      const num = +params.get('num')!;
+    });
+  }
+}
+
+<form #createForm="ngForm">
+  <label>Id: </label>
+  <input
+    type="number"
+    class="form-control"
+    name="cajanumero"
+    #cajanumero
+  /><br />
+  <label>Nombre</label>
+  <input type="text" class="form-control" name="cajanombre" #cajanombre /><br />
+  <label>Localidad</label>
+  <input
+    type="text"
+    class="form-control"
+    name="cajalocalidad"
+    #cajalocalidad
+  /><br />
+  <button class="btn btn-info" (click)="insertarDepartamento()">Create</button>
+</form>
+
+
+
+--- APP MODULE ---
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],

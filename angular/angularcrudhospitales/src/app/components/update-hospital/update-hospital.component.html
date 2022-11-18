@@ -1,0 +1,31 @@
+<form #createForm="ngForm">
+  <label>Nombre: </label>
+  <input
+    type="text"
+    class="form-control"
+    name="cajaNombre"
+    #cajaNombre
+  /><br />
+  <label>Dirección: </label>
+  <input
+    type="text"
+    class="form-control"
+    name="cajaDireccion"
+    #cajaDireccion
+  /><br />
+  <label>Teléfono: </label>
+  <input
+    type="text"
+    class="form-control"
+    name="cajaTeléfono"
+    #cajaTeléfono
+  /><br />
+  <label>Camas: </label>
+  <input
+    type="text"
+    class="form-control"
+    name="cajaCamas"
+    #cajaCamas
+  /><br />
+  <button class="btn btn-info" (click)="updateDepartamento()">Create</button>
+</form>

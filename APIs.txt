@@ -9,3 +9,6 @@ https://apicruddepartamentoscore.azurewebsites.net
 
 --- PLANTILLA
 https://apiplantillacore.azurewebsites.net
+
+--- HOSPITALES
+https://apicrudhospital.azurewebsites.net/
