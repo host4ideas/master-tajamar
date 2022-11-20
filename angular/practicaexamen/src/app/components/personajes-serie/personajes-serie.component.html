@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Imagen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let personaje of personajes">
+      <td>{{ personaje.nombre }}</td>
+      <td><img width="300" src="{{ personaje.imagen }}" alt="" /></td>
+    </tr>
+  </tbody>
+</table>

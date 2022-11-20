@@ -1,3 +1,12 @@
+--- APP MODULE ---
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+
 --- APP COMPONENT HTML ---
 <style>
   svg.material-icons {
@@ -128,6 +137,85 @@
   </svg>
 </div>
 
+--- MENU COMPONENT HTML ---
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      [routerLink]="['/routePath']"
+      routerLinkActive="router-link-active"
+    >
+      Navbar
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/routePath']"
+            routerLinkActive="router-link-active"
+          >
+            Link
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            [routerLink]="['/routePath']"
+            routerLinkActive="router-link-active"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/routePath']"
+                routerLinkActive="router-link-active"
+              >
+                Action
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/routePath']"
+                routerLinkActive="router-link-active"
+              >
+                Another action
+              </a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/routePath']"
+                routerLinkActive="router-link-active"
+              >
+                Something else here
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 
 --- SERVICE CRUD ---
 
@@ -207,17 +295,164 @@ export class HospitalesService {
 }
 
 
+--- SERVICE AUTH ---
+
+// Angular
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// Environment variables
+import { environment } from 'src/environments/environment';
+
+/**
+ * Servicio agnostico de otros componentes/servicios. Permite validar cualquier peticion a la API con un header de autenticacion.
+ */
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  constructor(private _http: HttpClient) {}
+
+  /**
+   * Metodo privado. Interactua con getAuthorizationToken para guardar en el localStorage el nuevo token.
+   * @returns El valor del nuevo token.
+   */
+  setToken(): Promise<string> {
+    return new Promise((res, rej) => {
+      this.getAuthorizationToken().subscribe((response) => {
+        const tokenString: string = response.response;
+        localStorage.setItem('token', tokenString);
+        res(response.response);
+      });
+    });
+  }
+
+  /**
+   * Metodo privado. Lee de localStorage el token, sino lo encuentra, lo genera a traves de setToken
+   * @returns El valor del nuevo token.
+   */
+  async getToken(): Promise<string | null> {
+    let token = localStorage.getItem('token');
+
+    if (token === null) {
+      token = await this.setToken();
+    }
+
+    return token;
+  }
+
+  /**
+   * Recupera un token de autenticacion del servidor.
+   * @returns Devuelve la peticion post para recuperar el token del servidor.
+   */
+  getAuthorizationToken(): Observable<any> {
+    const request = environment.API_PLANTILLA + '/Auth/Login';
+
+    const credentials = {
+      userName: 'rey',
+      password: '7839',
+    };
+
+    return this._http.post(request, credentials);
+  }
+
+  /**
+   * Envuelve la peticion proveyendola de un header de autenticacion.
+   * @param callback Funcion de la peticion del usuario.
+   * @param args Argumentos para la funcion pasada por parametro.
+   * @returns Devuelve una copia de la funcion de la peticion original del usuario con el header de autenticacion.
+   */
+  async authInterceptor(callback: Function, ...args: any[]): Promise<Function> {
+    const token = await this.getToken();
+
+    const headers = new HttpHeaders().set('Authorization', 'bearer ' + token);
+
+    const _callback = callback;
+
+    callback = () => {
+      return _callback(...args, headers);
+    };
+
+    return callback;
+  }
+}
+
+
+--- COMPONENT AUTH ---
+
+// Angular
+import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+// Services
+import { AuthService } from 'src/app/services/auth.service';
+import { PlantillaService } from 'src/app/services/plantilla.service';
+// Models
+import { Plantilla } from 'src/app/models/plantilla';
+
+@Component({
+  selector: 'app-empleados',
+  templateUrl: './empleados.component.html',
+  styleUrls: ['./empleados.component.css'],
+})
+export class EmpleadosComponent implements OnInit {
+  public plantilla!: Plantilla[];
+
+  constructor(
+    private servicePlantilla: PlantillaService,
+    private authService: AuthService
+  ) {}
+
+  /**
+   * Carga los empleados del servidor. Actualiza la variable public plantilla para mostrar los empleados al usuario.
+   */
+  async loadEmpleados(): Promise<void> {
+    /*
+      LLamamos al metodo auth para recoger la funcion copia provista del header.
+      Para no perder el contexto de la peticion original, le damos el contexto del service al que pertenece.
+    */
+    const validatedCall = await this.authService.authInterceptor(
+      this.servicePlantilla.getEmpleados.bind(this.servicePlantilla)
+    );
+
+    /*
+      La funcion copia de auth es la misma que una peticion http.
+      Si hay un código existente en localStorage, pero no es válido, devolverá un error 401 y se reseteara el token.
+    */
+    validatedCall().subscribe(
+      (res: Plantilla[]) => (this.plantilla = res),
+      (err: HttpErrorResponse) => {
+        if (err.status == 401)
+          this.authService.setToken().then(() => this.loadEmpleados());
+      }
+    );
+  }
+
+  ngOnInit(): void {
+    this.loadEmpleados();
+  }
+}
+
+
+  /**
+   * Petición get para recoger todos los elementos
+   * @returns {Observable<any>} Observable al cual nos suscribiremos en el componente
+   */
+  getEmpleados(headers: HttpHeaders): Observable<any> {
+    const request = environment.API_PLANTILLA + '/api/Empleados/';
+    return this._http.get(request, { headers: headers });
+  }
+
+
 --- COMPONENT FORM Y PARAMS ---
 
 // Base
 import {
   Component,
   OnInit,
-  ɵViewRef,
   ElementRef,
   ViewChild,
 } from '@angular/core';
-// Model
+// Models
 import { Empleado } from '../models/empleado';
 // Service
 import { EmpleadosService } from '../services/empleados.service';
@@ -273,13 +508,3 @@ export class EmpleadosOficioComponent implements OnInit {
   <button class="btn btn-info" (click)="insertarDepartamento()">Create</button>
 </form>
 
-
-
---- APP MODULE ---
-
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
-imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],

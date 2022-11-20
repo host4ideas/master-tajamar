@@ -1,0 +1,19 @@
+<div class="m-5">
+  <label>Nombre: </label>
+  <input type="text" class="form-control" name="cajaNombre" #cajaNombre /><br />
+  <label>Imagen</label>
+  <input type="text" class="form-control" name="cajaImagen" #cajaImagen /><br />
+
+  <select
+    class="form-select"
+    aria-label="Default select example"
+    *ngIf="series"
+    [(ngModel)]="selectedSerie"
+  >
+    <option *ngFor="let serie of series" [value]="serie.idSerie">
+      {{ serie.nombre }}
+    </option>
+  </select>
+  <br />
+  <button class="btn btn-info" (click)="insertarPersonaje()">Create</button>
+</div>

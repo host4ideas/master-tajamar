@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Apellido</th>
+      <th>Apellido</th>
+      <th>Oficio</th>
+      <th>Director</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empleado of plantilla">
+      <td>
+        <h5 class="card-title">{{ empleado.apellido }}</h5>
+      </td>
+      <td>
+        <p class="card-text">Salario: {{ empleado.salario }}</p>
+      </td>
+      <td>
+        <p class="card-text">Oficio: {{ empleado.oficio }}</p>
+      </td>
+      <td>
+        <p class="card-text">Director: {{ empleado.director }}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

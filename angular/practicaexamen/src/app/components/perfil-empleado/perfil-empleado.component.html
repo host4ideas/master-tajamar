@@ -1,0 +1,26 @@
+<table class="table" *ngIf="perfil">
+  <thead>
+    <tr>
+      <th>Apellido</th>
+      <th>Apellido</th>
+      <th>Oficio</th>
+      <th>Director</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <h5 class="card-title">{{ perfil.apellido }}</h5>
+      </td>
+      <td>
+        <p class="card-text">Salario: {{ perfil.salario }}</p>
+      </td>
+      <td>
+        <p class="card-text">Oficio: {{ perfil.oficio }}</p>
+      </td>
+      <td>
+        <p class="card-text">Director: {{ perfil.director }}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,228 @@
+npm install axios; npm install vue-router@4; npm i bootstrap; npm i bootstrap-vue;
+
+
+--- MAIN.JS ---
+
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import "bootstrap-vue/dist/bootstrap-vue";
+
+const app = createApp(App);
+app.use(router);
+
+router.isReady().then(() => {
+    app.mount("#app");
+});
+
+
+-- APP.VUE ---
+
+<template>
+    <MainLayout>
+        <router-view></router-view>
+    </MainLayout>
+</template>
+
+<script>
+import MainLayout from "./layouts/MainLayout.vue";
+export default {
+    name: "App",
+    components: { MainLayout },
+};
+</script>
+
+
+
+--- ROUTER ---
+
+import { createRouter, createWebHistory } from "vue-router";
+// Custom views
+import HomePageVue from "@/views/HomePage.vue";
+import CochesPageVue from "@/views/CochesPage.vue";
+import EmpleadosDetalle from "@/views/EmpleadosDetalle.vue";
+import EmpleadosOficio from "@/views/EmpleadosOficio.vue";
+
+const routes = [
+    {
+        path: "/",
+        component: HomePageVue,
+    },
+    {
+        path: "/coches",
+        component: CochesPageVue,
+    },
+    {
+        path: "/empleados",
+        component: EmpleadosDetalle,
+    },
+    {
+        path: "/empleados-oficio/:oficio",
+        component: EmpleadosOficio,
+    },
+];
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
+});
+
+export default router;
+
+
+--- AUTH SERVICE ---
+
+import axios from "axios";
+// Environment variables
+import { environment } from "../environments/environment";
+
+/**
+ * Servicio agnostico de otros componentes/servicios. Permite validar cualquier peticion a la API con un header de autenticacion.
+ */
+class AuthService {
+    /**
+     * Metodo privado. Interactua con getAuthorizationToken para guardar en el localStorage el nuevo token.
+     * @returns {Promise<any>} El valor del nuevo token.
+     */
+    async setToken() {
+        return new Promise((res) => {
+            this.getAuthorizationToken().then((response) => {
+                const tokenString = response.data.response;
+                localStorage.setItem("token", tokenString);
+                res(response.data);
+            });
+        });
+    }
+
+    /**
+     * Metodo privado. Lee de localStorage el token, sino lo encuentra, lo genera a traves de setToken
+     * @returns El valor del nuevo token.
+     */
+    async getToken() {
+        let token = localStorage.getItem("token");
+
+        if (token === null) {
+            token = await this.setToken();
+        }
+
+        return token;
+    }
+
+    /**
+     * Recupera un token de autenticacion del servidor.
+     * @returns Devuelve la peticion post para recuperar el token del servidor.
+     */
+    getAuthorizationToken() {
+        const request = environment.API_PLANTILLA + "/Auth/Login";
+
+        const credentials = {
+            userName: "rey",
+            password: "7839",
+        };
+
+        return axios.post(request, credentials);
+    }
+
+    /**
+     * Envuelve la peticion proveyendola de un header de autenticacion.
+     * @param {Function} callback Funcion de la peticion del usuario.
+     * @param {any[]} args Argumentos para la funcion pasada por parametro.
+     * @returns Devuelve una copia de la funcion de la peticion original del usuario con el header de autenticacion.
+     */
+    async authInterceptor(callback, ...args) {
+        const token = await this.getToken();
+
+        const config = {
+            headers: {
+                Authorization: "bearer " + token,
+            },
+        };
+
+        const _callback = callback;
+
+        callback = () => {
+            return _callback(...args, config);
+        };
+
+        return callback;
+    }
+}
+
+const singletonInstance = new AuthService();
+
+Object.freeze(singletonInstance);
+
+export default singletonInstance;
+
+
+--- AUTH COMPONENT ---
+
+<template>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apellido</th>
+                <th>Oficio</th>
+                <th>Salario</th>
+                <th>Director</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="empleado in data.empleados" :key="empleado">
+                <td>{{ empleado.idEmpleado }}</td>
+                <td>{{ empleado.apellido }}</td>
+                <td>{{ empleado.director }}</td>
+                <td>{{ empleado.oficio }}</td>
+                <td>{{ empleado.salario }}</td>
+            </tr>
+        </tbody>
+    </table>
+</template>
+
+<script setup>
+// Vue
+import { reactive, onMounted } from "vue";
+// Services
+import authService from "../services/authService";
+import servicePlantilla from "../services/plantillaService";
+
+const data = reactive({
+    empleados: [],
+});
+
+/**
+ * Carga los empleados del servidor. Actualiza la variable public plantilla para mostrar los empleados al usuario.
+ */
+async function loadEmpleados() {
+    /*
+      LLamamos al metodo auth para recoger la funcion copia provista del header.
+      Para no perder el contexto de la peticion original, le damos el contexto del service al que pertenece.
+    */
+    const validatedCall = await authService.authInterceptor(
+        servicePlantilla.getEmpleados
+    );
+
+    /*
+      La funcion copia de auth es la misma que una peticion http.
+      Si hay un código existente en localStorage, pero no es válido, devolverá un error 401 y se reseteara el token.
+    */
+    validatedCall().then(
+        (res) => {
+            data.empleados = res.data;
+        },
+        (err) => {
+            if (err.response.status == 401)
+                authService.setToken().then(() => loadEmpleados());
+        }
+    );
+}
+
+onMounted(() => {
+    loadEmpleados();
+});
+</script>

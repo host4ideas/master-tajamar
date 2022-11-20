@@ -1,0 +1,28 @@
+<div class="m-5">
+  <select
+    class="form-select"
+    aria-label="Default select example"
+    [(ngModel)]="selectedPersonaje"
+  >
+    <option
+      *ngFor="let personaje of personajes"
+      [value]="personaje.idPersonaje"
+    >
+      {{ personaje.nombre }}
+    </option>
+  </select>
+  <br />
+  <select
+    class="form-select"
+    aria-label="Default select example"
+    [(ngModel)]="selectedSerie"
+  >
+    <option *ngFor="let serie of series" [value]="serie.idSerie">
+      {{ serie.nombre }}
+    </option>
+  </select>
+  <br />
+  <button type="button" class="btn btn-info" (click)="modificarPersonaje()">
+    Modificar personaje
+  </button>
+</div>
