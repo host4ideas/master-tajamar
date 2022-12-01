@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Nombre: </label><br/>
+    <div id="datos">
+
+    </div>
+    <button id="botonpulsar">Pulsar</button>
+    <h1 style="color:blue" id="resultado"></h1>
+    <script src="./jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var url="https://apitimersforoempleofdf.azurewebsites.net/";
+            $("#botonpulsar").click(function() {
+                $.ajax({
+                    "url": url + "api/categoriastimer"
+                    , "method": "GET"
+                    , "dataType": "json"
+                    , "success": function(data){
+                        console.log("Leyendo servicio");
+                        var html = "";
+                        $.each(data, function(indice, cliente){
+                            console.log(data);
+                            //PROPIEDADES SON DINAMICAS
+                            var nombre = cliente.categoria;
+                            html += "<h1>" + nombre + "</h1>";
+                        });
+                        $("#datos").html(html);
+                    }, "error": function(error){
+                        console.log("Error en el servicio");
+                    }
+                });
+            })
+        })
+    </script>
+</body>
+</html>
