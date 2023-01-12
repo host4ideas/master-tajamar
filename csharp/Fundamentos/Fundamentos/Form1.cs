@@ -68,5 +68,41 @@ namespace Fundamentos
             Form04DateTime form04DateTime= new Form04DateTime();
             form04DateTime.ShowDialog();
         }
+
+        private void formCharToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form05Char form05Char = new Form05Char();
+            form05Char.ShowDialog();
+        }
+
+        private void formValidarEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form06Email form06Emailform = new Form06Email();
+            form06Emailform.ShowDialog();
+        }
+
+        private void formSumarNúmerosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form07SumarNumeros form07SumarNumeros = new Form07SumarNumeros();
+            form07SumarNumeros.ShowDialog();
+        }
+
+        private void formColecciónGráficaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form08ColeccionGrafica form08ColeccionGrafica = new Form08ColeccionGrafica();
+            form08ColeccionGrafica.ShowDialog();
+        }
+
+        private void formColecciónMultipleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form09ColeccionMultiple form09ColeccionMultiple = new Form09ColeccionMultiple();
+            form09ColeccionMultiple.ShowDialog();
+        }
+
+        private void formColeccionParesImparesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form10ColeccionRandom form10ColeccionRandom = new Form10ColeccionRandom();
+            form10ColeccionRandom.ShowDialog();
+        }
     }
 }

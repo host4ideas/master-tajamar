@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBoxFormat = new System.Windows.Forms.CheckBox();
+            this.chkFormat = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textDate = new System.Windows.Forms.TextBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnIncr = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,18 +38,21 @@
             this.rdbYears = new System.Windows.Forms.RadioButton();
             this.rdbMonths = new System.Windows.Forms.RadioButton();
             this.rdbDays = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtResultDate = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // checkBoxFormat
+            // chkFormat
             // 
-            this.checkBoxFormat.AutoSize = true;
-            this.checkBoxFormat.Location = new System.Drawing.Point(12, 145);
-            this.checkBoxFormat.Name = "checkBoxFormat";
-            this.checkBoxFormat.Size = new System.Drawing.Size(149, 19);
-            this.checkBoxFormat.TabIndex = 0;
-            this.checkBoxFormat.Text = "Cambiar formato fecha";
-            this.checkBoxFormat.UseVisualStyleBackColor = true;
+            this.chkFormat.AutoSize = true;
+            this.chkFormat.Location = new System.Drawing.Point(12, 126);
+            this.chkFormat.Name = "chkFormat";
+            this.chkFormat.Size = new System.Drawing.Size(149, 19);
+            this.chkFormat.TabIndex = 0;
+            this.chkFormat.Text = "Cambiar formato fecha";
+            this.chkFormat.UseVisualStyleBackColor = true;
+            this.chkFormat.CheckedChanged += new System.EventHandler(this.chkFormat_CheckedChanged);
             // 
             // label1
             // 
@@ -61,13 +64,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Fecha actual";
             // 
-            // textDate
+            // txtDate
             // 
-            this.textDate.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textDate.Location = new System.Drawing.Point(12, 69);
-            this.textDate.Name = "textDate";
-            this.textDate.Size = new System.Drawing.Size(567, 41);
-            this.textDate.TabIndex = 2;
+            this.txtDate.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDate.Location = new System.Drawing.Point(12, 69);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(567, 41);
+            this.txtDate.TabIndex = 2;
             // 
             // groupBox1
             // 
@@ -77,7 +80,7 @@
             this.groupBox1.Controls.Add(this.rdbYears);
             this.groupBox1.Controls.Add(this.rdbMonths);
             this.groupBox1.Controls.Add(this.rdbDays);
-            this.groupBox1.Location = new System.Drawing.Point(12, 193);
+            this.groupBox1.Location = new System.Drawing.Point(12, 151);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(567, 151);
             this.groupBox1.TabIndex = 3;
@@ -93,6 +96,7 @@
             this.btnIncr.TabIndex = 5;
             this.btnIncr.Text = "Incrementar";
             this.btnIncr.UseVisualStyleBackColor = true;
+            this.btnIncr.Click += new System.EventHandler(this.btnIncr_Click);
             // 
             // label2
             // 
@@ -144,16 +148,35 @@
             this.rdbDays.Text = "Días";
             this.rdbDays.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(12, 305);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 20);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Fecha final";
+            // 
+            // txtResultDate
+            // 
+            this.txtResultDate.Location = new System.Drawing.Point(12, 337);
+            this.txtResultDate.Name = "txtResultDate";
+            this.txtResultDate.Size = new System.Drawing.Size(567, 23);
+            this.txtResultDate.TabIndex = 5;
+            // 
             // Form04DateTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(595, 372);
+            this.Controls.Add(this.txtResultDate);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textDate);
+            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBoxFormat);
+            this.Controls.Add(this.chkFormat);
             this.Name = "Form04DateTime";
             this.Text = "Form04DateTime";
             this.groupBox1.ResumeLayout(false);
@@ -165,9 +188,9 @@
 
         #endregion
 
-        private CheckBox checkBoxFormat;
+        private CheckBox chkFormat;
         private Label label1;
-        private TextBox textDate;
+        private TextBox txtDate;
         private GroupBox groupBox1;
         private RadioButton rdbYears;
         private RadioButton rdbMonths;
@@ -175,5 +198,8 @@
         private Button btnIncr;
         private Label label2;
         private TextBox txtIncr;
+        private Label label3;
+        private TextBox txtResult;
+        private TextBox txtResultDate;
     }
 }

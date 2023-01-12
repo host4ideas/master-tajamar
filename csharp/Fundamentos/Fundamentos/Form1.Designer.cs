@@ -37,6 +37,12 @@
             this.formColoresPosicionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formDiaNacimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formDateTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formCharToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formValidarEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formSumarNúmerosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formColecciónGráficaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formColecciónMultipleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formColeccionParesImparesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,7 +92,13 @@
             this.formSumarNumerosToolStripMenuItem,
             this.formColoresPosicionToolStripMenuItem,
             this.formDiaNacimientoToolStripMenuItem,
-            this.formDateTimesToolStripMenuItem});
+            this.formDateTimesToolStripMenuItem,
+            this.formCharToolStripMenuItem,
+            this.formValidarEmailToolStripMenuItem,
+            this.formSumarNúmerosToolStripMenuItem,
+            this.formColecciónGráficaToolStripMenuItem,
+            this.formColecciónMultipleToolStripMenuItem,
+            this.formColeccionParesImparesToolStripMenuItem});
             this.formulariosToolStripMenuItem.Name = "formulariosToolStripMenuItem";
             this.formulariosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.formulariosToolStripMenuItem.Text = "Formularios";
@@ -94,30 +106,72 @@
             // formSumarNumerosToolStripMenuItem
             // 
             this.formSumarNumerosToolStripMenuItem.Name = "formSumarNumerosToolStripMenuItem";
-            this.formSumarNumerosToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.formSumarNumerosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.formSumarNumerosToolStripMenuItem.Text = "Form sumar números";
             this.formSumarNumerosToolStripMenuItem.Click += new System.EventHandler(this.formSumarNumerosToolStripMenuItem_Click);
             // 
             // formColoresPosicionToolStripMenuItem
             // 
             this.formColoresPosicionToolStripMenuItem.Name = "formColoresPosicionToolStripMenuItem";
-            this.formColoresPosicionToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.formColoresPosicionToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.formColoresPosicionToolStripMenuItem.Text = "Form colores posición";
             this.formColoresPosicionToolStripMenuItem.Click += new System.EventHandler(this.formColoresPosicionToolStripMenuItem_Click);
             // 
             // formDiaNacimientoToolStripMenuItem
             // 
             this.formDiaNacimientoToolStripMenuItem.Name = "formDiaNacimientoToolStripMenuItem";
-            this.formDiaNacimientoToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.formDiaNacimientoToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.formDiaNacimientoToolStripMenuItem.Text = "Form dia nacimiento";
             this.formDiaNacimientoToolStripMenuItem.Click += new System.EventHandler(this.formDiaNacimientoToolStripMenuItem_Click);
             // 
             // formDateTimesToolStripMenuItem
             // 
             this.formDateTimesToolStripMenuItem.Name = "formDateTimesToolStripMenuItem";
-            this.formDateTimesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.formDateTimesToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.formDateTimesToolStripMenuItem.Text = "Form DateTimes";
             this.formDateTimesToolStripMenuItem.Click += new System.EventHandler(this.formDateTimesToolStripMenuItem_Click);
+            // 
+            // formCharToolStripMenuItem
+            // 
+            this.formCharToolStripMenuItem.Name = "formCharToolStripMenuItem";
+            this.formCharToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formCharToolStripMenuItem.Text = "Form Char";
+            this.formCharToolStripMenuItem.Click += new System.EventHandler(this.formCharToolStripMenuItem_Click);
+            // 
+            // formValidarEmailToolStripMenuItem
+            // 
+            this.formValidarEmailToolStripMenuItem.Name = "formValidarEmailToolStripMenuItem";
+            this.formValidarEmailToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formValidarEmailToolStripMenuItem.Text = "Form validar email";
+            this.formValidarEmailToolStripMenuItem.Click += new System.EventHandler(this.formValidarEmailToolStripMenuItem_Click);
+            // 
+            // formSumarNúmerosToolStripMenuItem
+            // 
+            this.formSumarNúmerosToolStripMenuItem.Name = "formSumarNúmerosToolStripMenuItem";
+            this.formSumarNúmerosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formSumarNúmerosToolStripMenuItem.Text = "Form sumar números";
+            this.formSumarNúmerosToolStripMenuItem.Click += new System.EventHandler(this.formSumarNúmerosToolStripMenuItem_Click);
+            // 
+            // formColecciónGráficaToolStripMenuItem
+            // 
+            this.formColecciónGráficaToolStripMenuItem.Name = "formColecciónGráficaToolStripMenuItem";
+            this.formColecciónGráficaToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formColecciónGráficaToolStripMenuItem.Text = "Form colección gráfica";
+            this.formColecciónGráficaToolStripMenuItem.Click += new System.EventHandler(this.formColecciónGráficaToolStripMenuItem_Click);
+            // 
+            // formColecciónMultipleToolStripMenuItem
+            // 
+            this.formColecciónMultipleToolStripMenuItem.Name = "formColecciónMultipleToolStripMenuItem";
+            this.formColecciónMultipleToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formColecciónMultipleToolStripMenuItem.Text = "Form colección multiple";
+            this.formColecciónMultipleToolStripMenuItem.Click += new System.EventHandler(this.formColecciónMultipleToolStripMenuItem_Click);
+            // 
+            // formColeccionParesImparesToolStripMenuItem
+            // 
+            this.formColeccionParesImparesToolStripMenuItem.Name = "formColeccionParesImparesToolStripMenuItem";
+            this.formColeccionParesImparesToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formColeccionParesImparesToolStripMenuItem.Text = "Form coleccion pares impares";
+            this.formColeccionParesImparesToolStripMenuItem.Click += new System.EventHandler(this.formColeccionParesImparesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -149,5 +203,11 @@
         private ToolStripMenuItem formColoresPosicionToolStripMenuItem;
         private ToolStripMenuItem formDiaNacimientoToolStripMenuItem;
         private ToolStripMenuItem formDateTimesToolStripMenuItem;
+        private ToolStripMenuItem formCharToolStripMenuItem;
+        private ToolStripMenuItem formValidarEmailToolStripMenuItem;
+        private ToolStripMenuItem formSumarNúmerosToolStripMenuItem;
+        private ToolStripMenuItem formColecciónGráficaToolStripMenuItem;
+        private ToolStripMenuItem formColecciónMultipleToolStripMenuItem;
+        private ToolStripMenuItem formColeccionParesImparesToolStripMenuItem;
     }
 }
