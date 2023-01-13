@@ -43,6 +43,8 @@
             this.formColecciónGráficaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formColecciónMultipleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formColeccionParesImparesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formTiendaProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formDobleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +100,9 @@
             this.formSumarNúmerosToolStripMenuItem,
             this.formColecciónGráficaToolStripMenuItem,
             this.formColecciónMultipleToolStripMenuItem,
-            this.formColeccionParesImparesToolStripMenuItem});
+            this.formColeccionParesImparesToolStripMenuItem,
+            this.formTiendaProductosToolStripMenuItem,
+            this.formDobleToolStripMenuItem});
             this.formulariosToolStripMenuItem.Name = "formulariosToolStripMenuItem";
             this.formulariosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.formulariosToolStripMenuItem.Text = "Formularios";
@@ -173,6 +177,20 @@
             this.formColeccionParesImparesToolStripMenuItem.Text = "Form coleccion pares impares";
             this.formColeccionParesImparesToolStripMenuItem.Click += new System.EventHandler(this.formColeccionParesImparesToolStripMenuItem_Click);
             // 
+            // formTiendaProductosToolStripMenuItem
+            // 
+            this.formTiendaProductosToolStripMenuItem.Name = "formTiendaProductosToolStripMenuItem";
+            this.formTiendaProductosToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formTiendaProductosToolStripMenuItem.Text = "Form tienda productos";
+            this.formTiendaProductosToolStripMenuItem.Click += new System.EventHandler(this.formTiendaProductosToolStripMenuItem_Click);
+            // 
+            // formDobleToolStripMenuItem
+            // 
+            this.formDobleToolStripMenuItem.Name = "formDobleToolStripMenuItem";
+            this.formDobleToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formDobleToolStripMenuItem.Text = "Form doble";
+            this.formDobleToolStripMenuItem.Click += new System.EventHandler(this.formDobleToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -209,5 +227,7 @@
         private ToolStripMenuItem formColecciónGráficaToolStripMenuItem;
         private ToolStripMenuItem formColecciónMultipleToolStripMenuItem;
         private ToolStripMenuItem formColeccionParesImparesToolStripMenuItem;
+        private ToolStripMenuItem formTiendaProductosToolStripMenuItem;
+        private ToolStripMenuItem formDobleToolStripMenuItem;
     }
 }

@@ -104,5 +104,17 @@ namespace Fundamentos
             Form10ColeccionRandom form10ColeccionRandom = new Form10ColeccionRandom();
             form10ColeccionRandom.ShowDialog();
         }
+
+        private void formTiendaProductosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form11TiendaProductos form11TiendaProductos= new Form11TiendaProductos();
+            form11TiendaProductos.ShowDialog();
+        }
+
+        private void formDobleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form12Metodos form12Metodos= new Form12Metodos();
+            form12Metodos.ShowDialog();
+        }
     }
 }
