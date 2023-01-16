@@ -45,6 +45,11 @@
             this.formColeccionParesImparesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formTiendaProductosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formDobleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formArrayListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formListEventoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formSumarBotonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formTablaMultiplicarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formMesesTemperaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +107,12 @@
             this.formColecciónMultipleToolStripMenuItem,
             this.formColeccionParesImparesToolStripMenuItem,
             this.formTiendaProductosToolStripMenuItem,
-            this.formDobleToolStripMenuItem});
+            this.formDobleToolStripMenuItem,
+            this.formArrayListToolStripMenuItem,
+            this.formListEventoToolStripMenuItem,
+            this.formSumarBotonesToolStripMenuItem,
+            this.formTablaMultiplicarToolStripMenuItem,
+            this.formMesesTemperaturasToolStripMenuItem});
             this.formulariosToolStripMenuItem.Name = "formulariosToolStripMenuItem";
             this.formulariosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.formulariosToolStripMenuItem.Text = "Formularios";
@@ -191,6 +201,41 @@
             this.formDobleToolStripMenuItem.Text = "Form doble";
             this.formDobleToolStripMenuItem.Click += new System.EventHandler(this.formDobleToolStripMenuItem_Click);
             // 
+            // formArrayListToolStripMenuItem
+            // 
+            this.formArrayListToolStripMenuItem.Name = "formArrayListToolStripMenuItem";
+            this.formArrayListToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formArrayListToolStripMenuItem.Text = "Form ArrayList";
+            this.formArrayListToolStripMenuItem.Click += new System.EventHandler(this.formArrayListToolStripMenuItem_Click);
+            // 
+            // formListEventoToolStripMenuItem
+            // 
+            this.formListEventoToolStripMenuItem.Name = "formListEventoToolStripMenuItem";
+            this.formListEventoToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formListEventoToolStripMenuItem.Text = "Form List Evento";
+            this.formListEventoToolStripMenuItem.Click += new System.EventHandler(this.formListEventoToolStripMenuItem_Click);
+            // 
+            // formSumarBotonesToolStripMenuItem
+            // 
+            this.formSumarBotonesToolStripMenuItem.Name = "formSumarBotonesToolStripMenuItem";
+            this.formSumarBotonesToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formSumarBotonesToolStripMenuItem.Text = "Form Sumar Botones";
+            this.formSumarBotonesToolStripMenuItem.Click += new System.EventHandler(this.formSumarBotonesToolStripMenuItem_Click);
+            // 
+            // formTablaMultiplicarToolStripMenuItem
+            // 
+            this.formTablaMultiplicarToolStripMenuItem.Name = "formTablaMultiplicarToolStripMenuItem";
+            this.formTablaMultiplicarToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formTablaMultiplicarToolStripMenuItem.Text = "Form Tabla Multiplicar";
+            this.formTablaMultiplicarToolStripMenuItem.Click += new System.EventHandler(this.formTablaMultiplicarToolStripMenuItem_Click);
+            // 
+            // formMesesTemperaturasToolStripMenuItem
+            // 
+            this.formMesesTemperaturasToolStripMenuItem.Name = "formMesesTemperaturasToolStripMenuItem";
+            this.formMesesTemperaturasToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formMesesTemperaturasToolStripMenuItem.Text = "Form Meses Temperaturas";
+            this.formMesesTemperaturasToolStripMenuItem.Click += new System.EventHandler(this.formMesesTemperaturasToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -229,5 +274,10 @@
         private ToolStripMenuItem formColeccionParesImparesToolStripMenuItem;
         private ToolStripMenuItem formTiendaProductosToolStripMenuItem;
         private ToolStripMenuItem formDobleToolStripMenuItem;
+        private ToolStripMenuItem formArrayListToolStripMenuItem;
+        private ToolStripMenuItem formListEventoToolStripMenuItem;
+        private ToolStripMenuItem formSumarBotonesToolStripMenuItem;
+        private ToolStripMenuItem formTablaMultiplicarToolStripMenuItem;
+        private ToolStripMenuItem formMesesTemperaturasToolStripMenuItem;
     }
 }

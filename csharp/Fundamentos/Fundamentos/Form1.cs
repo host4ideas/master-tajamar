@@ -116,5 +116,35 @@ namespace Fundamentos
             Form12Metodos form12Metodos= new Form12Metodos();
             form12Metodos.ShowDialog();
         }
+
+        private void formArrayListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form13ArrayList form13ArrayList= new Form13ArrayList();
+            form13ArrayList.ShowDialog();
+        }
+
+        private void formListEventoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form14ListEvento form14ListEvento= new Form14ListEvento();
+            form14ListEvento.ShowDialog();
+        }
+
+        private void formSumarBotonesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form15SumarBotones form15SumarBotones = new Form15SumarBotones();
+            form15SumarBotones.ShowDialog();
+        }
+
+        private void formTablaMultiplicarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form16TablaMultiplicar form16TablaMultiplicar= new Form16TablaMultiplicar();
+            form16TablaMultiplicar.ShowDialog();
+        }
+
+        private void formMesesTemperaturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form17MesesTemp form17MesesTemp= new Form17MesesTemp();
+            form17MesesTemp.ShowDialog();
+        }
     }
 }
