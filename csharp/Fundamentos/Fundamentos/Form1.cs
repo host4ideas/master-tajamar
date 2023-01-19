@@ -146,5 +146,17 @@ namespace Fundamentos
             Form17MesesTemp form17MesesTemp= new Form17MesesTemp();
             form17MesesTemp.ShowDialog();
         }
+
+        private void formPruebaClasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form18PruebaClases form18PruebaClases = new Form18PruebaClases();
+            form18PruebaClases.ShowDialog();
+        }
+
+        private void formTemperaturaClasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form19TemperaturaClases form19TemperaturaClases = new Form19TemperaturaClases();
+            form19TemperaturaClases.ShowDialog();
+        }
     }
 }

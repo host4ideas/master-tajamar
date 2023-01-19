@@ -50,6 +50,8 @@
             this.formSumarBotonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formTablaMultiplicarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formMesesTemperaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formPruebaClasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formTemperaturaClasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,7 +114,9 @@
             this.formListEventoToolStripMenuItem,
             this.formSumarBotonesToolStripMenuItem,
             this.formTablaMultiplicarToolStripMenuItem,
-            this.formMesesTemperaturasToolStripMenuItem});
+            this.formMesesTemperaturasToolStripMenuItem,
+            this.formPruebaClasesToolStripMenuItem,
+            this.formTemperaturaClasesToolStripMenuItem});
             this.formulariosToolStripMenuItem.Name = "formulariosToolStripMenuItem";
             this.formulariosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.formulariosToolStripMenuItem.Text = "Formularios";
@@ -236,6 +240,20 @@
             this.formMesesTemperaturasToolStripMenuItem.Text = "Form Meses Temperaturas";
             this.formMesesTemperaturasToolStripMenuItem.Click += new System.EventHandler(this.formMesesTemperaturasToolStripMenuItem_Click);
             // 
+            // formPruebaClasesToolStripMenuItem
+            // 
+            this.formPruebaClasesToolStripMenuItem.Name = "formPruebaClasesToolStripMenuItem";
+            this.formPruebaClasesToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formPruebaClasesToolStripMenuItem.Text = "Form Prueba Clases";
+            this.formPruebaClasesToolStripMenuItem.Click += new System.EventHandler(this.formPruebaClasesToolStripMenuItem_Click);
+            // 
+            // formTemperaturaClasesToolStripMenuItem
+            // 
+            this.formTemperaturaClasesToolStripMenuItem.Name = "formTemperaturaClasesToolStripMenuItem";
+            this.formTemperaturaClasesToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formTemperaturaClasesToolStripMenuItem.Text = "Form Temperatura Clases";
+            this.formTemperaturaClasesToolStripMenuItem.Click += new System.EventHandler(this.formTemperaturaClasesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -279,5 +297,7 @@
         private ToolStripMenuItem formSumarBotonesToolStripMenuItem;
         private ToolStripMenuItem formTablaMultiplicarToolStripMenuItem;
         private ToolStripMenuItem formMesesTemperaturasToolStripMenuItem;
+        private ToolStripMenuItem formPruebaClasesToolStripMenuItem;
+        private ToolStripMenuItem formTemperaturaClasesToolStripMenuItem;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Fundamentos
+﻿using ProyectoClases;
+
+namespace Fundamentos
 {
     public partial class Form17MesesTemp : Form
     {
