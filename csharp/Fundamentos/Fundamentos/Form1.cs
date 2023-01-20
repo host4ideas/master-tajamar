@@ -158,5 +158,11 @@ namespace Fundamentos
             Form19TemperaturaClases form19TemperaturaClases = new Form19TemperaturaClases();
             form19TemperaturaClases.ShowDialog();
         }
+
+        private void formTemperaturasYearsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form20TemperaturasYears form20TemperaturasYears = new Form20TemperaturasYears();
+            form20TemperaturasYears.ShowDialog();
+        }
     }
 }

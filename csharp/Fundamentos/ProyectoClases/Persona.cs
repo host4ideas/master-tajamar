@@ -1,14 +1,11 @@
-﻿namespace ProyectoClases
+﻿using System.Diagnostics;
+
+namespace ProyectoClases
 {
     public enum TipoGenero { Masculino = 99, Femenino = 109 }
     public enum Paises { España, Italia, GB, Brasil }
     public class Persona
     {
-        public Persona()
-        {
-            this.DomicilioVacaciones = new Direccion("AA", 7777, "AAAA");
-        }
-
         // Campos privados
         #region CAMPOS DE PROPIEDAD
         private int _Edad { get; set; }
@@ -16,6 +13,19 @@
         public Direccion Domicilio { get; set; }
         public Direccion DomicilioVacaciones { get; set; }
         #endregion
+
+        public Persona()
+        {
+            Debug.WriteLine("Constructor PERSONA vacío");
+            this.DomicilioVacaciones = new Direccion("AA", 7777, "AAAA");
+        }
+
+        public Persona(string nombre, string apellidos)
+        {
+            Debug.WriteLine("Constructor PERSONA dos parámetros");
+            this.Nombre = nombre;
+            this.Apellidos = apellidos;
+        }
 
         // Propiedades publicas
         #region PROPIEDADES

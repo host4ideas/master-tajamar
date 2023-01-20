@@ -1,4 +1,5 @@
 ﻿using ProyectoClases;
+using ProyectoClases;
 
 namespace Fundamentos
 {
@@ -33,6 +34,24 @@ namespace Fundamentos
             persona.GetNombreCompleto();
             persona.GetNombreCompleto(true);
             persona.GetNombreCompleto(1, 2);
+        }
+
+        private void btnCrearEmpleado_Click(object sender, EventArgs e)
+        {
+            //Empleado empleado = new()
+            //{
+            //    Nombre = "Empleado",
+            //    Apellidos = "Empleado"
+            //};
+            Empleado empleado = new("Empleado", "Curro");
+            // Al estar el SalarioMinimo como protected no podemos acceder desde cualquier clase que no herede de Empleado
+            //empleado.SalarioMinimo = 4000;
+            this.lstDatos.Items.Add(empleado.GetNombreCompleto() + " " + empleado.GetSalarioMinimo() + " " + empleado.GetDiasVacaciones());
+            Director director = new();
+            director.Nombre = "Dire";
+            director.Apellidos = "Dire";
+            //this.lstDatos.Items.Add(director.GetNombreCompleto() + " " + director.GetSalarioMinimo() + " " + director.GetDiasVacaciones());
+            this.lstDatos.Items.Add(director);
         }
     }
 }

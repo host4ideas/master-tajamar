@@ -52,6 +52,7 @@
             this.formMesesTemperaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formPruebaClasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formTemperaturaClasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formTemperaturasYearsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,7 +117,8 @@
             this.formTablaMultiplicarToolStripMenuItem,
             this.formMesesTemperaturasToolStripMenuItem,
             this.formPruebaClasesToolStripMenuItem,
-            this.formTemperaturaClasesToolStripMenuItem});
+            this.formTemperaturaClasesToolStripMenuItem,
+            this.formTemperaturasYearsToolStripMenuItem});
             this.formulariosToolStripMenuItem.Name = "formulariosToolStripMenuItem";
             this.formulariosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.formulariosToolStripMenuItem.Text = "Formularios";
@@ -254,6 +256,13 @@
             this.formTemperaturaClasesToolStripMenuItem.Text = "Form Temperatura Clases";
             this.formTemperaturaClasesToolStripMenuItem.Click += new System.EventHandler(this.formTemperaturaClasesToolStripMenuItem_Click);
             // 
+            // formTemperaturasYearsToolStripMenuItem
+            // 
+            this.formTemperaturasYearsToolStripMenuItem.Name = "formTemperaturasYearsToolStripMenuItem";
+            this.formTemperaturasYearsToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.formTemperaturasYearsToolStripMenuItem.Text = "Form Temperaturas Years";
+            this.formTemperaturasYearsToolStripMenuItem.Click += new System.EventHandler(this.formTemperaturasYearsToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -299,5 +308,6 @@
         private ToolStripMenuItem formMesesTemperaturasToolStripMenuItem;
         private ToolStripMenuItem formPruebaClasesToolStripMenuItem;
         private ToolStripMenuItem formTemperaturaClasesToolStripMenuItem;
+        private ToolStripMenuItem formTemperaturasYearsToolStripMenuItem;
     }
 }
