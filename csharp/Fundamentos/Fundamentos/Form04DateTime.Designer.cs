@@ -199,7 +199,6 @@
         private Label label2;
         private TextBox txtIncr;
         private Label label3;
-        private TextBox txtResult;
         private TextBox txtResultDate;
     }
 }

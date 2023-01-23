@@ -1,5 +1,4 @@
 ﻿using ProyectoClases;
-using ProyectoClases;
 
 namespace Fundamentos
 {

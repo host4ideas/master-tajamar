@@ -35,7 +35,6 @@ namespace Fundamentos
 
             // Convertir string a primitivo
             string textoNumero = "1444";
-            int numeroEntero = 1000;
             double doble = double.Parse(textoNumero);
 
             // Convertir objetos a string
@@ -65,7 +64,7 @@ namespace Fundamentos
 
         private void formDateTimesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form04DateTime form04DateTime= new Form04DateTime();
+            Form04DateTime form04DateTime = new Form04DateTime();
             form04DateTime.ShowDialog();
         }
 
@@ -107,25 +106,25 @@ namespace Fundamentos
 
         private void formTiendaProductosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form11TiendaProductos form11TiendaProductos= new Form11TiendaProductos();
+            Form11TiendaProductos form11TiendaProductos = new Form11TiendaProductos();
             form11TiendaProductos.ShowDialog();
         }
 
         private void formDobleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form12Metodos form12Metodos= new Form12Metodos();
+            Form12Metodos form12Metodos = new Form12Metodos();
             form12Metodos.ShowDialog();
         }
 
         private void formArrayListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form13ArrayList form13ArrayList= new Form13ArrayList();
+            Form13ArrayList form13ArrayList = new Form13ArrayList();
             form13ArrayList.ShowDialog();
         }
 
         private void formListEventoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form14ListEvento form14ListEvento= new Form14ListEvento();
+            Form14ListEvento form14ListEvento = new Form14ListEvento();
             form14ListEvento.ShowDialog();
         }
 
@@ -137,13 +136,13 @@ namespace Fundamentos
 
         private void formTablaMultiplicarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form16TablaMultiplicar form16TablaMultiplicar= new Form16TablaMultiplicar();
+            Form16TablaMultiplicar form16TablaMultiplicar = new Form16TablaMultiplicar();
             form16TablaMultiplicar.ShowDialog();
         }
 
         private void formMesesTemperaturasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form17MesesTemp form17MesesTemp= new Form17MesesTemp();
+            Form17MesesTemp form17MesesTemp = new Form17MesesTemp();
             form17MesesTemp.ShowDialog();
         }
 
@@ -163,6 +162,30 @@ namespace Fundamentos
         {
             Form20TemperaturasYears form20TemperaturasYears = new Form20TemperaturasYears();
             form20TemperaturasYears.ShowDialog();
+        }
+
+        private void formFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            asdf form21Files = new asdf();
+            form21Files.ShowDialog();
+        }
+
+        private void formMascotasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form22Mascotas form22Mascotas = new Form22Mascotas();
+            form22Mascotas.ShowDialog();
+        }
+
+        private void formMascotaXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form23ObjetoXMLMascota form23ObjetoXMLMascota = new();
+            form23ObjetoXMLMascota.ShowDialog();
+        }
+
+        private void formColeccionMascotasXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form24ColeccionXMLMascotas form24ColeccionXMLMascotas = new();
+            form24ColeccionXMLMascotas.ShowDialog();
         }
     }
 }
