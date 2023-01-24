@@ -1,4 +1,5 @@
-﻿using ProyectoClases.Models;
+﻿using ProyectoClases.Helpers;
+using ProyectoClases.Models;
 using System.Xml.Serialization;
 
 namespace Fundamentos
@@ -23,6 +24,15 @@ namespace Fundamentos
                 Raza = this.txtRaza.Text,
                 Years = int.Parse(this.txtEdad.Text)
             };
+
+            // Convert image to array
+            // Convert file to BYTE[]
+            //this.pictureBox1.Image = Image.FromFile("");
+
+            using (var ms = new MemoryStream(mascota.Imagen))
+            {
+                this.pictureBox1.Image = Image.FromStream(ms);
+            }
 
             this.coleccionMascotas.Add(mascota);
             this.txtRaza.Text = string.Empty;
@@ -67,12 +77,30 @@ namespace Fundamentos
 
         private void lstMascotas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(this.lstMascotas.SelectedIndex != -1)
+            if (this.lstMascotas.SelectedIndex != -1)
             {
                 Mascota mascotaSeleccionada = this.coleccionMascotas[this.lstMascotas.SelectedIndex];
                 this.txtEdad.Text = mascotaSeleccionada.Years.ToString();
                 this.txtNombre.Text = mascotaSeleccionada.Nombre;
                 this.txtRaza.Text = mascotaSeleccionada.Raza;
+            }
+        }
+
+        private async void btnImage_Click(object sender, EventArgs e)
+        {
+            // Objeto para abrir files
+            OpenFileDialog ofd = new();
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string path = ofd.FileName;
+
+                var contenidoBytes = await HelperImages.GetBytesFromFile(path);
+
+                using (var ms = new MemoryStream(contenidoBytes))
+                {
+                    this.pictureBox1.Image = Image.FromStream(ms);
+                }
             }
         }
     }

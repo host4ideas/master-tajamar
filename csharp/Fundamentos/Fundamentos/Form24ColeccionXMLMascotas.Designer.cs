@@ -39,6 +39,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnGuardarRegistros = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnImage = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lstMascotas
@@ -142,11 +145,31 @@
             this.btnGuardarRegistros.UseVisualStyleBackColor = true;
             this.btnGuardarRegistros.Click += new System.EventHandler(this.btnGuardarRegistros_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(21, 367);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(238, 129);
+            this.pictureBox1.TabIndex = 27;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnImage
+            // 
+            this.btnImage.Location = new System.Drawing.Point(293, 410);
+            this.btnImage.Name = "btnImage";
+            this.btnImage.Size = new System.Drawing.Size(109, 43);
+            this.btnImage.TabIndex = 28;
+            this.btnImage.Text = "Examinar...";
+            this.btnImage.UseVisualStyleBackColor = true;
+            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            // 
             // Form24ColeccionXMLMascotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 446);
+            this.ClientSize = new System.Drawing.Size(827, 508);
+            this.Controls.Add(this.btnImage);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnGuardarRegistros);
             this.Controls.Add(this.txtEdad);
             this.Controls.Add(this.label4);
@@ -160,6 +183,7 @@
             this.Controls.Add(this.label3);
             this.Name = "Form24ColeccionXMLMascotas";
             this.Text = "Form24ColeccionXMLMascotas";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +202,7 @@
         private Label label5;
         private Label label6;
         private Button btnGuardarRegistros;
+        private PictureBox pictureBox1;
+        private Button btnImage;
     }
 }
