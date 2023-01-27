@@ -14,7 +14,9 @@ namespace AdoNet
             //Application.Run(new Form01PrimerAdo());
             //Application.Run(new Form02BuscadorEmpleados());
             //Application.Run(new Form03EliminarEmpleado());
-            Application.Run(new Form04ModificarSalas());
+            //Application.Run(new Form04ModificarSalas());
+            Application.Run(new Form06AccionDepartamento());
+            //Application.Run(new Form05DepartamentosEmpleados());
         }
     }
 }

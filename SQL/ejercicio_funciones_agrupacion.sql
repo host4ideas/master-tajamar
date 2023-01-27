@@ -54,6 +54,11 @@ SELECT (SUM(CAST(SALA.NUM_CAMA AS int)) / COUNT(CAST(SALA.NUM_CAMA AS int))), SA
 FROM SALA
 GROUP BY SALA.NOMBRE, SALA.SALA_COD;
 
+-- 12) Averiguar los últimos empleados que se dieron de alta en la empresa en cada uno de los oficios, ordenados por la fecha.
+ SELECT * FROM EMP
+    WHERE FECHA_ALT IN (SELECT DISTINCT MAX(FECHA_ALT) FROM EMP GROUP BY OFICIO)
+    ORDER BY FECHA_ALT DESC;
+
 -- 14) Mostrar la suma total del salario que cobran los empleados de la plantilla para cada función y turno.
 SELECT SUM(CAST(PLANTILLA.SALARIO AS int)), PLANTILLA.FUNCION, PLANTILLA.T
 FROM PLANTILLA
