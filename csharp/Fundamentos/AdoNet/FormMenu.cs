@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace AdoNet
+﻿namespace AdoNet
 {
     public partial class FormMenu : Form
     {
@@ -19,7 +9,7 @@ namespace AdoNet
 
         private void btnForm01_Click(object sender, EventArgs e)
         {
-            Form01PrimerAdo form01PrimerAdo= new Form01PrimerAdo();
+            Form01PrimerAdo form01PrimerAdo = new Form01PrimerAdo();
             form01PrimerAdo.ShowDialog();
         }
 
@@ -51,6 +41,30 @@ namespace AdoNet
         {
             Form06AccionDepartamento form06AccionDepartamento = new();
             form06AccionDepartamento.ShowDialog();
+        }
+
+        private void btnForm07_Click(object sender, EventArgs e)
+        {
+            Form07ProcedimientoUpdatePlantilla form07ProcedimientoUpdatePlantilla = new();
+            form07ProcedimientoUpdatePlantilla.ShowDialog();
+        }
+
+        private void btnForm08_Click(object sender, EventArgs e)
+        {
+            Form08MensajesServidor form08MensajesServidor = new();
+            form08MensajesServidor.ShowDialog();
+        }
+
+        private void btnForm09_Click(object sender, EventArgs e)
+        {
+            Form09ParametrosSalida form09ParametrosSalida = new();
+            form09ParametrosSalida.ShowDialog();
+        }
+
+        private void btnForm10_Click(object sender, EventArgs e)
+        {
+            Form10HospitalEmpleados form10HospitalEmpleados = new();
+            form10HospitalEmpleados.ShowDialog();
         }
     }
 }
