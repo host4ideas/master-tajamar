@@ -38,6 +38,8 @@
             this.btnForm08 = new System.Windows.Forms.Button();
             this.btnForm09 = new System.Windows.Forms.Button();
             this.btnForm10 = new System.Windows.Forms.Button();
+            this.btnForm11 = new System.Windows.Forms.Button();
+            this.btnForm12 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnForm01
@@ -150,11 +152,35 @@
             this.btnForm10.UseVisualStyleBackColor = true;
             this.btnForm10.Click += new System.EventHandler(this.btnForm10_Click);
             // 
+            // btnForm11
+            // 
+            this.btnForm11.Location = new System.Drawing.Point(273, 35);
+            this.btnForm11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnForm11.Name = "btnForm11";
+            this.btnForm11.Size = new System.Drawing.Size(82, 22);
+            this.btnForm11.TabIndex = 10;
+            this.btnForm11.Text = "Form11";
+            this.btnForm11.UseVisualStyleBackColor = true;
+            this.btnForm11.Click += new System.EventHandler(this.btnForm11_Click);
+            // 
+            // btnForm12
+            // 
+            this.btnForm12.Location = new System.Drawing.Point(360, 35);
+            this.btnForm12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnForm12.Name = "btnForm12";
+            this.btnForm12.Size = new System.Drawing.Size(82, 22);
+            this.btnForm12.TabIndex = 11;
+            this.btnForm12.Text = "Form12";
+            this.btnForm12.UseVisualStyleBackColor = true;
+            this.btnForm12.Click += new System.EventHandler(this.btnForm12_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(627, 338);
+            this.Controls.Add(this.btnForm12);
+            this.Controls.Add(this.btnForm11);
             this.Controls.Add(this.btnForm10);
             this.Controls.Add(this.btnForm09);
             this.Controls.Add(this.btnForm08);
@@ -184,5 +210,7 @@
         private Button btnForm08;
         private Button btnForm09;
         private Button btnForm10;
+        private Button btnForm11;
+        private Button btnForm12;
     }
 }

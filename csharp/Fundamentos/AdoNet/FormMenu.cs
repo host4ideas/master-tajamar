@@ -66,5 +66,17 @@
             Form10HospitalEmpleados form10HospitalEmpleados = new();
             form10HospitalEmpleados.ShowDialog();
         }
+
+        private void btnForm11_Click(object sender, EventArgs e)
+        {
+            Form11HospitalEmpleadosClases form11HospitalEmpleadosClases = new();
+            form11HospitalEmpleadosClases.ShowDialog();
+        }
+
+        private void btnForm12_Click(object sender, EventArgs e)
+        {
+            Form12EmpleadosOficios form12EmpleadosOficios = new();
+            form12EmpleadosOficios.ShowDialog();
+        }
     }
 }
