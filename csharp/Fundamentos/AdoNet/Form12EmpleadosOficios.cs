@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AdoNet.Helpers;
-using AdoNet.Models;
+﻿using AdoNet.Models;
 using AdoNet.Repositories;
 
 namespace AdoNet
@@ -77,11 +66,33 @@ namespace AdoNet
 
         private void btnIncrementar_Click(object sender, EventArgs e)
         {
-            int affectedRows = this.repo.IncrementarSalario(
-                this.cmbOficios.SelectedItem.ToString()!,
-                int.Parse(this.txtIncremento.Text));
-            MessageBox.Show($"Empleados modificados: {affectedRows}");
-            this.LoadEmpleados();
+            if (this.cmbOficios.SelectedIndex == -1)
+            {
+                MessageBox.Show("No has seleccionado ningún oficio!!!");
+            }
+            else if (this.txtIncremento.Text == string.Empty)
+            {
+                MessageBox.Show("No has indicado ningún incremento!!!");
+            }
+            else
+            {
+                try
+                {
+                    int affectedRows = this.repo.IncrementarSalario(
+                    this.cmbOficios.SelectedItem.ToString()!,
+                    int.Parse(this.txtIncremento.Text));
+
+                    this.LoadEmpleados();
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Incremento inválido");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al incrementar el salario: {ex.Message}");
+                }
+            }
         }
     }
 }

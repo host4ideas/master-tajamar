@@ -45,6 +45,7 @@ namespace AdoNet
             // Parametros entrada
             SqlParameter paramDeptNo = new("@DEPT_NO", this.departamentosIds[this.cmbDepartamentos.SelectedIndex]);
             this.cmd.Parameters.Add(paramDeptNo);
+
             // Parametros de salida
             SqlParameter paramSuma = new()
             {
