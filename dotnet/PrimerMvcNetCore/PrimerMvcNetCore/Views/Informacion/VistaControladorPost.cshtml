@@ -1,0 +1,30 @@
+﻿<h1>
+    Vista --> Controlador POST
+</h1>
+
+<form method="post">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" class="form-control" />
+
+    <label>Email:</label>
+    <input type="text" name="email" class="form-control" />
+
+    <label>Edad:</label>
+    <input type="number" name="edad" class="form-control" />
+
+    <label>Inventado:</label>
+    <input type="number" name="inventado" class="form-control" />
+
+    <button class="btn btn-success">
+        Enviar información
+    </button>
+</form>
+
+@{
+    for (int i = 0; i < 10; i++)
+    {
+        <h1 style="color: blue">
+            @ViewData["DATOS"]
+        </h1>
+    }
+}

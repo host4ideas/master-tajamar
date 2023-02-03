@@ -1,0 +1,20 @@
+﻿<h1>
+    Informacíón Vista ---> Controller GET
+</h1>
+
+<h1 style="color:blue">
+    @ViewData["DATOS"];
+</h1>
+
+<h2>
+    @Html.ActionLink("Vista ---> Controller GET", "VistaControladorGet", "Informacion", new {app = "MVC Net Core", version = 6});
+</h2>
+<h2>
+    @Html.ActionLink("Vista ---> Controller GET | Solo app", "VistaControladorGet", "Informacion", new {app = "MVC Net Core"});
+</h2>
+<h2>
+    @Html.ActionLink("Vista ---> Controller GET | Version 0", "VistaControladorGet", "Informacion", new {app = "MVC Net Core", version = 0});
+</h2>
+<h2>
+    @Html.ActionLink("Vista ---> Controller GET | Sin Params", "VistaControladorGet", "Informacion");
+</h2>

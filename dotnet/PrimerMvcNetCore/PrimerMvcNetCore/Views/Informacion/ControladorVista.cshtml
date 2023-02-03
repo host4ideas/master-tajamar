@@ -1,0 +1,23 @@
+﻿@model Persona
+
+@Html.ActionLink("Texto Link", "Action", "Controller", new {variable1 = "valor1", variable2 = "valor2"})
+
+@{
+    ViewData["Title"] = "Informacion";
+}
+
+<h1>
+    Informacíón Controller ---> Vista
+</h1>
+
+<h1>
+    Nombre: @ViewData["Nombre"]
+</h1>
+
+<h1>
+    Edad: @ViewData["Edad"]
+</h1>
+
+<h1 style="color: blue">
+    @Model.Nombre, @Model.Email, @Model.Edad
+</h1>
