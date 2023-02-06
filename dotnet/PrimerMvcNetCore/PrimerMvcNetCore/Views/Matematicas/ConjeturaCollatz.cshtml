@@ -1,0 +1,26 @@
+﻿@model List<int>
+
+<h1>
+    Conjetura de Collatz
+</h1>
+
+<form method="post">
+    <label>Introduzca un número</label>
+    <input type="number" name="num" />
+
+    <button class="btn btn-warning">
+        Collatz
+    </button>
+</form>
+
+<ul>
+    @{
+        if (Model != null)
+            foreach (var num in Model)
+            {
+                <li>
+                    @num
+                </li>
+            }
+    }
+</ul>
