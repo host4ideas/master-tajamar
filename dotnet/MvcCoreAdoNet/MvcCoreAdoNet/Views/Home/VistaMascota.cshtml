@@ -1,0 +1,44 @@
+﻿@model Mascota
+
+<h1>VISTA MASCOTA</h1>
+
+<div id="slider"></div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><abbr title="Nombre">Nom</abbr></th>
+            <th title="Tipo de animal">Tipo</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th><abbr title="Nombre">Nom</abbr></th>
+            <th title="Tipo de animal">Tipo</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <th>Lolo</th>
+            <td>
+                Tortuga
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button id="boton">
+    Click
+</button>
+
+@section home {
+    <img src="~/images/logo13.jpg" width="250px" />
+}
+
+@section scripts {
+    <script>
+        $("#boton").click(function () {
+            alert("Handler for .change() called.");
+        })
+    </script>
+}

@@ -6,10 +6,12 @@
     Mensage en View Index
 </button>
 
-<script>
-    $(document).ready(function () {
-        $("#botonView").click(function () {
-            $("#message").text("He cambiado a la Vista INDEX!!!")
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#botonView").click(function () {
+                $("#message").text("He cambiado a la Vista INDEX!!!")
+            })
         })
-    })
-</script>
+    </script>
+}

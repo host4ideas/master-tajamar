@@ -14,7 +14,6 @@
     <link href="~/bootstrap-5.0.2-dist/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
-
     <header>
         <!-- Fixed navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -26,13 +25,13 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            @Html.ActionLink("Contenido", "Contenido", "Home", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            <a asp-controller="Home" asp-action="VistaPersona" class="nav-link">Persona</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -51,6 +50,24 @@
                 Template Bootstrap MVC Core
             </h1>
             <hr />
+            <h3>Section images</h3>
+            <span>Imagen Layout</span>
+            <img src="~/images/logo10.png" width="250px" />
+            @RenderSection("images", false)
+            @{
+                if (IsSectionDefined("home"))
+                {
+                    <h3>Section home con contenido</h3>
+                    // Alguna seccion esta escribiendo en la seccion home
+                    @RenderSection("home", false)
+                }
+                else
+                {
+                    // Codigo estatico del layout para el resto de vistas
+                    <h3>Section home vacío</h3>
+                }
+            }
+            <hr />
             <button class="btn btn-info" id="botonLayout">
                 Probar JQuery _Layout
             </button>
@@ -68,6 +85,7 @@
     <!-- Bootstrap Core JS -->
     <script src="~/bootstrap-5.0.2-dist/js/bootstrap.js"></script>
     <script src="~/bootstrap-5.0.2-dist/js/jquery-3.6.3.min.js"></script>
+    @RenderSection("scripts", false);
     <script>
         $(document).ready(function () {
             $("#botonLayout").click(function () {

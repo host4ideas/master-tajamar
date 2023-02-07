@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MvcCoreEmpty.Models;
 
 namespace MvcCoreEmpty.Controllers
 {
@@ -7,6 +8,16 @@ namespace MvcCoreEmpty.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Contenido()
+        {
+            return View();
+        }
+
+        public IActionResult VistaPersona()
+        {
+            return View(new Persona(nombre: "Alumno Core", edad: 23, email: "example@tajamar365.com"));
         }
     }
 }

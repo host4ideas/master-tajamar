@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\bootstrap-5.0.2-dist\css\bootstrap.css">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>

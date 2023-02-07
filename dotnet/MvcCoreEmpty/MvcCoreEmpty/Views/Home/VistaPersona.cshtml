@@ -1,0 +1,24 @@
+﻿@model Persona
+
+@{
+    Layout = "_TemplateNew";
+}
+
+<h1>VISTA PERSONA</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Edad</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Nombre</td>
+            <td>@Model.Email</td>
+            <td>@Model.Edad</td>
+        </tr>
+    </tbody>
+</table>
