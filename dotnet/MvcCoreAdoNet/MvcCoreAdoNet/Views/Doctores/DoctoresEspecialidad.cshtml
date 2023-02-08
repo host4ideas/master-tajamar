@@ -1,0 +1,47 @@
+﻿@model DatosDoctor
+
+<form method="post">
+    <label>Buscar por especialidad</label>
+    <select name="especialidad">
+        @{
+            foreach (var especia in Model.Especialidades)
+            {
+                <option value="@especia">@especia</option>
+            }
+        }
+    </select>
+
+    <button>
+        Buscar
+    </button>
+</form>
+
+<form method="get">
+    <button>Volver a cargar</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>HOSPITAL COD</th>
+            <th>DOCTOR COD</th>
+            <th>APELLIDO</th>
+            <th>ESPECIALIDAD</th>
+            <th>SALARIO</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var doctor in Model.Doctores)
+            {
+                <tr>
+                    <td>@doctor.HospitalCod</td>
+                    <td>@doctor.DoctorCod</td>
+                    <td>@doctor.Apellido</td>
+                    <td>@doctor.Especialidad</td>
+                    <td>@doctor.Salario</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

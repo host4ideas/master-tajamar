@@ -1,14 +1,18 @@
 ﻿@model List<Hospital>
 
-<h1 style="color:blue">VISTA HOSPITALES</h1>
+<h1 class="title" style="color:blue">VISTA HOSPITALES</h1>
 
-<table>
+<a asp-controller="Hospitales" asp-action="CreateHospital">Nuevo Hospital</a>
+
+<table class="table">
     <thead>
         <tr>
             <th>ID</th>
             <th>NOMBRE</th>
+            <th>DIRECCION</th>
             <th>TELEFONO</th>
             <th>CAMAS</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -17,9 +21,13 @@
             {
                 <tr>
                     <td>@hospital.IdHospital</td>
+                    <td>@hospital.Direccion</td>
                     <td>@hospital.HospitalName</td>
                     <td>@hospital.Telefono</td>
                     <td>@hospital.Camas</td>
+                    <td>
+                        @Html.ActionLink("Detalles hospital", "Detalles", "Hospitales", new {idHospital = hospital.IdHospital})
+                    </td>
                 </tr>
             }
         }
