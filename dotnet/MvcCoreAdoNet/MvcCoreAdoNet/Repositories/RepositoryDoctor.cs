@@ -32,7 +32,7 @@ namespace MvcCoreAdoNet.Repositories
                     Apellido = (string)this.reader["APELLIDO"],
                     DoctorCod = int.Parse(this.reader["DOCTOR_NO"].ToString()!),
                     Especialidad = (string)this.reader["ESPECIALIDAD"],
-                    HospitalCod = int.Parse(this.reader["HOSPITAL_COD"].ToString()!),
+                    HospitalCod = this.reader["HOSPITAL_COD"].ToString()!,
                     Salario = int.Parse(this.reader["SALARIO"].ToString()!)
                 });
             }
@@ -58,7 +58,7 @@ namespace MvcCoreAdoNet.Repositories
                 Apellido = (string)this.reader["APELLIDO"],
                 DoctorCod = int.Parse(this.reader["DOCTOR_NO"].ToString()!),
                 Especialidad = (string)this.reader["ESPECIALIDAD"],
-                HospitalCod = int.Parse(this.reader["HOSPITAL_COD"].ToString()!),
+                HospitalCod = this.reader["HOSPITAL_COD"].ToString()!,
                 Salario = int.Parse(this.reader["SALARIO"].ToString()!)
             };
 
@@ -87,7 +87,7 @@ namespace MvcCoreAdoNet.Repositories
                     Apellido = (string)this.reader["APELLIDO"],
                     DoctorCod = int.Parse(this.reader["DOCTOR_NO"].ToString()!),
                     Especialidad = (string)this.reader["ESPECIALIDAD"],
-                    HospitalCod = int.Parse(this.reader["HOSPITAL_COD"].ToString()!),
+                    HospitalCod = this.reader["HOSPITAL_COD"].ToString()!,
                     Salario = int.Parse(this.reader["SALARIO"].ToString()!)
                 });
             }
@@ -116,6 +116,36 @@ namespace MvcCoreAdoNet.Repositories
             this.reader.Close();
             this.cn.Close();
             return especialidades;
+        }
+
+        public List<Doctor> FindDoctorHospital(string hospitalCod)
+        {
+            List<Doctor> doctores = new();
+            this.cmd.CommandType = System.Data.CommandType.Text;
+            this.cmd.CommandText = "SELECT * FROM DOCTOR WHERE HOSPITAL_COD = @HOSPITAL";
+
+            this.cmd.Parameters.AddWithValue("@HOSPITAL", hospitalCod);
+
+            this.cn.Open();
+            this.reader = this.cmd.ExecuteReader();
+
+            while (this.reader.Read())
+            {
+                doctores.Add(new Doctor()
+                {
+                    Apellido = (string)this.reader["APELLIDO"],
+                    DoctorCod = int.Parse(this.reader["DOCTOR_NO"].ToString()!),
+                    Especialidad = (string)this.reader["ESPECIALIDAD"],
+                    HospitalCod = this.reader["HOSPITAL_COD"].ToString()!,
+                    Salario = int.Parse(this.reader["SALARIO"].ToString()!)
+                });
+            }
+
+            this.cmd.Parameters.Clear();
+            this.reader.Close();
+            this.cn.Close();
+
+            return doctores;
         }
     }
 }

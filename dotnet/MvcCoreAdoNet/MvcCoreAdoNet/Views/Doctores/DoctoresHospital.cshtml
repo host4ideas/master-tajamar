@@ -1,23 +1,16 @@
-﻿@*@model DatosDoctor*@
-@model List<Doctor>
+﻿@model List<Doctor>
 
 @{
-    var especialidades = (List<string>)ViewData["ESPECIALIDADES"]!;
+    var hospitales = (List<Hospital>)ViewData["HOSPITALES"]!;
 }
 
 <form method="post">
-    <label>Buscar por especialidad</label>
-    <select name="especialidad">
-        @*@{
-        foreach (var especia in Model.Especialidades)
-        {
-        <option value="@especia">@especia</option>
-        }
-        }*@
+    <label>Buscar por hospital</label>
+    <select name="hospital">
         @{
-            foreach (var especia in especialidades)
+            foreach (var hospital in hospitales)
             {
-                <option value="@especia">@especia</option>
+                <option value="@hospital.IdHospital">@hospital.HospitalName</option>
             }
         }
     </select>
@@ -43,17 +36,6 @@
     </thead>
     <tbody>
         @{
-            //foreach (var doctor in Model.Doctores)
-            //{
-            //    <tr>
-            //        <td>@doctor.HospitalCod</td>
-            //        <td>@doctor.DoctorCod</td>
-            //        <td>@doctor.Apellido</td>
-            //        <td>@doctor.Especialidad</td>
-            //        <td>@doctor.Salario</td>
-            //    </tr>
-            //}
-
             foreach (var doctor in Model)
             {
                 <tr>
