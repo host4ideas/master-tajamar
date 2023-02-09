@@ -1,0 +1,52 @@
+﻿@model List<Doctor>
+
+@{
+    var hospitales = (List<Hospital>)ViewData["HOSPITALES"]!;
+}
+
+<form method="post">
+    <select name="idHospital">
+        @{
+            foreach (var hospi in hospitales)
+            {
+                <option value="@hospi.IdHospital">@hospi.Nombre</option>
+            }
+        }
+    </select>
+
+    <button class="btn btn-outline-success">
+        Buscar por hospital
+    </button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>HOSPITAL_COD</th>
+            <th>DOCTOR_NO</th>
+            <th>APELLIDO</th>
+            <th>ESPECIALIDAD</th>
+            <th>SALARIO</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var doctor in Model)
+            {
+                <tr>
+                    <td>@doctor.HospitalCod</td>
+                    <td>@doctor.DoctorNo</td>
+                    <td>@doctor.Apellido</td>
+                    <td>@doctor.Especialdad</td>
+                    <td>@doctor.Salario</td>
+                    <td><a asp-controller="Doctores" asp-action="Details" asp-route-id="@doctor.DoctorNo">👁️‍🗨️</a></td>
+                    <td><a asp-controller="Doctores" asp-action="Delete" asp-route-id="@doctor.DoctorNo">🗑️</a></td>
+                    <td><a asp-controller="Doctores" asp-action="Update" asp-route-id="@doctor.DoctorNo">✏️</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

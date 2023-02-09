@@ -1,0 +1,19 @@
+﻿@model Departamento
+
+<h1>EDITAR DEPARTAMENTO</h1>
+
+<a asp-controller="Departamentos" asp-action="Index">Volver a Index</a>
+
+<form method="post">
+    <input name="IdDepartamento" value="@Model.IdDepartamento" />
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" required value="@Model.Nombre" />
+
+    <label>Localidad</label>
+    <input type="text" name="localidad" required value="@Model.Localidad" />
+
+    <button class="btn btn-outline-dark">
+        Actualizar dept.
+    </button>
+</form>
