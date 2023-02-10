@@ -1,0 +1,44 @@
+﻿@model List<Empleado>
+
+<h1>BUSCADOR EMPLEADOS</h1>
+
+<form method="post">
+    <label>Oficio</label>
+    <input type="text" name="oficio" class="form-control" required />
+
+    <label>Salario</label>
+    <input type="text" name="salario" class="form-control" required />
+
+    <button class="btn btn-outlin-esuccess">
+        Buscar empleados
+    </button>
+</form>
+
+<div class="alert alert-success" role="alert">
+    @ViewData["MENSAJE"]
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>APELLIDO</th>
+            <th>OFICIO</th>
+            <th>SALARIO</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null && Model.Any())
+            {
+                foreach (Empleado emp in Model)
+                {
+                    <tr>
+                        <td>@emp.Apellido</td>
+                        <td>@emp.Oficio</td>
+                        <td>@emp.Salario</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

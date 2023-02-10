@@ -1,0 +1,36 @@
+﻿@model List<Empleado>
+
+<h1>
+    EMPLEADOS LINQ TO SQL
+</h1>
+
+<a asp-controller="Empleados" asp-action="BuscadorEmpleados">Buscador empleados</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>APELLIDO</th>
+            <th>OFICIO</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Empleado emp in Model)
+            {
+                <tr>
+                    <td>@emp.Apellido</td>
+                    <td>@emp.Oficio</td>
+                    <td>
+                        <a asp-controller="Empleados"
+                   asp-action="Details"
+                   asp-route-idEmpleado="@emp.IdEmpleado"
+                   class="btn btn-outline-warning">
+                            Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model List<Enfermo>
+
+<h1>LISTADO DE ENFERMOS</h1>
+
+<a asp-controller="Enfermos" asp-action="BuscadorEnfermos">Buscador enfermos</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>INSCRIPCION</th>
+            <th>APELLIDO</th>
+            <th>DIRECCION</th>
+            <th>FECHA NACIMIENTO</th>
+            <th>SEXO</th>
+            <th>Nº SEGURIDAD SOCIAL</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Enfermo enfermo in Model)
+            {
+                <tr>
+                    <td>@enfermo.Inscripcion</td>
+                    <td>@enfermo.Apellido</td>
+                    <td>@enfermo.Direccion</td>
+                    <td>@enfermo.FechaNacimiento</td>
+                    <td>@enfermo.Sexo</td>
+                    <td>@enfermo.Nss</td>
+                    <td><a asp-controller="Enfermos" asp-action="DeleteEnfermo" asp-route-inscripcion="@enfermo.Inscripcion" style="colro:red">🗑️</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
