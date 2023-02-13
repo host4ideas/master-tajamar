@@ -1,7 +1,30 @@
+using NetCoreLinqToSqlInjection.Models;
+using NetCoreLinqToSqlInjection.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Instancia el objeto por cada peticion de la clase
+//builder.Services.AddTransient<Coche>();
+
+// Instancia un unico coche
+//builder.Services.AddSingleton<ICoche, Coche>();
+//builder.Services.AddSingleton<ICoche, Deportivo>();
+
+//Coche car = new()
+//{
+//    Marca = "Cochecito",
+//    Imagen = "image3.jpg",
+//    Modelo = "Super",
+//    Velocidad = 100,
+//    VelocidadMaxima = 200
+//};
+////builder.Services.AddSingleton<ICoche, Coche>(x => car);
+//builder.Services.AddSingleton<ICoche>(car);
+
+builder.Services.AddSingleton<RepositoryDoctores>();
 
 var app = builder.Build();
 
