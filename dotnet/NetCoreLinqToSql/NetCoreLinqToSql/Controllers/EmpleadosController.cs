@@ -19,6 +19,24 @@ namespace NetCoreLinqToSql.Controllers
             return View(empleados);
         }
 
+        public IActionResult DatosEmpleados()
+        {
+            List<string> oficios = this.repo.GetOficios();
+            ViewData["OFICIOS"] = oficios;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DatosEmpleados(string oficio)
+        {
+            List<string> oficios = this.repo.GetOficios();
+            ViewData["OFICIOS"] = oficios;
+
+            ResumenEmpleados model = this.repo.GetEmpleadosOficios(oficio);
+
+            return View(model);
+        }
+
         public IActionResult Details(int idEmpleado)
         {
             var empleado = this.repo.FindEmpleado(idEmpleado);

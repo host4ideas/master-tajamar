@@ -18,6 +18,58 @@ namespace NetCoreLinqToSql.Repositories
             adpter.Fill(this.tablaEmpleados);
         }
 
+        public ResumenEmpleados GetEmpleadosOficios(string oficio)
+        {
+            var consulta = (from datos in this.tablaEmpleados.AsEnumerable()
+                           where datos.Field<string>("OFICIO") == oficio
+                           select datos).Distinct();
+
+            consulta = consulta.OrderBy(x => x.Field<int>("SALARIO"));
+            int personas = consulta.Count();
+            int maximo = consulta.Max(x => x.Field<int>("SALARIO"));
+            double media = consulta.Average(x => x.Field<int>("SALARIO"));
+
+            List<Empleado> empleados = new();
+
+            foreach (var row in consulta)
+            {
+                Empleado emp = new()
+                {
+                    Apellido = row.Field<string>("APELLIDO")!,
+                    IdDepartamento = row.Field<int>("DEPT_NO"),
+                    IdEmpleado = row.Field<int>("EMP_NO"),
+                    Oficio = row.Field<string>("OFICIO")!,
+                    Salario = row.Field<int>("SALARIO")
+                };
+                empleados.Add(emp);
+            }
+
+            ResumenEmpleados model = new()
+            {
+                Empleados = empleados,
+                MaximoSalario = maximo,
+                MediaSalarial = media,
+                Personas = personas,
+            };
+
+            return model;
+        }
+
+        public List<string> GetOficios()
+        {
+            var consulta = from datos in this.tablaEmpleados.AsEnumerable()
+                           select datos.Field<string>("OFICIO");
+
+            List<string> oficios = new();
+
+            foreach (string oficio in consulta)
+            {
+                oficios.Add(oficio);
+            }
+
+            return oficios;
+        }
+
         /// <summary>
         /// Recuperar los empleados
         /// </summary>
