@@ -1,1 +1,29 @@
 ﻿@model List<Doctor>
+
+<a asp-controller="Doctores" asp-action="InsertarDoctor">Insertar un nuevo doctor</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>HOSPITAL COD</th>
+            <th>DOCTOR Nº</th>
+            <th>APELLIDO</th>
+            <th>ESPECIALIDAD</th>
+            <th>SALARIO</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Doctor doctor in Model)
+            {
+                <tr>
+                    <td>@doctor.HospitalCod</td>
+                    <td>@doctor.DoctorCod</td>
+                    <td>@doctor.Apellido</td>
+                    <td>@doctor.Especialidad</td>
+                    <td>@doctor.Salario</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
