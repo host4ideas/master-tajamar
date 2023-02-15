@@ -10,6 +10,7 @@
             <th>APELLIDO</th>
             <th>ESPECIALIDAD</th>
             <th>SALARIO</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
                     <td>@doctor.Apellido</td>
                     <td>@doctor.Especialidad</td>
                     <td>@doctor.Salario</td>
+                    <td><a asp-controller="Doctores" asp-action="DeleteDoctor" asp-route-iddoctor="@doctor.DoctorCod" class="btn btn-outline-danger">🗑️</a></td>
                 </tr>
             }
         }

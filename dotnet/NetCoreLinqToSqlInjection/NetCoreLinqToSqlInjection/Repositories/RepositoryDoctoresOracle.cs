@@ -29,6 +29,19 @@ namespace NetCoreLinqToSqlInjection.Repositories
             this.adapter.Fill(this.tablaDoctores);
         }
 
+        public void DeleteDoctor(int iddoctor)
+        {
+            OracleParameter paramDocID = new(":P_IDDOCTOR", iddoctor);
+            this.cmd.Parameters.Add(paramDocID);
+            this.cmd.CommandType = CommandType.StoredProcedure;
+            this.cmd.CommandText = "SP_DELETE_DOCTOR";
+
+            this.cn.Open();
+            this.cmd.ExecuteNonQuery();
+            this.cmd.Parameters.Clear();
+            this.cn.Close();
+        }
+
         public List<Doctor> GetDoctores()
         {
             var consulta = from datos in this.tablaDoctores.AsEnumerable()

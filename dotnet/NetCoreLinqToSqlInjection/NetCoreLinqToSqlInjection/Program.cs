@@ -24,8 +24,8 @@ builder.Services.AddControllersWithViews();
 ////builder.Services.AddSingleton<ICoche, Coche>(x => car);
 //builder.Services.AddSingleton<ICoche>(car);
 
-//builder.Services.AddSingleton<IRepository, RepositoryDoctores>();
-builder.Services.AddTransient<IRepository, RepositoryDoctoresOracle>();
+builder.Services.AddTransient<IRepository, RepositoryDoctores>();
+//builder.Services.AddTransient<IRepository, RepositoryDoctoresOracle>();
 
 var app = builder.Build();
 

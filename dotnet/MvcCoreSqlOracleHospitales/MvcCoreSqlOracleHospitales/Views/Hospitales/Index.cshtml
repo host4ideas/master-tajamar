@@ -1,0 +1,33 @@
+﻿@model List<Hospital>
+
+<a asp-controller="Hospitales" asp-action="Insertar">Crear un nuevo hospital</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>NOMBRE</th>
+            <th>DIRECCION</th>
+            <th>TELEFONO</th>
+            <th>NUMERO DE CAMAS</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Hospital hosp in Model)
+            {
+                <tr>
+                    <td>@hosp.Nombre</td>
+                    <td>@hosp.Direccion</td>
+                    <td>@hosp.Telefono</td>
+                    <td>@hosp.NumCamas</td>
+                    <td><a asp-controller="Hospitales" asp-action="Detalles" asp-route-hospcod="@hosp.HospitalCod">Detalles hospital</a></td>
+                    <td><a asp-controller="Hospitales" asp-action="DeleteHospital" asp-route-hospCod="@hosp.HospitalCod" class="btn btn-outline-danger">🗑</a></td>
+                    <td><a asp-controller="Hospitales" asp-action="Update" asp-route-hospCod="@hosp.HospitalCod" class="btn btn-outline-warning">✏️</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

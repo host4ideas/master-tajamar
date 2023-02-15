@@ -1,0 +1,21 @@
+﻿<h1>Crear un nuevo hospital</h1>
+
+<a asp-controller="Hospitales" asp-action="Index">Volver</a>
+
+<form method="post">
+    <label class="form-label">Nombre</label>
+    <input name="nombre" type="text" class="form-control" />
+
+    <label class="form-label">Direccion</label>
+    <input name="direccion" type="text" class="form-control" />
+
+    <label class="form-label">Numero de camas</label>
+    <input name="numCamas" type="number" class="form-control" />
+
+    <label class="form-label">Telefono</label>
+    <input name="telefono" type="text" class="form-control" />
+
+    <button class="btn btn-outline-success">
+        Insertar hospital
+    </button>
+</form>

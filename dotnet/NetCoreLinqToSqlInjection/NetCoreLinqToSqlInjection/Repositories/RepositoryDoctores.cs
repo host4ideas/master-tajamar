@@ -81,5 +81,19 @@ namespace NetCoreLinqToSqlInjection.Repositories
             this.cmd.Parameters.Clear();
             this.cn.Close();
         }
+
+        public void DeleteDoctor(int iddoctor)
+        {
+            this.cmd.CommandType = CommandType.StoredProcedure;
+            this.cmd.CommandText = "SP_DELETE_DOCTOR";
+
+            SqlParameter paramDocId = new("@IDDOCTOR", iddoctor);
+            this.cmd.Parameters.Add(paramDocId);
+            
+            this.cn.Open();
+            this.cmd.ExecuteNonQuery();
+            this.cmd.Parameters.Clear();
+            this.cn.Close();
+        }
     }
 }

@@ -32,5 +32,11 @@ namespace NetCoreLinqToSqlInjection.Controllers
             List<Doctor> doctores = this.repo.GetDoctores();
             return View(doctores);
         }
+
+        public IActionResult DeleteDoctor(int iddoctor)
+        {
+            this.repo.DeleteDoctor(iddoctor);
+            return RedirectToAction("Index");
+        }
     }
 }
