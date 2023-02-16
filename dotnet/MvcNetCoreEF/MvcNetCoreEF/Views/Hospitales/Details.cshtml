@@ -1,0 +1,10 @@
+﻿@model Hospital
+
+<a asp-controller="Hospitales" asp-action="Index" class="btn btn-outline-info">🔙</a>
+
+<h1>Detalles hospital: @Model.Nombre</h1>
+
+<h2>Código hospital: @Model.IdHospital</h2>
+<h2>Dirección: @Model.Direccion</h2>
+<h2>Teléfono: @Model.Telefono</h2>
+<h2>Número de camas: @Model.Camas</h2>

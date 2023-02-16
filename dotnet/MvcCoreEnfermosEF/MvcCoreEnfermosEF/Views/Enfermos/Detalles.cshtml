@@ -1,0 +1,10 @@
+﻿@model Enfermo
+
+<a asp-controller="Enfermos" asp-action="Index" class="btn btn-outline-info">🔙</a>
+
+<h1>Detalles enfermo: @Model.Apellido</h1>
+
+<h2>Direccion: @Model.Direccion</h2>
+<h2>Sexo: @Model.Sexo</h2>
+<h2>Nº Seuridad Social: @Model.NumeroSS</h2>
+<h2>Fecha de nacimiento: @Model.FechaNac</h2>

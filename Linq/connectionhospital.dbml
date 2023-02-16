@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="HOSPITAL" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.DEPT" Member="DEPT">
+    <Type Name="DEPT">
+      <Column Name="DEPT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DNOMBRE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LOC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DOCTOR" Member="DOCTOR">
+    <Type Name="DOCTOR">
+      <Column Name="HOSPITAL_COD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DOCTOR_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ESPECIALIDAD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EMP" Member="EMP">
+    <Type Name="EMP">
+      <Column Name="EMP_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OFICIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FECHA_ALT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COMISION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DEPT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ENFERMO" Member="ENFERMO">
+    <Type Name="ENFERMO">
+      <Column Name="INSCRIPCION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIRECCION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FECHA_NAC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="S" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NSS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOSPITAL" Member="HOSPITAL1">
+    <Type Name="HOSPITAL1">
+      <Column Name="HOSPITAL_COD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOMBRE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIRECCION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TELEFONO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NUM_CAMA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OCUPACION" Member="OCUPACION">
+    <Type Name="OCUPACION">
+      <Column Name="INSCRIPCION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HOSPITAL_COD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SALA_COD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CAMA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PLANTILLA" Member="PLANTILLA">
+    <Type Name="PLANTILLA">
+      <Column Name="HOSPITAL_COD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALA_COD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMPLEADO_NO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FUNCION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="T" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SALA" Member="SALA">
+    <Type Name="SALA">
+      <Column Name="HOSPITAL_COD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALA_COD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NOMBRE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NUM_CAMA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.V_EMPLEADOS_HOSPITAL" Member="V_EMPLEADOS_HOSPITAL">
+    <Type Name="V_EMPLEADOS_HOSPITAL">
+      <Column Name="IDEMPLEADO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HOSPITAL_COD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SP_BUSCADOR_SALARIO" Method="SP_BUSCADOR_SALARIO">
+    <Parameter Name="SALARIO" Parameter="sALARIO" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_BUSCADOR_SALARIOResult">
+      <Column Name="EMP_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OFICIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FECHA_ALT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COMISION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DEPT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CREATE_HOSPITAL" Method="SP_CREATE_HOSPITAL">
+    <Parameter Name="HOSPITAL_COD" Parameter="hOSPITAL_COD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NOMBRE" Parameter="nOMBRE" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DIRECCION" Parameter="dIRECCION" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TELEFONO" Parameter="tELEFONO" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NUM_CAMA" Parameter="nUM_CAMA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_DELETE_DOCTOR" Method="SP_DELETE_DOCTOR">
+    <Parameter Name="IDDOCTOR" Parameter="iDDOCTOR" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_DELETE_HOSPITAL" Method="SP_DELETE_HOSPITAL">
+    <Parameter Name="HOSPITAL_COD" Parameter="hOSPITAL_COD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_DELETEDOCTOR" Method="SP_DELETEDOCTOR">
+    <Parameter Name="IDDOCTOR" Parameter="iDDOCTOR" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_DEPARTAMENTOS" Method="SP_DEPARTAMENTOS">
+    <ElementType Name="SP_DEPARTAMENTOSResult">
+      <Column Name="DEPT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DNOMBRE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LOC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ELIMINAR_EMPLEADO" Method="SP_ELIMINAR_EMPLEADO">
+    <Parameter Name="EMP_NO" Parameter="eMP_NO" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_EMPLEADOS_DEPT" Method="SP_EMPLEADOS_DEPT">
+    <Parameter Name="DEPT_NO" Parameter="dEPT_NO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SUMA" Parameter="sUMA" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="MEDIA" Parameter="mEDIA" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="PERSONAS" Parameter="pERSONAS" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="SP_EMPLEADOS_DEPTResult">
+      <Column Name="EMP_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OFICIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FECHA_ALT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COMISION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DEPT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EMPLEADOS_DEPT_OUT" Method="SP_EMPLEADOS_DEPT_OUT">
+    <Parameter Name="IDDEPT" Parameter="iDDEPT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SUMASALARIAL" Parameter="sUMASALARIAL" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="SP_EMPLEADOS_DEPT_OUTResult">
+      <Column Name="EMP_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OFICIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FECHA_ALT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COMISION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DEPT_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EMPLEADOS_HOSPITAL" Method="SP_EMPLEADOS_HOSPITAL">
+    <Parameter Name="NOMBRE" Parameter="nOMBRE" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SUMA" Parameter="sUMA" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="MEDIA" Parameter="mEDIA" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="PERSONAS" Parameter="pERSONAS" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="SP_EMPLEADOS_HOSPITALResult">
+      <Column Name="IDEMPLEADO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HOSPITAL_COD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EMPLEADOS_OFICIO" Method="SP_EMPLEADOS_OFICIO" HasMultipleResults="true">
+    <Parameter Name="OFICIO" Parameter="oFICIO" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="SP_EMPLEADOS_OFICIOResult">
+      <Column Name="EMP_NO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OFICIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_HOSPITALES" Method="SP_HOSPITALES">
+    <ElementType Name="SP_HOSPITALESResult">
+      <Column Name="HOSPITAL_COD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOMBRE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIRECCION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TELEFONO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NUM_CAMA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_INCREMENTAR_SALARIO_OFICIO" Method="SP_INCREMENTAR_SALARIO_OFICIO">
+    <Parameter Name="OFICIO" Parameter="oFICIO" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="INCREMENTO" Parameter="iNCREMENTO" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_INSERT_DEPARTAMENTO" Method="SP_INSERT_DEPARTAMENTO">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NOMBRE" Parameter="nOMBRE" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LOCALIDAD" Parameter="lOCALIDAD" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_INSERT_DEPT" Method="SP_INSERT_DEPT">
+    <Parameter Name="NUM" Parameter="nUM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NOM" Parameter="nOM" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LOC" Parameter="lOC" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_INSERT_DOCTOR" Method="SP_INSERT_DOCTOR">
+    <Parameter Name="APELLIDO" Parameter="aPELLIDO" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ESPECIALIDAD" Parameter="eSPECIALIDAD" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SALARIO" Parameter="sALARIO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NOMBREHOSPITAL" Parameter="nOMBREHOSPITAL" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_OFICIOS" Method="SP_OFICIOS">
+    <ElementType Name="SP_OFICIOSResult">
+      <Column Name="OFICIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_UPDATE_HOSPITAL" Method="SP_UPDATE_HOSPITAL">
+    <Parameter Name="HOSPITAL_COD" Parameter="hOSPITAL_COD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NOMBRE" Parameter="nOMBRE" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DIRECCION" Parameter="dIRECCION" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TELEFONO" Parameter="tELEFONO" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NUM_CAMA" Parameter="nUM_CAMA" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" DbType="Int" />
+  </Function>
+  <Function Name="dbo.SP_UPDATESALARIOSHOSPITAL" Method="SP_UPDATESALARIOSHOSPITAL">
+    <Parameter Name="NOMBRE" Parameter="nOMBRE" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="INCREMENTO" Parameter="iNCREMENTO" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_UPDATESALARIOSHOSPITALResult">
+      <Column Name="HOSPITAL_COD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALA_COD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMPLEADO_NO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="APELLIDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FUNCION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="T" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SALARIO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
