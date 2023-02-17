@@ -1,0 +1,28 @@
+﻿@model List<Departamento>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Localidad</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Departamento dept in Model)
+            {
+
+                <tr>
+                    <td>@dept.Nombre</td>
+                    <td>@dept.Localidad</td>
+                    <td><a asp-controller="Departamentos" asp-action="Detalles" asp-route-id="@dept.IdDeptartamento" class="btn btn-outline-warning">👁️‍🗨️</a></td>
+                    <td><a asp-controller="Departamentos" asp-action="ActualizarDept" asp-route-id="@dept.IdDeptartamento" class="btn btn-outline-info">✏️</a></td>
+                    <td><a asp-controller="Departamentos" asp-action="BorrarDept" asp-route-id="@dept.IdDeptartamento" class="btn btn-outline-danger">🗑️</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

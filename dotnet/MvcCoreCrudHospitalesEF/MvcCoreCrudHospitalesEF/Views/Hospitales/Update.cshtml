@@ -1,0 +1,23 @@
+﻿@model Hospital
+
+<a asp-controller="Hospitales" asp-action="Index" class="btn btn-info">🔙</a>
+
+<form method="post">
+    <input type="hidden" name="HospitalCod" value="@Model.HospitalCod" />
+
+    <label class="form-label">Nombre</label>
+    <input class="form-control" type="text" name="Nombre" value="@Model.Nombre" />
+
+    <label class="form-label">Dirección</label>
+    <input class="form-control" type="text" name="Direccion" value="@Model.Direccion" />
+
+    <label class="form-label">Teléfono</label>
+    <input class="form-control" type="text" name="Telefono" value="@Model.Telefono" />
+
+    <label class="form-label">Camas</label>
+    <input class="form-control" type="number" name="Camas" value="@Model.Camas" />
+
+    <button class="btn btn-success">
+        Insertar hospital
+    </button>
+</form>
