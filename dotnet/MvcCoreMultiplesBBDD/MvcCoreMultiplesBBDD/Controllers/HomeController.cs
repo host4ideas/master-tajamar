@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SignalRChatExample.Models;
+using MvcCoreMultiplesBBDD.Models;
 using System.Diagnostics;
 
-namespace SignalRChatExample.Controllers
+namespace MvcCoreMultiplesBBDD.Controllers
 {
     public class HomeController : Controller
     {

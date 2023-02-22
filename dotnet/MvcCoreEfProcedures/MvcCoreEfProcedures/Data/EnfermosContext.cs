@@ -8,5 +8,7 @@ namespace MvcCoreEfProcedures.Data
         public EnfermosContext(DbContextOptions<EnfermosContext> options) : base(options) { }
         public DbSet<Enfermo> Enfermos { get; set; }
         public DbSet<Doctor> Doctores { get; set; }
+        public DbSet<VistaEmpleado> VistaEmpleados { get; set; }
+        public DbSet<Trabajador> Trabajadores { get; set; }
     }
 }

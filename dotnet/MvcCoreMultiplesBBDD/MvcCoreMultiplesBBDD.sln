@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRChatExample", "SignalRChatExample\SignalRChatExample.csproj", "{014A49B2-F64A-4876-825F-33467D028497}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcCoreMultiplesBBDD", "MvcCoreMultiplesBBDD\MvcCoreMultiplesBBDD.csproj", "{3ADF1EA3-30E1-4E22-A4DB-098EDAC27D43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{014A49B2-F64A-4876-825F-33467D028497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{014A49B2-F64A-4876-825F-33467D028497}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{014A49B2-F64A-4876-825F-33467D028497}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{014A49B2-F64A-4876-825F-33467D028497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ADF1EA3-30E1-4E22-A4DB-098EDAC27D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ADF1EA3-30E1-4E22-A4DB-098EDAC27D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ADF1EA3-30E1-4E22-A4DB-098EDAC27D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ADF1EA3-30E1-4E22-A4DB-098EDAC27D43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {140266D1-18C5-4FCD-BD03-1E822113EA39}
+		SolutionGuid = {DEB21235-B947-41DF-89E7-FBA5582D4EE8}
 	EndGlobalSection
 EndGlobal

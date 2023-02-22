@@ -1,4 +1,4 @@
-namespace SignalRChatExample.Models
+namespace MvcCoreMultiplesBBDD.Models
 {
     public class ErrorViewModel
     {
