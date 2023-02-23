@@ -21,8 +21,27 @@ namespace MvcCoreMultiplesBBDD.Controllers
 
         public IActionResult Details(int idEmpleado)
         {
+            Empleado emp = this.repo.EmpleadoDetails(idEmpleado);
+            return View(emp);
+        }
+
+        public async Task<IActionResult> Delete(int idEmpleado)
+        {
+            await this.repo.DeleteEmpleado(idEmpleado);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int idEmpleado)
+        {
             Empleado emp = this.repo.FindEmpleado(idEmpleado);
             return View(emp);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int idEmpleado, int salario, string oficio)
+        {
+            await this.repo.UpdateEmpleado(idEmpleado, salario, oficio);
+            return RedirectToAction("Edit", new { idEmpleado });
         }
     }
 }
