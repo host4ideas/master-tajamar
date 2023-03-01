@@ -1,0 +1,10 @@
+﻿<h1>Session Simple</h1>
+<h2 class="text-danger">@ViewData["NUMERO"]</h2>
+
+<a class="btn btn-primary" asp-controller="EjemploSession" asp-action="SessionSimple" asp-route-accion="almacenar">Almacenar</a>
+<a class="btn btn-primary" asp-controller="EjemploSession" asp-action="SessionSimple" asp-route-accion="mostrar">Mostrar</a>
+
+<h2>Usuario: @ViewData["USUARIO"]</h2>
+<h2>Hora: @ViewData["HORA"]</h2>
+
+<h3>Mensaje: @ViewData["MENSAJE"]</h3>

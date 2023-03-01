@@ -1,0 +1,40 @@
+﻿@using MvcCoreSession.Helpers;
+
+@{
+    var data = Context.Session.GetString("persona");
+    Persona persona = new();
+
+    if (data != null)
+    {
+        persona = HelperJsonSession.DeserializeObject<Persona>(data);
+    }
+}
+
+<h1>Menú Session</h1>
+<h2 class="text-danger">@ViewData["NUMERO"]</h2>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <a asp-controller="EjemploSession" asp-action="SessionSimple">Session Simple</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="EjemploSession" asp-action="SessionPersona">Session Persona</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="EjemploSession" asp-action="SessionPersonaJson">Session Json Persona</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="EjemploSession" asp-action="ColeccionSessionPersona">Session Coleccion Persona</a>
+    </li>
+</ul>
+
+<div class="text-center">
+    <h1 class="display-4">Proyecto Session</h1>
+    <p>Usuario: @Context.Session.GetString("usuario")</p>
+    <p>Hora: @Context.Session.GetString("hora")</p>
+    <p>
+        Nombre: @persona.Nombre
+        Edad: @persona.Edad
+        Email: @persona.Email
+    </p>
+</div>
