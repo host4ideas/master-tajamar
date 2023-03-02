@@ -2,12 +2,7 @@
 
 @{
     var data = Context.Session.GetString("persona");
-    Persona persona = new();
-
-    if (data != null)
-    {
-        persona = HelperJsonSession.DeserializeObject<Persona>(data);
-    }
+    Persona persona = Context.Session.GetObject<Persona>("personaobject")!;
 }
 
 <h1>Menú Session</h1>
@@ -24,7 +19,13 @@
         <a asp-controller="EjemploSession" asp-action="SessionPersonaJson">Session Json Persona</a>
     </li>
     <li class="list-group-item">
+        <a asp-controller="EjemploSession" asp-action="SessionPersonaObject">Session Persona Object</a>
+    </li>
+    <li class="list-group-item">
         <a asp-controller="EjemploSession" asp-action="ColeccionSessionPersona">Session Coleccion Persona</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="EjemploSession" asp-action="ColeccionSessionObject">Session Coleccion Persona Object</a>
     </li>
 </ul>
 
@@ -32,9 +33,14 @@
     <h1 class="display-4">Proyecto Session</h1>
     <p>Usuario: @Context.Session.GetString("usuario")</p>
     <p>Hora: @Context.Session.GetString("hora")</p>
-    <p>
-        Nombre: @persona.Nombre
-        Edad: @persona.Edad
-        Email: @persona.Email
-    </p>
+    @{
+        if (persona != null)
+        {
+            <p>
+                Nombre: @persona.Nombre
+                Edad: @persona.Edad
+                Email: @persona.Email
+            </p>
+        }
+    }
 </div>

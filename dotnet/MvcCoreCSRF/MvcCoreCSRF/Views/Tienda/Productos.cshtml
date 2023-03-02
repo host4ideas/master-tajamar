@@ -1,0 +1,27 @@
+﻿<h1>Listado de productos</h1>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <label>Dirección de envío</label>
+    <input type="text" name="direccion" class="form-control" />
+
+    <button type="submit" class="my-2 btn btn-success">
+        Realizar pedido
+    </button>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <input type="checkbox" name="producto" class="m-1" value="Tesla 80000€" />Tesla 80000€
+        </li>
+        <li class="list-group-item">
+            <input type="checkbox" name="producto" class="m-1" value="IPhone 21 8000€" />IPhone 21 8000€
+        </li>
+        <li class="list-group-item">
+            <input type="checkbox" name="producto" class="m-1" value="Ferrari 250000€" />Ferrari 250000€
+        </li>
+        <li class="list-group-item">
+            <input type="checkbox" name="producto" class="m-1" value="Portatil 1200€" />Portatil 1200€
+        </li>
+    </ul>
+</form>

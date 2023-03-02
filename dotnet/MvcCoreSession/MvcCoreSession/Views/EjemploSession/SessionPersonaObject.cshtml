@@ -1,0 +1,14 @@
+﻿@{
+    Persona? persona = (Persona?)ViewData["PERSONA"];
+}
+
+<h1>Session Simple Object</h1>
+
+<a class="btn btn-primary" asp-controller="EjemploSession" asp-action="SessionPersonaObject" asp-route-accion="almacenar">Almacenar</a>
+<a class="btn btn-primary" asp-controller="EjemploSession" asp-action="SessionPersonaObject" asp-route-accion="mostrar">Mostrar</a>
+
+<h2>Nombre: @persona?.Nombre</h2>
+<h2>Edad: @persona?.Edad</h2>
+<h2>Email: @persona?.Email</h2>
+
+<h3>Mensaje: @ViewData["MENSAJE"]</h3>

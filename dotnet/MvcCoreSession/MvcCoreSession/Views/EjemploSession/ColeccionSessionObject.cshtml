@@ -1,0 +1,20 @@
+﻿@model List<Persona>
+
+<h1>Session Coleccion Persona Object</h1>
+
+<a class="btn btn-primary" asp-controller="EjemploSession" asp-action="ColeccionSessionObject" asp-route-accion="almacenar">Almacenar</a>
+<a class="btn btn-primary" asp-controller="EjemploSession" asp-action="ColeccionSessionObject" asp-route-accion="mostrar">Mostrar</a>
+
+@{
+    if (Model != null)
+    {
+        foreach (Persona persona in Model)
+        {
+            <h2>Nombre: @persona.Nombre</h2>
+            <h2>Edad: @persona.Edad</h2>
+            <h2>Email: @persona.Email</h2>
+        }
+    }
+}
+
+<h3>Mensaje: @ViewData["MENSAJE"]</h3>
