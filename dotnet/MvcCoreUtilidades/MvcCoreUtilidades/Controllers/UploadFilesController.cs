@@ -10,8 +10,6 @@ namespace MvcCoreUtilidades.Controllers
 
         private IHttpContextAccessor contextAccessor;
 
-
-
         public UploadFilesController(HelperPathProvider helperPath, IHttpContextAccessor contextAccessor)
         {
             this.helperPath = helperPath;
@@ -36,7 +34,7 @@ namespace MvcCoreUtilidades.Controllers
                 await fichero.CopyToAsync(stream);
             }
             ViewData["MENSAJE"] = "Fichero subido a: " + path;
-            ViewData["UPLOADED_PATH"] = Path.Combine(this.contextAccessor.HttpContext., fileName);
+            //ViewData["UPLOADED_PATH"] = Path.Combine(this.contextAccessor.HttpContext., fileName);
             return View();
         }
     }
