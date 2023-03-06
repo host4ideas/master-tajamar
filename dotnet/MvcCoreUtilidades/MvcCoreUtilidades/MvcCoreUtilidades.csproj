@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="UploadedFiles\" />
+    <Folder Include="wwwroot\temp\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
