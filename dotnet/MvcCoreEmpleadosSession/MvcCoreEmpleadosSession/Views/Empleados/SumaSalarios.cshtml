@@ -1,0 +1,22 @@
+﻿<h1>Suma salarios</h1>
+
+<a asp-controller="Empleados" asp-action="SessionSalarios">
+    Volver a Empleados Salarios
+</a>
+
+@{
+    string? sumaSalarial = Context.Session.GetString("SUMASALARIAL");
+
+    if (sumaSalarial == null)
+    {
+        <h1 style="color: red;">
+            No hay datos salariales
+        </h1>
+    }
+    else
+    {
+        <h1 style="color: red;">
+            Suma salarial actual: @sumaSalarial
+        </h1>
+    }
+}

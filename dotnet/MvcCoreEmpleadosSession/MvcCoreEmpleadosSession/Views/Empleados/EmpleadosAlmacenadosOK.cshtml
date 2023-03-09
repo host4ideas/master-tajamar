@@ -1,0 +1,34 @@
+﻿<h1 style="background-color: lightyellow;">
+    Empleados Almacenados Session OK
+</h1>
+
+<h1 style="colro: red;">
+    @ViewData["MENSAJE"]
+</h1>
+
+@{
+    if (Model != null)
+    {
+        <table class="table table-bordered">
+            @{
+                foreach (Empleado emp in Model)
+                {
+                    <thead>
+                        <tr>
+                            <th>Apellido</th>
+                            <th>Oficio</th>
+                            <th>Salario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@emp.Apellido</td>
+                            <td>@emp.Oficio</td>
+                            <td>@emp.Salario</td>
+                        </tr>
+                    </tbody>
+                }
+            }
+        </table>
+    }
+}
