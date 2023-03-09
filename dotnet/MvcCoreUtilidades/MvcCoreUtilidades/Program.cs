@@ -2,6 +2,10 @@ using MvcCoreUtilidades.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddResponseCaching();
+builder.Services.AddMemoryCache();
+builder.Services.AddDistributedMemoryCache();
+
 // Add services to the container.
 builder.Services.AddSingleton<HelperPathProvider>();
 builder.Services.AddTransient<HelperUploadFile>();
@@ -24,6 +28,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseResponseCaching();
 
 app.MapControllerRoute(
     name: "default",
