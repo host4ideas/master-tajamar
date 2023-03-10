@@ -19,6 +19,23 @@ namespace MvcCryptography.Helpers
             throw new NotImplementedException();
         }
 
+        public async Task<string> UploadFileAsyncImage(IFormFile file, string fileName, string host, Folders folder)
+        {
+            /*string type = file.FileName.Split('.')[1];*/            /*string finalFileName = fileName + "." + type;*/
+            string carpeta = "";
+            if (folder == Folders.Images)
+            {
+                carpeta = "users/images";
+            }
+            string rootPath = this.hostEnvironment.WebRootPath;
+            string path = Path.Combine(rootPath, carpeta, fileName);
+            using (Stream stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+                return Path.Combine(host, carpeta, fileName);
+            }
+        }
+
         public async Task<string> UploadFileAsync(IFormFile file, string fileName, string host, Folders folder)
         {
             string type = file.FileName.Split('.')[1];

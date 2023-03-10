@@ -14,9 +14,11 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(30);
 });
 
-string connectionString = builder.Configuration.GetConnectionString("SqlHospital");
+string connectionString =
+    builder.Configuration.GetConnectionString("SqlHospital");
 builder.Services.AddTransient<RepositoryEmpleados>();
-builder.Services.AddDbContext<EmpleadosContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<EmpleadosContext>
+    (options => options.UseSqlServer(connectionString));
 
 builder.Services.AddControllersWithViews();
 
@@ -39,7 +41,6 @@ app.UseAuthorization();
 
 app.UseResponseCaching();
 app.UseSession();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

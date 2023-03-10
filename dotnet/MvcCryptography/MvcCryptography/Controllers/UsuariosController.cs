@@ -25,14 +25,14 @@ namespace MvcCryptography.Controllers
         public async Task<IActionResult> Register
             (string nombre, string email, string password, IFormFile imagen)
         {
-            string domainName = "https://" + HttpContext.Request.Host.Value.ToString();
-
-            string maximo = this.repo.GetMaximo().ToString();
-
-            string path = await this.helperFile.UploadFileAsync(imagen, maximo, domainName, Folders.Images);
-
+            string protocol = HttpContext.Request.IsHttps ? "https://" : "http://";
+            string domainName = HttpContext.Request.Host.Value.ToString();
+            string url = protocol + domainName;
+            string max = this.repo.GetMaximo().ToString();
+            string path = await this.helperFile.UploadFileAsyncImage(imagen, max + "-" + imagen.FileName, url, Folders.Images);
+            path = path.Replace("\\", "/");
             await this.repo.RegisterUser(nombre, email, password, path);
-            ViewData["MENSAJE"] = "Usuario registrado correctamente";
+            ViewData["MENSAJE"] = "Usuario registrado correctamente";
             return View();
         }
 
