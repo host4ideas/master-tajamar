@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MvcCoreUtilidades.Models;
+using MvcCorePaginacionRegistros.Models;
 using System.Diagnostics;
 
-namespace MvcCoreUtilidades.Controllers
+namespace MvcCorePaginacionRegistros.Controllers
 {
     public class HomeController : Controller
     {
@@ -21,24 +21,6 @@ namespace MvcCoreUtilidades.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Login(string usuario)
-        {
-            HttpContext.Session.SetString("USUARIO", usuario);
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult CerrarSesion()
-        {
-            HttpContext.Session.Remove("USUARIO");
-            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

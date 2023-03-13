@@ -40,6 +40,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Caching" asp-action="MemoriaDistribuida">Fecha distribuida</a>
                         </li>
+                        @await Component.InvokeAsync("MenuCoches")
+                        <partial name="_MenuUsuario" />
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Coches" asp-action="Index">Vista parcial coches</a>
+                        </li>
                     </ul>
                 </div>
             </div>
