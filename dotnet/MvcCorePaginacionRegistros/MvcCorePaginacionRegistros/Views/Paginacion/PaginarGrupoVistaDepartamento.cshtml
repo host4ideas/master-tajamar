@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MvcCorePaginacionRegistros.Models.VistaDepartamento>
+
+@{
+    ViewData["Title"] = "PaginarGrupoVistaDepartamento";
+}
+
+<h1>PaginarGrupoVistaDepartamento</h1>
+
+<hr />
+
+<ul class="list-group list-group-horizontal">
+    @{
+        int numeroRegistros = (int)ViewData["NUM_REGISTROS"];
+
+        int numeroPagina = 1;
+
+        for (int i = 0; i < numeroRegistros; i += 2)
+        {
+            <li class="list-group-item">
+                <a href="PaginarGrupoVistaDepartamento?posicion=@i">Página @numeroPagina</a>
+            </li>
+            numeroPagina += 1;
+        }
+    }
+</ul>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Loc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posicion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeptNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Loc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Posicion)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
