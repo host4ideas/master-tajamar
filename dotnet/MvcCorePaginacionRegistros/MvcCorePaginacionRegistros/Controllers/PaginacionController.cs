@@ -32,14 +32,14 @@ namespace MvcCorePaginacionRegistros.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult EmpleadosProcedure(string oficio, int posicion = 1)
-        {
-            List<Empleado> empleados = this.repositoryEmpleados.GetEmpleadosProcedure(oficio, posicion);
-            ViewData["NUM_REGISTROS"] = empleados.Count;
-            ViewData["OFICIO"] = oficio;
-            return View(empleados);
-        }
+        //[HttpPost]
+        //public IActionResult EmpleadosProcedure(string oficio, int posicion = 1)
+        //{
+        //    List<Empleado> empleados = this.repositoryEmpleados.GetEmpleadosProcedure(oficio, posicion);
+        //    ViewData["NUM_REGISTROS"] = empleados.Count;
+        //    ViewData["OFICIO"] = oficio;
+        //    return View(empleados);
+        //}
 
         public async Task<IActionResult> PaginarGrupoEmpleados(int posicion = 1)
         {
