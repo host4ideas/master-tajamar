@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcCorePaginacionRegistros.Data;
 using MvcCorePaginacionRegistros.Models;
 using System.Collections.Generic;
+using System.Drawing;
 
 #region SQL
 //CREATE OR ALTER VIEW V_GRUPO_EMPLEADOS
@@ -25,14 +26,27 @@ using System.Collections.Generic;
 //GO
 
 //CREATE OR ALTER PROCEDURE SP_GRUPO_EMPLEADOS_OFICIO
-//(@OFICIO NVARCHAR(50), @POSICION INT)
+//(@OFICIO NVARCHAR(50), @POSICION INT, @NUMEROREGISTROS INT OUT)
 //AS
-//	SELECT * FROM (SELECT CAST(ROW_NUMBER() OVER(ORDER BY EMP_NO) AS INT) AS POSICION,
-//    EMP_NO, APELLIDO, OFICIO, SALARIO, FECHA_ALT, DEPT_NO
+//    SELECT @NUMEROREGISTROS = COUNT(EMP_NO) FROM EMP WHERE OFICIO = @OFICIO;
+
+//SELECT* FROM(SELECT CAST(ROW_NUMBER() OVER(ORDER BY EMP_NO) AS INT) AS POSICION,
+//EMP_NO, APELLIDO, OFICIO, SALARIO, FECHA_ALT, DEPT_NO
 //	FROM EMP
 //	WHERE OFICIO = @OFICIO) AS QUERY
 //	WHERE QUERY.POSICION >= @POSICION AND QUERY.POSICION < (@POSICION + 3);
 //GO
+
+//DECLARE @CONTADOR INT
+//SET @CONTADOR = 1
+//WHILE (@CONTADOR <= 20)
+//BEGIN
+//    INSERT INTO EMP VALUES 
+//	((SELECT MAX(EMP_NO) +1  FROM EMP),
+//	'ALUMNO ' + CAST(@CONTADOR AS NVARCHAR),
+//	'ALUMNO', 1, GETDATE(), 10000, 0, 40)
+//	SET @CONTADOR = @CONTADOR + 1
+//END
 #endregion
 
 namespace MvcCorePaginacionRegistros.Repositories
@@ -51,14 +65,26 @@ namespace MvcCorePaginacionRegistros.Repositories
             return this.context.Empleados.ToList();
         }
 
-        public List<Empleado> GetEmpleadosProcedure(string oficio, int posicion)
+        public async Task<ModelPaginarEmpleado> GetEmpleadosProcedure(string oficio, int posicion, int numeroEmpleados)
         {
-            string sql = "SP_GRUPO_EMPLEADOS_OFICIO @OFICIO, @POSICION";
+            string sql = "SP_GRUPO_EMPLEADOS_OFICIO @OFICIO, @POSICION, @NUMEROEMPS, @NUMEROREGISTROS OUT";
 
             SqlParameter paramOficio = new("@OFICIO", oficio);
             SqlParameter paramPosicion = new("@POSICION", posicion);
+            SqlParameter paramNumEmps = new("@NUMEROEMPS", numeroEmpleados);
+            SqlParameter outNumRegistros = new("@NUMEROREGISTROS", -1)
+            {
+                Direction = System.Data.ParameterDirection.Output
+            };
 
-            return this.context.Empleados.FromSqlRaw(sql, paramOficio, paramPosicion).ToList();
+            List<Empleado> empleados = await this.context.Empleados.FromSqlRaw(sql, paramOficio, paramPosicion, paramNumEmps, outNumRegistros).ToListAsync();
+            int registros = (int)outNumRegistros.Value;
+
+            return new ModelPaginarEmpleado()
+            {
+                Empleados = empleados,
+                NumeroRegistros = registros
+            };
         }
 
         public List<Empleado> GetEmpleadosDept(int deptNo)

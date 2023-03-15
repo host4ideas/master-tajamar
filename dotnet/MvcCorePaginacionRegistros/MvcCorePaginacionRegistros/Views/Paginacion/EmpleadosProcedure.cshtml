@@ -8,9 +8,24 @@
 
 <hr />
 
-<form method="get">
+@{
+    int numEmp = (ViewData["NUMEMP"] == null ? 0 : (int)ViewData["NUMEMP"]);
+
+    string oficio = "";
+    int numeroRegistros = 0;
+
+    if (Model != null)
+    {
+        oficio = (string)ViewData["OFICIO"];
+        numeroRegistros = (int)ViewData["NUM_REGISTROS"];
+    }
+}
+
+<form method="post">
     <label>Oficio</label>
-    <input type="text" name="oficio" class="form-control" />
+    <input type="text" name="oficio" class="form-control" value="@oficio" />
+
+    <input type="text" name="numeroEmpleados" value="@numEmp" />
 
     <button type="submit" class="btn btn-info">
         Paginar empleados
@@ -22,16 +37,15 @@
     {
         <ul class="list-group list-group-horizontal">
             @{
-                int numeroRegistros = (int)ViewData["NUM_REGISTROS"];
-
                 int numeroPagina = 1;
 
-                string oficio = (string)ViewData["OFICIO"];
 
-                for (int i = 0; i < numeroRegistros; i += 2)
+                for (int i = 1; i < numeroRegistros; i += 3)
                 {
                     <li class="list-group-item">
-                        <a href="EmpleadosProcedure?posicion=@i&oficio=@oficio">Página @numeroPagina</a>
+                        <a asp-controller="Paginacion" asp-action="EmpleadosProcedure" asp-route-posicion="@i" asp-route-oficio="@oficio" asp-route-numeroEmpleados="@numEmp">
+                            Página @numeroPagina
+                        </a>
                     </li>
                     numeroPagina += 1;
                 }

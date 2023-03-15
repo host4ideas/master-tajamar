@@ -20,19 +20,20 @@ namespace MvcCorePaginacionRegistros.Controllers
             return View();
         }
 
-        public IActionResult EmpleadosProcedure(string? oficio, int posicion = 1)
-        {
-            if (oficio != null)
-            {
-                List<Empleado> empleados = this.repositoryEmpleados.GetEmpleadosProcedure(oficio, posicion);
-                ViewData["NUM_REGISTROS"] = empleados.Count;
-                ViewData["OFICIO"] = oficio;
-                return View(empleados);
-            }
-            return View();
-        }
+        //[Route("EmpleadosProcedure")]
+        //public IActionResult Hola(string? oficio, int posicion = 1)
+        //{
+        //    if (oficio != null)
+        //    {
+        //        List<Empleado> empleados = this.repositoryEmpleados.GetEmpleadosProcedure(oficio, posicion);
+        //        ViewData["NUM_REGISTROS"] = empleados.Count;
+        //        ViewData["OFICIO"] = oficio;
+        //        return View("EmpleadosProcedure", empleados);
+        //    }
+        //    return View("EmpleadosProcedure");
+        //}
 
-        //[HttpPost]
+        //[HttpPost("Paginacion/EmpleadosProcedure")]
         //public IActionResult EmpleadosProcedure(string oficio, int posicion = 1)
         //{
         //    List<Empleado> empleados = this.repositoryEmpleados.GetEmpleadosProcedure(oficio, posicion);
@@ -40,6 +41,30 @@ namespace MvcCorePaginacionRegistros.Controllers
         //    ViewData["OFICIO"] = oficio;
         //    return View(empleados);
         //}
+
+        public async Task<IActionResult> EmpleadosProcedure(int numeroEmpleados, string? oficio, int posicion = 1)
+        {
+            if (oficio != null)
+            {
+                ModelPaginarEmpleado modelPaginar = await this.repositoryEmpleados.GetEmpleadosProcedure(oficio, posicion, numeroEmpleados);
+                ViewData["NUM_REGISTROS"] = modelPaginar.NumeroRegistros;
+                ViewData["NUMEMP"] = numeroEmpleados;
+                ViewData["OFICIO"] = oficio;
+                return View("EmpleadosProcedure", modelPaginar.Empleados);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("EmpleadosProcedure")]
+        public async Task<IActionResult> EmpleadosProcedurePost(string oficio, int numeroEmpleados)
+        {
+            ModelPaginarEmpleado modelPaginar = await this.repositoryEmpleados.GetEmpleadosProcedure(oficio, 1, numeroEmpleados);
+            ViewData["NUM_REGISTROS"] = modelPaginar.NumeroRegistros;
+            ViewData["OFICIO"] = oficio;
+            ViewData["NUMEMP"] = numeroEmpleados;
+            return View(modelPaginar.Empleados);
+        }
 
         public async Task<IActionResult> PaginarGrupoEmpleados(int posicion = 1)
         {
