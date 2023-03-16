@@ -1,0 +1,54 @@
+﻿@model MvcNetCoreZapatillas.Models.Zapatilla
+
+@{
+    ViewData["Title"] = "DetailsZapatilla";
+}
+
+<h1>DetailsZapatilla</h1>
+
+<div>
+    <h4>Zapatilla</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdProducto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdProducto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+    </dl>
+</div>
+
+<div id="zapa-images"></div>
+
+@section Scripts {
+    <script>
+        $("#zapa-images").load('@Url.Action("PartialZapaImages", "Zapatillas", new { idProducto = @Model.IdProducto })');
+
+        function cambiarImagen(posicion, idProducto) {
+            $("#zapa-images").load(`/Zapatillas/PartialZapaImages?idProducto=${idProducto}&posicion=${posicion}`);
+        }
+    </script>
+}
+
+<div>
+    <a asp-controller="Zapatillas" asp-action="Zapatillas">Volver</a>
+</div>

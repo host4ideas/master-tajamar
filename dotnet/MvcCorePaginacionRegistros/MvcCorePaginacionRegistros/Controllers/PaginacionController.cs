@@ -56,8 +56,7 @@ namespace MvcCorePaginacionRegistros.Controllers
         }
 
         [HttpPost]
-        [ActionName("EmpleadosProcedure")]
-        public async Task<IActionResult> EmpleadosProcedurePost(string oficio, int numeroEmpleados)
+        public async Task<IActionResult> EmpleadosProcedure(string oficio, int numeroEmpleados)
         {
             ModelPaginarEmpleado modelPaginar = await this.repositoryEmpleados.GetEmpleadosProcedure(oficio, 1, numeroEmpleados);
             ViewData["NUM_REGISTROS"] = modelPaginar.NumeroRegistros;

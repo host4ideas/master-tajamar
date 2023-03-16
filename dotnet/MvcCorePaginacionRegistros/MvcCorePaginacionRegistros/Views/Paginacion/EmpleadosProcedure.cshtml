@@ -40,7 +40,7 @@
                 int numeroPagina = 1;
 
 
-                for (int i = 1; i < numeroRegistros; i += 3)
+                for (int i = 1; i <= numeroRegistros; i += numEmp)
                 {
                     <li class="list-group-item">
                         <a asp-controller="Paginacion" asp-action="EmpleadosProcedure" asp-route-posicion="@i" asp-route-oficio="@oficio" asp-route-numeroEmpleados="@numEmp">

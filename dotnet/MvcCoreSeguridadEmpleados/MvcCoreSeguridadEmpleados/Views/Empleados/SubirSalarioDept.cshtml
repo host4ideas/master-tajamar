@@ -1,0 +1,18 @@
+﻿@model List<Departamento>
+
+<form method="post">
+    <select class="form-control" name="deptNo">
+        @{
+            foreach (Departamento dept in Model)
+            {
+                <option value="@dept.DeptNo">@dept.Nombre</option>
+            }
+        }
+    </select>
+
+    <input type="text" name="incremento" />
+
+    <button class="btn btn-info">
+        Incrementar salarios
+    </button>
+</form>
