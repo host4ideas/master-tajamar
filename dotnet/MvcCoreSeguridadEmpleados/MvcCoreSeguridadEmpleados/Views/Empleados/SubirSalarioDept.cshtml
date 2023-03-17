@@ -5,7 +5,7 @@
         @{
             foreach (Departamento dept in Model)
             {
-                <option value="@dept.DeptNo">@dept.Nombre</option>
+                <option value="@dept.DeptNo">@dept.Nombre | @dept.DeptNo</option>
             }
         }
     </select>

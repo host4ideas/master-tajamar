@@ -18,6 +18,11 @@ namespace MvcCoreSeguridadEmpleados.Repositories
             return this.hospitalContext.Empleados.FirstOrDefaultAsync(x => x.EmpNo == empleadoId);
         }
 
+        public Task<Empleado?> FindEmpleado(string apellido, int empleadoId)
+        {
+            return this.hospitalContext.Empleados.FirstOrDefaultAsync(x => x.EmpNo == empleadoId && x.Apellido == apellido);
+        }
+
         public Task<List<Departamento>> GetDepartamentos()
         {
             return this.hospitalContext.Departamentos.Distinct().ToListAsync();

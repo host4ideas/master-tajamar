@@ -1,0 +1,26 @@
+﻿@using System.Security.Claims;
+
+<h1>Perfil empleado: @Context.User.Identity.Name</h1>
+
+<ul class="list-group">
+    <li class="list-group">
+        Oficio: @Context.User.FindFirstValue(ClaimTypes.Role);
+    </li>
+    <li class="list-group">
+        Salario: @Context.User.FindFirstValue("SALARIO");
+    </li>
+    <li class="list-group">
+        Salario: @Context.User.FindFirstValue("DEPT");
+    </li>
+</ul>
+
+<hr />
+
+<ul>
+    @{
+        foreach (Claim claim in Context.User.Claims)
+        {
+            <li>@claim.Type: @claim.Value</li>
+        }
+    }
+</ul>

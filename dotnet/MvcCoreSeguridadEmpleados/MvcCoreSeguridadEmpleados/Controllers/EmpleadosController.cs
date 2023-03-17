@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MvcCoreSeguridadEmpleados.Filters;
 using MvcCoreSeguridadEmpleados.Models;
 using MvcCoreSeguridadEmpleados.Repositories;
 
@@ -41,6 +42,13 @@ namespace MvcCoreSeguridadEmpleados.Controllers
         {
             await this.repositoryHospital.SubirSalarioPorDept(deptNo, incremento);
             return RedirectToAction("SubirSalarioDept");
+        }
+
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> PerfilEmpleado(int empId)
+        {
+            Empleado emp = await this.repositoryHospital.FindEmpleado(empId);
+            return View(emp);
         }
     }
 }

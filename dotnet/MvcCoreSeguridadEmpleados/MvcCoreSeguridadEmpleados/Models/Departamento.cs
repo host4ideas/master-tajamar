@@ -8,7 +8,7 @@ namespace MvcCoreSeguridadEmpleados.Models
     {
         [Key]
         [Column("DEPT_NO")]
-        public string DeptNo { get; set; }
+        public int DeptNo { get; set; }
         [Column("DNOMBRE")]
         public string Nombre { get; set; }
         [Column("LOC")]
