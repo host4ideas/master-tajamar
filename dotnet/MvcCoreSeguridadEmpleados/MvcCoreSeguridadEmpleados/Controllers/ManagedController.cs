@@ -49,7 +49,11 @@ namespace MvcCoreSeguridadEmpleados.Controllers
 
             ClaimsPrincipal userPrincipal = new(identity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
-            return RedirectToAction("PerfilEmpleado", "Empleados");
+
+            string controller = TempData["controller"].ToString();
+            string action = TempData["action"].ToString();
+
+            return RedirectToAction(action, controller);
         }
 
         public IActionResult ErrorAcceso()

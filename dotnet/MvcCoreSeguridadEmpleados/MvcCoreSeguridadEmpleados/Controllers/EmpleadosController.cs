@@ -2,6 +2,7 @@
 using MvcCoreSeguridadEmpleados.Filters;
 using MvcCoreSeguridadEmpleados.Models;
 using MvcCoreSeguridadEmpleados.Repositories;
+using System.Security.Claims;
 
 namespace MvcCoreSeguridadEmpleados.Controllers
 {
@@ -49,6 +50,16 @@ namespace MvcCoreSeguridadEmpleados.Controllers
         {
             Empleado emp = await this.repositoryHospital.FindEmpleado(empId);
             return View(emp);
+        }
+
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> Compis()
+        {
+            string dato = HttpContext.User.FindFirstValue("DEPT");
+            int idDept = int.Parse(dato
+                );
+            List<Empleado> emps = await this.repositoryHospital.GetEmpleadosDepartamentoAsync(idDept);
+            return View(emps);
         }
     }
 }

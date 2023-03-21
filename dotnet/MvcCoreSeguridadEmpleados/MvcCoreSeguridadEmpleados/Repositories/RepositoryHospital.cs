@@ -44,5 +44,10 @@ namespace MvcCoreSeguridadEmpleados.Repositories
 
             await this.hospitalContext.SaveChangesAsync();
         }
+
+        public Task<List<Empleado>> GetEmpleadosDepartamentoAsync(int deptId)
+        {
+            return this.hospitalContext.Empleados.Where(x => x.DeptNo == deptId).ToListAsync();
+        }
     }
 }

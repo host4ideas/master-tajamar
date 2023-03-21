@@ -2,23 +2,28 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using MvcCoreSeguridadEmpleados.Repositories;
 
-namespace MvcCoreSeguridadEmpleados.Filters
+namespace MvcSeguridadDoctores.Filters
 {
-    public class AuthorizeEmpleadosAttribute : AuthorizeAttribute, IAuthorizationFilter
+    public class AuthorizeDoctoresAttribute : AuthorizeAttribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var user = context.HttpContext.User;
+
             string controller = context.RouteData.Values["controller"]!.ToString()!;
             string action = context.RouteData.Values["action"]!.ToString()!;
 
-            //RepositoryHospital repo = context.HttpContext.RequestServices.GetService<RepositoryHospital>();
-
             ITempDataProvider provider = context.HttpContext.RequestServices.GetService<ITempDataProvider>()!;
             var TempData = provider.LoadTempData(context.HttpContext);
+            string insc = "";
 
+            if (context.RouteData.Values.ContainsKey("insc"))
+            {
+                insc = context.RouteData.Values["insc"].ToString();
+            }
+
+            TempData["insc"] = insc;
             TempData["controller"] = controller;
             TempData["action"] = action;
 
@@ -27,15 +32,6 @@ namespace MvcCoreSeguridadEmpleados.Filters
             if (user.Identity.IsAuthenticated == false)
             {
                 context.Result = this.GetRoute("Managed", "Login");
-            }
-            else
-            {
-                if (user.IsInRole("PRESIDENTE") == false
-                && user.IsInRole("DIRECTOR") == false
-                && user.IsInRole("ANALISTA") == false)
-                {
-                    context.Result = this.GetRoute("Managed", "ErrorAcceso");
-                }
             }
         }
 
