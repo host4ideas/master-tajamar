@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using MvcSeguridadDoctores.Data;
+using MvcSeguridadDoctores.Policies;
 using MvcSeguridadDoctores.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("PERMISOS_ELEVADOS", policy => policy.RequireRole("ESPECIALIDAD", "PSIQUIATRIA", "CARDIOLOGIA"));
     options.AddPolicy("ADMIN_ONLY", policy => policy.RequireClaim("ADMIN"));
+    options.AddPolicy("SOLO_RICOS", policy => policy.Requirements.Add(new OverSalarioRequirement()));
 });
 
 builder.Services.AddAuthentication(options =>

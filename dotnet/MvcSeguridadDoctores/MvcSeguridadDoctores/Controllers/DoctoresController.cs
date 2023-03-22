@@ -19,6 +19,12 @@ namespace MvcSeguridadDoctores.Controllers
             return View();
         }
 
+        [AuthorizeDoctores(Policy = "SOLO_RICOS")]
+        public IActionResult DoctoresRicos()
+        {
+            return View();
+        }
+
         [AuthorizeDoctores(Policy = "ADMIN_ONLY")]
         public IActionResult AdminDoctores()
         {

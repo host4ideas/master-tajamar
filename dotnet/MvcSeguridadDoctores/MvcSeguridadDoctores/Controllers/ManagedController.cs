@@ -37,6 +37,8 @@ namespace MvcSeguridadDoctores.Controllers
 
             identity.AddClaim(new Claim(ClaimTypes.Role, doctor.Especialidad));
 
+            identity.AddClaim(new Claim("SALARIO", doctor.Salario.ToString()));
+
             if (doctor.DoctorNo == 982)
             {
                 identity.AddClaim(new Claim("ADMIN", "Soy el admin"));
