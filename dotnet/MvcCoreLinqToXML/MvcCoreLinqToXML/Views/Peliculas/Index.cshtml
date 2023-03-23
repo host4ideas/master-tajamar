@@ -52,6 +52,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("EscenasPelicula", "EscenasPelicula", new { peliculaId = item.IdPelicula }) |
+                    @Html.ActionLink("DetallePeliculaEscena", "DetallePeliculaEscena", new { idpelicula = item.IdPelicula }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>

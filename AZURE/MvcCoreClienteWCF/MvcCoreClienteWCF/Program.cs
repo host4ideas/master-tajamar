@@ -1,14 +1,10 @@
-using MvcCoreLinqToXML.Helpers;
-using MvcCoreLinqToXML.Repositories;
+using MvcCoreClienteWCF.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<HelperPathProvider>();
-builder.Services.AddTransient<RepositoryXML>();
-builder.Services.AddTransient<RepositoryPeliculas>();
-
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<MvcCoreClienteWCF.Services.ServiceCountries>();
 
 var app = builder.Build();
 
