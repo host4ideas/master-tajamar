@@ -2,10 +2,11 @@
     string userImage = Context.User.FindFirstValue("IMAGE");
     string userName = Context.User.FindFirstValue(ClaimTypes.Name);
     string userEmail = Context.User.FindFirstValue(ClaimTypes.Email);
+    int userId = int.Parse(Context.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString());
 }
 
 <li class="nav-item">
-    <img src="~/images/@userImage" width="50" />
+    <a asp-controller="Managed" asp-action="Profile" asp-route-userId="@userId"><img src="~/images/@userImage" width="50" /></a>
 </li>
 <li class="nav-item">
     <a class="nav-link text-dark" asp-area="" asp-controller="Managed" asp-action="Logout">Cerrar sesión</a>
