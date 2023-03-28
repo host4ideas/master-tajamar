@@ -1,8 +1,0 @@
-﻿@{
-    List<Libro> libros = Context.Session.GetObject<List<Libro>>("CARRITO") ?? new();
-    int numeroLibros = libros.Count;
-}
-
-<li class="nav-item">
-    Libros: @numeroLibros
-</li>

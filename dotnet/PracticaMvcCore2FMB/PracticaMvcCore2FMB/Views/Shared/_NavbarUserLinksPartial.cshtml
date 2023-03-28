@@ -1,0 +1,12 @@
+﻿@{
+    string userImage = Context.User.FindFirstValue("IMAGE");
+    string userName = Context.User.FindFirstValue(ClaimTypes.Name);
+    string userEmail = Context.User.FindFirstValue(ClaimTypes.Email);
+}
+
+<li class="nav-item">
+    <img src="~/images/@userImage" width="50" />
+</li>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Managed" asp-action="Logout">Cerrar sesión</a>
+</li>
