@@ -1,10 +1,17 @@
 using MvcCoreClienteWCF.Services;
+using ReferenceCatastro;
+using ReferenceMetodosVarios;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<CallejerodelasedeelectrónicadelcatastroSoapClient>();
+builder.Services.AddTransient<ServiceCatastro>();
+builder.Services.AddTransient<ServicesCountries>();
+// Service metodos varios
+builder.Services.AddTransient<ServiceMetodosVarios>();
+builder.Services.AddTransient<MetodosVariosContractClient>();
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<MvcCoreClienteWCF.Services.ServiceCountries>();
 
 var app = builder.Build();
 

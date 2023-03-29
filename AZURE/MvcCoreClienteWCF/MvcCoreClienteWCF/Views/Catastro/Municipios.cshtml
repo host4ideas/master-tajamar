@@ -1,0 +1,14 @@
+﻿@model List<string>
+
+<h1>Municipios de: @ViewData["PROVINCIA"]</h1>
+
+<a asp-controller="Catastro" asp-action="Index">Volver</a>
+
+<ul class="list-group">
+    @foreach (string municipio in Model)
+    {
+        <li class="list-group-item list-group-item-warning">
+            @municipio
+        </li>
+    }
+</ul>

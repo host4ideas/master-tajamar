@@ -1,27 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MvcCoreClienteWCF.Services;
 using ServiceCountries;
 
 namespace MvcCoreClienteWCF.Controllers
 {
     public class CountriesController : Controller
     {
-        private readonly Services.ServiceCountries service;
+        private ServicesCountries service;
 
-        public CountriesController(Services.ServiceCountries service)
+        public CountriesController(ServicesCountries service)
         {
             this.service = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            tCountryCodeAndName[] countries = await this.service.GetCountriesAsync();
+            tCountryCodeAndName[] countries =
+                await this.service.GetCountriesAsync();
             return View(countries);
         }
 
-        public async Task<IActionResult> Details(string isoCode)
+        public async Task<IActionResult> Details(string isocode)
         {
-            tCountryInfo info = await this.service.GetCountryInfoAsync(isoCode);
-            return View(info);
+            tCountryInfo country =
+                await this.service.GetCountryInfoAsync(isocode);
+            return View(country);
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model int[]
+
+<h1>Tabla de multiplicar</h1>
+
+<form method="post">
+    <label class="form-label">Introduzca un número</label>
+    <input name="numero" type="text" class="form-control" />
+
+    <button class="btn btn-primary">
+        Tabla de multiplicar
+    </button>
+</form>
+
+@if (Model != null)
+{
+    <hr />
+    <ul class="list-group">
+        @foreach (int num in Model)
+        {
+            <li class="list-group-item">
+                @num
+            </li>
+        }
+    </ul>
+}
