@@ -1,0 +1,24 @@
+﻿@using ServiceReference1;
+@model Coche[]
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Imagen</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Coche car in Model)
+        {
+            <tr>
+                <td>@car.Marca</td>
+                <td>@car.Modelo</td>
+                <td><img src="@car.Imagen" width="200" /></td>
+                <td><a asp-controller="Coches" asp-action="Details" asp-route-idCoche="@car.IdCoche">Detalles</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

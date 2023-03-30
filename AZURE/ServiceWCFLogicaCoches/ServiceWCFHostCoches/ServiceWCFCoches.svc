@@ -1,1 +1,3 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="ServiceWCFLogicaCoches.CochesClass" %>
+﻿<%@ ServiceHost Language="C#" Debug="true"
+    Service="ServiceWCFLogicaCoches.CochesClass" 
+%>

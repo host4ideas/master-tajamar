@@ -6,13 +6,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C60EEBDB-36EA-4BC3-A478-E4C1856A9013}</ProjectGuid>
+    <ProjectGuid>{02CE8C88-8C88-4289-B3FF-500F5168C69A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceWCFHostCoches</RootNamespace>
-    <AssemblyName>ServiceWCFHostCoches</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>ServicioWCFHostClientes</RootNamespace>
+    <AssemblyName>ServicioWCFHostClientes</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseIISExpress>true</UseIISExpress>
@@ -61,7 +61,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ServiceWCFCoches.svc" />
+    <Content Include="ServicioClientes.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +79,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceWCFLogicaCoches\ServiceWCFLogicaCoches.csproj">
-      <Project>{aec5b9b1-1f63-49b7-b19e-1610c52d8430}</Project>
-      <Name>ServiceWCFLogicaCoches</Name>
+    <ProjectReference Include="..\ServicioWCFLogicaClientes\ServicioWCFLogicaClientes.csproj">
+      <Project>{d0f3a57d-e8d8-477f-ae97-a3631c17a5c2}</Project>
+      <Name>ServicioWCFLogicaClientes</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -97,9 +97,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58127</DevelopmentServerPort>
+          <DevelopmentServerPort>51129</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58127/</IISUrl>
+          <IISUrl>http://localhost:51129/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,0 +1,15 @@
+﻿@using ServiceReference1;
+@model Coche
+
+<h1>Details</h1>
+
+<a asp-controller="Coches" asp-action="Index">Volver</a>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        Coche: @Model.Marca @Model.Modelo
+    </li>
+    <li class="list-group-item">
+        <img src="@Model.Imagen" width="350" />
+    </li>
+</ul>
