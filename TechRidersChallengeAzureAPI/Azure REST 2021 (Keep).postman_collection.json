@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "45bd3d5d-8004-4040-a9ad-81d07e347e8c",
+		"name": "Azure REST 2021 (Keep)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Resource Groups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups?api-version=2021-04-01",
+					"protocol": "https",
+					"host": [
+						"management",
+						"azure",
+						"com"
+					],
+					"path": [
+						"subscriptions",
+						"{{subscriptionId}}",
+						"resourcegroups"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Resource Group",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"location\": \"westus\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/AzureRESTResourceGroup?api-version=2021-04-01",
+					"protocol": "https",
+					"host": [
+						"management",
+						"azure",
+						"com"
+					],
+					"path": [
+						"subscriptions",
+						"{{subscriptionId}}",
+						"resourcegroups",
+						"AzureRESTResourceGroup"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "2021-04-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Bearer Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "default"
+						},
+						{
+							"key": "client_id",
+							"value": "ae607d45-fd04-4ef2-8831-1cc67f39a870",
+							"type": "default"
+						},
+						{
+							"key": "client_secret",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "resource",
+							"value": "https://management.azure.com/",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.microsoftonline.com/{{tenantId}}/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"microsoftonline",
+						"com"
+					],
+					"path": [
+						"{{tenantId}}",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Check for collectionVariables\", function () {",
+					"    let vars = ['clientId', 'clientSecret', 'tenantId', 'subscriptionId'];",
+					"    vars.forEach(function (item, index, array) {",
+					"        console.log(item, index);",
+					"        pm.expect(pm.collectionVariables.get(item), item + \" variable not set\").to.not.be.undefined;",
+					"        pm.expect(pm.collectionVariables.get(item), item + \" variable not set\").to.not.be.empty; ",
+					"    });",
+					"",
+					"    if (!pm.collectionVariables.get(\"bearerToken\") || Date.now() > new Date(pm.collectionVariables.get(\"bearerTokenExpiresOn\") * 1000)) {",
+					"        pm.sendRequest({",
+					"            url: 'https://login.microsoftonline.com/' + pm.collectionVariables.get(\"tenantId\") + '/oauth2/token',",
+					"            method: 'POST',",
+					"            header: 'Content-Type: application/x-www-form-urlencoded',",
+					"            body: {",
+					"                mode: 'urlencoded',",
+					"                urlencoded: [",
+					"                    { key: \"grant_type\", value: \"client_credentials\", disabled: false },",
+					"                    { key: \"client_id\", value: pm.collectionVariables.get(\"clientId\"), disabled: false },",
+					"                    { key: \"client_secret\", value: pm.collectionVariables.get(\"clientSecret\"), disabled: false },",
+					"                    { key: \"resource\", value: pm.collectionVariables.get(\"resource\") || \"https://management.azure.com/\", disabled: false }",
+					"                ]",
+					"            }",
+					"        }, function (err, res) {",
+					"            if (err) {",
+					"                console.log(err);",
+					"            } else {",
+					"                let resJson = res.json();",
+					"                pm.collectionVariables.set(\"bearerTokenExpiresOn\", resJson.expires_on);",
+					"                pm.collectionVariables.set(\"bearerToken\", resJson.access_token);",
+					"            }",
+					"        });",
+					"    }",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "clientId",
+			"value": ""
+		},
+		{
+			"key": "clientSecret",
+			"value": ""
+		},
+		{
+			"key": "tenantId",
+			"value": ""
+		},
+		{
+			"key": "subscriptionId",
+			"value": ""
+		},
+		{
+			"key": "resource",
+			"value": ""
+		},
+		{
+			"key": "bearerToken",
+			"value": ""
+		},
+		{
+			"key": "bearerTokenExpiresOn",
+			"value": ""
+		}
+	]
+}

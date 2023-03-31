@@ -1,0 +1,2 @@
+app registrations -> new app registration "example app"
+subscriptions -> IAM -> add role assignment -> priviliged -> contributor -> add member "example app"
