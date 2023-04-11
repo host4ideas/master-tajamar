@@ -4,17 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Title>Paquete de martes de coches 2023</Title>
-    <PackageIcon>batman_lego.jpg</PackageIcon>
+    <Description>Summer is comming</Description>
+    <Version>3.2.0</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>ProyectoNugetCochesFMB</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="batman_lego.jpg">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

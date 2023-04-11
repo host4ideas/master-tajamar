@@ -1,0 +1,14 @@
+﻿@inject UserManager<IdentityUser> UserManager
+
+<h1 style="color: blue; width: 250px; height: 250px;">
+    Bienvenido, @UserManager.GetUserName(User) Microsoft!!!
+</h1>
+
+<ul class="list-group">
+    @foreach (var claim in User.Claims)
+    {
+        <li class="list-group-item">
+            @claim.Type: @claim.Value
+        </li>
+    }
+</ul>
