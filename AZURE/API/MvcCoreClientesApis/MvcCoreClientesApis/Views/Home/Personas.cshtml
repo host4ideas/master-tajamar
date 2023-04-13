@@ -1,0 +1,55 @@
+﻿
+<div class="text-center">
+    <h1 class="display-4">Cliente API Core</h1>
+    <button type="button" id="btnPersonas" class="btn btn-outline-dark">
+        Cargar personas
+    </button>
+
+    <table id="tablaPersonas" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody id="contenidoPersonas">
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#btnPersonas").click(function () {
+                const request = "https://apicorepersonas20230413091306.azurewebsites.net";
+
+                $.get(request + "/api/personas", function (data) {
+
+                    let html = "";
+
+                    /*
+                        "idPersona": 1,
+                        "nombre": "Sergio",
+                        "email": "tinder@fumao.com",
+                        "edad": 5
+                    */
+
+                    data.forEach(persona => {
+                        html += `
+                                    <tr>
+                                        <td>${persona.idPersona}</td>
+                                        <td>${persona.nombre}</td>
+                                        <td>${persona.email}</td>
+                                        <td>${persona.edad}</td>
+                                    </tr>
+                                `;
+                    });
+
+                    $("#contenidoPersonas").html(html);
+                });
+            });
+        });
+    </script>
+}

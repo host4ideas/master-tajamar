@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cliente API Core</h1>
+    <button type="button" id="btnHospitales" class="btn btn-outline-dark">
+        Cargar personas
+    </button>
+
+    <table id="tablaPersonas" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Camas</th>
+            </tr>
+        </thead>
+        <tbody id="contenidoHospitales">
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#btnHospitales").click(function () {
+                const request = "https://apicorehospitales20230413102946.azurewebsites.net";
+
+                $.get(request + "/api/hospitales", function (data) {
+
+                    let html = "";
+
+                    /*
+                        {
+                            "idHospital": 19,
+                            "nombre": "Provincial",
+                            "direccion": "O' Donell 50",
+                            "telefono": "964-4256",
+                            "camas": 502
+                        },
+                    */
+
+                    data.forEach(hospital => {
+                        html += `
+                            <tr>
+                                <td>${hospital.idHospital}</td>
+                                <td>${hospital.nombre}</td>
+                                <td>${hospital.direccion}</td>
+                                <td>${hospital.telefono}</td>
+                                <td>${hospital.camas}</td>
+                            </tr>
+                        `;
+                    });
+
+                    $("#contenidoHospitales").html(html);
+                });
+            });
+        });
+    </script>
+}
