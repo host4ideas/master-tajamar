@@ -1,0 +1,92 @@
+﻿@section Scripts {
+    <script>
+        var urlApi = "https://apicorecruddepartamentos20230414133240.azurewebsites.net";
+
+        $(document).ready(function () {
+            cargarDepartamentos();
+        });
+
+        $("#botondelete").click(function () {
+            var id = $("#cajaid").val();
+            var request = "/api/departamentos/deleteDepartamento/" + id;
+
+            $.ajax({
+                url: urlApi + request,
+                method: "DELETE",
+                success: function(){
+                    cargarDepartamentos();
+                }
+            });
+        });
+
+        function cargarDepartamentos() {
+            var request = "/api/departamentos";
+            let html = "";
+
+            $.get(urlApi + request, function (data) {
+                $.each(data, function (index, dept) {
+                    html += `
+                        <tr>
+                            <td>${dept.idDepartamento}</td>
+                            <td>${dept.nombre}</td>
+                            <td>${dept.localidad}</td>
+                        </tr>
+                    `;
+                    $("#tabladepartamentos tbody").html(html);
+                });
+            });
+        }
+
+        function insertarDepartamento() {
+            var request = "/api/departamentos";
+            let html = "";
+
+            $.get(urlApi + request, function (data) {
+                $.each(data, function (index, dept) {
+                    html += `
+                                                <tr>
+                                                    <td>${dept.idDepartamento}</td>
+                                                    <td>${dept.nombre}</td>
+                                                    <td>${dept.localidad}</td>
+                                                </tr>
+                                            `;
+                    $("#tabladepartamentos tbody").html(html);
+                });
+            });
+        }
+    </script>
+}
+
+<h1 style="color: red;">
+    Api Crud departamentos Cliente
+</h1>
+
+<label style="color: blue;">Id departamento:</label>
+<input type="text" id="cajaid" class="form-control" />
+
+<label style="color: blue;">Nombre:</label>
+<input type="text" id="cajanombre" class="form-control" />
+
+<label style="color: blue;">Localidad:</label>
+<input type="text" id="cajaloc" class="form-control" />
+
+<button type="button" id="botondelete">
+    Delete
+</button>
+
+<button type="button" id="botonupdate">
+    Update
+</button>
+
+<table class="table table-bordered" id="tabladepartamentos">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Localidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr></tr>
+    </tbody>
+</table>

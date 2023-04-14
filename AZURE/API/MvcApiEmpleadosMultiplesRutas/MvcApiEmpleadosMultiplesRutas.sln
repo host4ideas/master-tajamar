@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApiEmpleadosMultiplesRutas", "MvcApiEmpleadosMultiplesRutas\MvcApiEmpleadosMultiplesRutas.csproj", "{28922CC3-9467-4F18-B20A-54401D92EADA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28922CC3-9467-4F18-B20A-54401D92EADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28922CC3-9467-4F18-B20A-54401D92EADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28922CC3-9467-4F18-B20A-54401D92EADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28922CC3-9467-4F18-B20A-54401D92EADA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3E0470F-E4C1-409C-AF03-58FC29AA3689}
+	EndGlobalSection
+EndGlobal
