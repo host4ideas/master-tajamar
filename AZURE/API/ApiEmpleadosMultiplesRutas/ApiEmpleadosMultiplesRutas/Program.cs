@@ -12,28 +12,32 @@ builder.Services.AddDbContext<EmpleadosContext>(option => option.UseSqlServer(co
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
+
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
-        Title = "Api Empleados Múltiples rutas",
-        Description = "Ejemeplo con múltiples métodos GET y Route"
+        Title = "API BBDD Empleados",
+        Description = "Estamos realizando un API con BBDD en Azure",
+        Version = "v1",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+        {
+            Email = "example@example.com",
+            Name = "Felix",
+        },
     });
 });
 
 var app = builder.Build();
+
 app.UseSwagger();
+//app.UseSwaggerUI();
 app.UseSwaggerUI(options =>
 {
-    options.SwaggerEndpoint(url: "/swagger/v1/swagger.json",
-        name: "Api Empleados v1");
+    options.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Api CRUD Empleados");
     options.RoutePrefix = "";
 });
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-    
-//}
 
 app.UseHttpsRedirection();
 
