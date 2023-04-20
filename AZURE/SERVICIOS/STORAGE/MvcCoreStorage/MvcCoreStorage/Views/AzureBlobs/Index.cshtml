@@ -15,7 +15,7 @@
                 @containerName
                 <br />
                 <a asp-controller="AzureBlobs" asp-action="ListBlobs" asp-route-containername="@containerName">Blobs</a>
-                <a asp-controller="AzureBlobs" asp-action="UploadBlobs" asp-route-containername="@containerName">Upload blob</a>
+                <a asp-controller="AzureBlobs" asp-action="UploadBlob" asp-route-containername="@containerName">Upload blob</a>
                 <a asp-controller="AzureBlobs" asp-action="DeleteContainer" asp-route-containername="@containerName">Delete container</a>
             </li>
         }
