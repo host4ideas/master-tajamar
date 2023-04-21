@@ -9,12 +9,49 @@ namespace MvcCoreSasStorage.Controllers
     {
         private readonly ServiceStorageTables serviceStorage;
         private readonly RepositoryXML repositoryXML;
+        private ServiceAzureAlumnos serviceAzureAlumnos;
 
-        public AlumnosController(ServiceStorageTables serviceStorage, RepositoryXML repositoryXML)
+        public AlumnosController(ServiceStorageTables serviceStorage, RepositoryXML repositoryXML, ServiceAzureAlumnos serviceAzureAlumnos)
         {
             this.serviceStorage = serviceStorage;
             this.repositoryXML = repositoryXML;
+            this.serviceAzureAlumnos = serviceAzureAlumnos;
         }
+
+        public IActionResult Token()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Token(string curso)
+        {
+            if (curso != null)
+            {
+                ViewData["TOKEN"] = await this.serviceAzureAlumnos.GetTokenAsync(curso);
+            }
+            return View();
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string token)
+        {
+            if (token != null)
+            {
+                List<Alumno> alumnos = await this.serviceAzureAlumnos.GetAlumnosAsync(token);
+                return View(alumnos);
+            }
+
+            return View();
+        }
+
+        #region MIGRATION ACTIONS
+
 
         public IActionResult AlumnosXML()
         {
@@ -34,6 +71,10 @@ namespace MvcCoreSasStorage.Controllers
         [HttpPost]
         public IActionResult FindAlumnosCursoAzure(string curso)
         {
+            if (curso == null)
+            {
+                return View();
+            }
             return View(this.serviceStorage.GetAlumnosCurso(curso));
         }
 
@@ -48,5 +89,13 @@ namespace MvcCoreSasStorage.Controllers
 
             return RedirectToAction("AlumnosAzure");
         }
+
+        public async Task<IActionResult> DeleteAlumnoAzure(string partitionKey, string rowKey)
+        {
+            await this.serviceStorage.DeleteAlumnoAsync(partitionKey, rowKey);
+            return RedirectToAction("AlumnosAzure");
+        }
     }
+
+    #endregion
 }

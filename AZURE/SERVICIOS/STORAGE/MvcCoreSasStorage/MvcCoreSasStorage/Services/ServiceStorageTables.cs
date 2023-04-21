@@ -54,10 +54,14 @@ namespace MvcCoreSasStorage.Services
             return alumnos;
         }
 
-        public List<Alumno> GetAlumnosCurso(string curso)
+        public List<Alumno>? GetAlumnosCurso(string curso)
         {
-            var query = this.tableClient.Query<Alumno>(x => x.Curso == curso);
-            return query.ToList();
+            if (curso != null)
+            {
+                var query = this.tableClient.Query<Alumno>(x => x.Curso == curso);
+                return query.ToList();
+            }
+            return null;
         }
     }
 }

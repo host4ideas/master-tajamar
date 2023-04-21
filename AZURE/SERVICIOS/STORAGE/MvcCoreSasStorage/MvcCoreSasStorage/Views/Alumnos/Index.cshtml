@@ -1,21 +1,24 @@
 ﻿@model IEnumerable<MvcCoreSasStorage.Models.Alumno>
 
 @{
-    ViewData["Title"] = "FindAlumnosCursoAzure";
+    ViewData["Title"] = "Index";
 }
 
-<h1>FindAlumnosCursoAzure</h1>
+<h1>Index</h1>
 
 <form method="post">
-    <label>Introduce un curso</label>
-    <input name="curso" type="text" />
+    <label class="form-label">Token:</label>
+    <input type="text" name="token" class="form-control" />
 
-    <button class="btn btn-primary">Buscar</button>
+    <button class="btn btn-success">
+        Mostrar alumnos
+    </button>
 </form>
 
 @if (Model != null)
 {
-    <table class="table">
+
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>

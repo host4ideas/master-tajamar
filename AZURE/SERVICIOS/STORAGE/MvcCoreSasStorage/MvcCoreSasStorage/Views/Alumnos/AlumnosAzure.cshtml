@@ -6,6 +6,8 @@
 
 <h1>AlumnosAzure</h1>
 
+<a asp-controller="Alumnos" asp-action="FindAlumnosCursoAzure">Buscar por curso</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -30,28 +32,28 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+                <tr>
+                    <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
+                    </td>
+                    <td>
                     @Html.DisplayFor(modelItem => item.Apellidos)
-                </td>
-                <td>
+                    </td>
+                    <td>
                     @Html.DisplayFor(modelItem => item.Nota)
-                </td>
-                <td>
+                    </td>
+                    <td>
                     @Html.DisplayFor(modelItem => item.IdAlumno)
-                </td>
-                <td>
+                    </td>
+                    <td>
                     @Html.DisplayFor(modelItem => item.Curso)
-                </td>
-                <td>
+                    </td>
+                    <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+                    @Html.ActionLink("DeleteAlumnoAzure", "DeleteAlumnoAzure", new { partitionKey=item.PartitionKey, rowKey = item.RowKey })
+                    </td>
+                </tr>
         }
     </tbody>
 </table>
