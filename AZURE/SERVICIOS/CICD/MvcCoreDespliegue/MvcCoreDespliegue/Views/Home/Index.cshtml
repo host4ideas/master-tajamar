@@ -1,0 +1,18 @@
+﻿@model List<int>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Deployment CI/CD</h1>
+    <h2 style="color: red;">@ViewData["SALUDO"]</h2>
+    <img src="~/images/batman_lego.jpg" width="90" />
+    <ul class="list-group">
+        @foreach (var num in Model)
+        {
+            <li class="list-group-item">
+                @num
+            </li>
+        }
+    </ul>
+</div>
