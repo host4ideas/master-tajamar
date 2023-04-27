@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos;
 using MvcAzureCosmosDb.Models;
 using MvcAzureCosmosDb.Services;
 
@@ -37,8 +38,12 @@ namespace MvcAzureCosmosDb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Vehiculo car)
+        public async Task<IActionResult> Create(Vehiculo car, string existemotor)
         {
+            if (existemotor == null)
+            {
+                car.Motor = null;
+            }
             await this.serviceCosmos.InsertVehiculoAsync(car);
             return RedirectToAction("Vehiculos");
         }
@@ -64,6 +69,18 @@ namespace MvcAzureCosmosDb.Controllers
         {
             await this.serviceCosmos.DeleteVehiculoAsync(id);
             return RedirectToAction("Vehiculos");
+        }
+
+        public IActionResult BuscarCoche()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BuscarCoche(string marca)
+        {
+            List<Vehiculo> cars = await this.serviceCosmos.GetCochesMarcaAsync(marca);
+            return View(cars);
         }
     }
 }

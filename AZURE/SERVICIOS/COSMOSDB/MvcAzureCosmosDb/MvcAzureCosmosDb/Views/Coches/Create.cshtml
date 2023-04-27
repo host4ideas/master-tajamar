@@ -1,5 +1,15 @@
 ﻿@model MvcAzureCosmosDb.Models.Vehiculo
 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#existemotor").click(function () {
+                $("#capamotor").toggle();
+            });
+        });
+    </script>
+}
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -11,6 +21,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+            <div class="row" style="float: left;"></div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
@@ -37,6 +48,23 @@
                 <input asp-for="VelocidadMaxima" class="form-control" />
                 <span asp-validation-for="VelocidadMaxima" class="text-danger"></span>
             </div>
+
+            <label>Vehículo con motor:</label>
+            <input type="checkbox" name="existemotor" id="existemotor" />
+
+            <div class="form-group" id="capamotor" style="display: none;">
+                <label>Tipo Motor:</label>
+                <input type="text" name="Motor.Tipo" class="form-control" />
+
+                <label>Caballos:</label>
+                <input type="text" name="Motor.Caballos" class="form-control" />
+
+                <label>Cilindrada:</label>
+                <input type="text" name="Motor.Cilindrada" class="form-control" />
+
+                <label>Turbo:</label>
+                <input type="checkbox" name="Motor.Turbo" value="true" checked />
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -47,7 +75,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

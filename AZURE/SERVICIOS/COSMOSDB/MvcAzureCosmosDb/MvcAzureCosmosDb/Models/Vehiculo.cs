@@ -11,6 +11,6 @@ namespace MvcAzureCosmosDb.Models
         public string Imagen { get; set; }
         public int VelocidadMaxima { get; set; }
         // El motor sera opcional
-        public Motor Motor { get; set; }
+        public Motor? Motor { get; set; }
     }
 }
