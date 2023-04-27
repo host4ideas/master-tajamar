@@ -14,10 +14,10 @@ namespace ApiOAuthEmpleados.Models
         [Column("OFICIO")]
         public string Oficio { get; set; }
         [Column("DIR")]
-        public string Director { get; set; }
+        public int Director { get; set; }
         [Column("SALARIO")]
-        public string Salario { get; set; }
+        public int Salario { get; set; }
         [Column("DEPT_NO")]
-        public string IdDepartamento { get; set; }
+        public int IdDepartamento { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using ApiOAuthEmpleados.Data;
+using ApiOAuthEmpleados.Helpers;
 using ApiOAuthEmpleados.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,13 @@ namespace ApiOAuthEmpleados
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            //builder.Services.AddSingleton<HelperOAuthToken>();
+            HelperOAuthToken helper = new(builder.Configuration);
+            builder.Services.AddAuthentication(helper.GetAuthenticationOptions()).AddJwtBearer(helper.GetJwtOptions());
+            builder.Services.AddSingleton(helper);
+
+            //var service = (HelperOAuthToken)serviceProvider.GetService(typeof(HelperOAuthToken));
 
             string connectionString = builder.Configuration.GetConnectionString("SqlServer");
 
@@ -46,8 +54,8 @@ namespace ApiOAuthEmpleados
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

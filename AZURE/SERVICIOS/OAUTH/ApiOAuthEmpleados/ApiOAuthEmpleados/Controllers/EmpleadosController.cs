@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiOAuthEmpleados.Data;
 using ApiOAuthEmpleados.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiOAuthEmpleados.Controllers
 {
@@ -23,6 +24,7 @@ namespace ApiOAuthEmpleados.Controllers
 
         // GET: api/Empleados
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Empleado>>> GetEmpleados()
         {
           if (_context.Empleados == null)
