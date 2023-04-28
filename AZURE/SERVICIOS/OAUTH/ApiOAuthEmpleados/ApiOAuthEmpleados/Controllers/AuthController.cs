@@ -1,10 +1,11 @@
 ﻿using ApiOAuthEmpleados.Helpers;
 using ApiOAuthEmpleados.Models;
 using ApiOAuthEmpleados.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace ApiOAuthEmpleados.Controllers
 {
@@ -31,11 +32,20 @@ namespace ApiOAuthEmpleados.Controllers
             }
 
             SigningCredentials credentials = new(this.authToken.GetKeyToken(), SecurityAlgorithms.HmacSha512);
-            JwtSecurityToken token = new(issuer: this.authToken.Issuer,
-                                         audience: this.authToken.Audience,
-                                         signingCredentials: credentials,
-                                         expires: DateTime.UtcNow.AddMinutes(30),
-                                         notBefore: DateTime.UtcNow);
+
+            string jsonEmpleado = JsonConvert.SerializeObject(emp);
+            Claim[] informacion = new[]
+            {
+                new Claim("UserData", jsonEmpleado)
+            };
+
+            JwtSecurityToken token = new(
+                            claims: informacion,
+                            issuer: this.authToken.Issuer,
+                            audience: this.authToken.Audience,
+                            signingCredentials: credentials,
+                            expires: DateTime.UtcNow.AddMinutes(30),
+                            notBefore: DateTime.UtcNow);
             return Ok(new
             {
                 response = new JwtSecurityTokenHandler().WriteToken(token),

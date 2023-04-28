@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ApiOAuthEmpleados.Data;
 using ApiOAuthEmpleados.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace ApiOAuthEmpleados.Controllers
 {
@@ -27,7 +28,9 @@ namespace ApiOAuthEmpleados.Controllers
         [Authorize]
         public async Task<ActionResult<IEnumerable<Empleado>>> GetEmpleados()
         {
-          if (_context.Empleados == null)
+            HttpContext.User.FindFirstValue("UserData");
+          
+            if (_context.Empleados == null)
           {
               return NotFound();
           }
