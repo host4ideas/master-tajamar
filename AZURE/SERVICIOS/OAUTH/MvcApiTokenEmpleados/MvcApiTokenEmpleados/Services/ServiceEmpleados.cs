@@ -78,5 +78,19 @@ namespace MvcApiTokenEmpleados.Services
             string request = "/api/empleados/" + idEmpleado;
             return await this.CallApiAsync<Empleado>(request);
         }
+
+        public async Task<Empleado> GetPerfilEmpleadoAsync(string token)
+        {
+            string request = "/api/empleados/perfilempleado";
+            Empleado empleado = await this.CallApiAsync<Empleado>(request, token);
+            return empleado;
+        }
+
+        public async Task<List<Empleado>> GetCompisCurroAsync(string token)
+        {
+            string request = "/api/empleados/compiscurro";
+            List<Empleado> compis = await this.CallApiAsync<List<Empleado>>(request, token);
+            return compis;
+        }
     }
 }

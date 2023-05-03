@@ -35,5 +35,19 @@ namespace MvcApiTokenEmpleados.Controllers
         {
             return View(await this.serviceEmpleados.FindEmpleadoAsync(idEmpleado));
         }
+
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> Perfil()
+        {
+            string token = HttpContext.Session.GetString("TOKEN");
+            return View(await this.serviceEmpleados.GetPerfilEmpleadoAsync(token));
+        }
+
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> Compis()
+        {
+            string token = HttpContext.Session.GetString("TOKEN");
+            return View(await this.serviceEmpleados.GetCompisCurroAsync(token));
+        }
     }
 }
