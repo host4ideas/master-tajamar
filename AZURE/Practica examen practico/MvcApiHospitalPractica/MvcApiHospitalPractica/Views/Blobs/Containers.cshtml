@@ -1,0 +1,23 @@
+﻿@model List<string>
+
+<h1>Containers</h1>
+
+<a asp-controller="Blobs" asp-action="CreateContainer">
+    New container
+</a>
+
+<ul class="list-group">
+    @foreach (var container in Model)
+    {
+        <li class="list-group-item">
+            <p>@container</p>
+            <a asp-controller="Blobs" asp-action="Blobs" asp-route-containername="@container">
+                Blobs
+            </a>
+            <span> | </span>
+            <a asp-controller="Blobs" asp-action="DeleteContainer" asp-route-containername="@container">
+                Delete
+            </a>
+        </li>
+    }
+</ul>

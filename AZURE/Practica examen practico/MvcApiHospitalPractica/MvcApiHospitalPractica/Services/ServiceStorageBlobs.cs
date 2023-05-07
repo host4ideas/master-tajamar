@@ -23,9 +23,16 @@ namespace MvcApiHospitalPractica.Services
             return containers;
         }
 
-        public async Task CreateContainerAsync(string containerName)
+        public async Task CreateContainerAsync(string containerName, bool isPublic)
         {
-            await this.blobServiceClient.CreateBlobContainerAsync(containerName, Azure.Storage.Blobs.Models.PublicAccessType.Blob);
+            if (isPublic == true)
+            {
+                await this.blobServiceClient.CreateBlobContainerAsync(containerName, Azure.Storage.Blobs.Models.PublicAccessType.Blob);
+            }
+            else
+            {
+                await this.blobServiceClient.CreateBlobContainerAsync(containerName, Azure.Storage.Blobs.Models.PublicAccessType.None);
+            }
         }
 
         public async Task DeleteContainerAsync(string containerName)
@@ -67,10 +74,10 @@ namespace MvcApiHospitalPractica.Services
             await containerClient.UploadBlobAsync(blobName, stream);
         }
 
-        public async Task<string> GetBlobUriAsync(string container, string name)
+        public async Task<string> GetBlobUriAsync(string container, string blobName)
         {
             BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(container);
-            BlobClient blobClient = containerClient.GetBlobClient(name);
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
 
             var response = await containerClient.GetPropertiesAsync();
             var properties = response.Value;
@@ -83,11 +90,6 @@ namespace MvcApiHospitalPractica.Services
             }
 
             return blobClient.Uri.AbsoluteUri.ToString();
-        }
-
-        public Task<string>? FindBlob(string containerName, string blobName)
-        {
-            return GetBlobUriAsync(containerName, blobName);
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using Azure.Storage;
-using Azure.Storage.Sas;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using MvcApiHospitalPractica.Filters;
 using MvcApiHospitalPractica.Models;
 using MvcApiHospitalPractica.Services;
@@ -37,7 +34,7 @@ namespace MvcApiHospitalPractica.Controllers
                 {
                     if (hospital.Imagen != null)
                     {
-                        hospital.Imagen = this.storageBlob.FindBlob("blobimages", hospital.Imagen);
+                        hospital.Imagen = await this.storageBlob.GetBlobUriAsync("blobimages", hospital.Imagen);
                     }
                 }
             }
@@ -58,9 +55,12 @@ namespace MvcApiHospitalPractica.Controllers
         {
             string image = hospital.Nombre.ToLower();
 
-            using (Stream stream = hospital.Imagen.OpenReadStream())
+            if (hospital.Imagen != null)
             {
-                await this.storageBlob.UploadBlobAsync("blobimages", image, stream);
+                using (Stream stream = hospital.Imagen.OpenReadStream())
+                {
+                    await this.storageBlob.UploadBlobAsync("blobimages", image, stream);
+                }
             }
 
             await this.service.InsertHospital(hospital.Hospital_cod, hospital.Nombre, hospital.Direccion, hospital.Telelfono, hospital.Num_cama, image);
@@ -82,8 +82,6 @@ namespace MvcApiHospitalPractica.Controllers
             {
                 await this.storageBlob.UploadBlobAsync("blobimages", image, stream);
             }
-
-            await this.service.InsertHospital(hospital.Hospital_cod, hospital.Nombre, hospital.Direccion, hospital.Telelfono, hospital.Num_cama, image);
 
             await this.service.UpdateHospital(hospital.Hospital_cod, hospital.Nombre, hospital.Direccion, hospital.Telelfono, hospital.Num_cama, image);
             return RedirectToAction("Index");
