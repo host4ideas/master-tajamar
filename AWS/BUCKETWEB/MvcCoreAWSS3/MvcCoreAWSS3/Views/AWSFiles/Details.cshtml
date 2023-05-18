@@ -1,0 +1,17 @@
+﻿@model List<string>
+
+<h1>
+    File details
+</h1>
+
+<h2>Versions</h2>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @item
+            <a asp-action="DeleteVersion" asp-route-versionId="@item" asp-route-fileName="@ViewData["FILENAME"]">Borrar version</a>
+        </li>
+    }
+</ul>
