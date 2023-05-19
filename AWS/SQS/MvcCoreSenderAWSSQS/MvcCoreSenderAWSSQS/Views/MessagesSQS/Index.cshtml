@@ -1,0 +1,25 @@
+﻿<h1 style="color:blue;">
+    Messages SQS
+</h1>
+
+<form method="post">
+    <label>Asunto</label>
+    <input type="text" name="asunto" class="form-control" />
+
+    <label>Email</label>
+    <input type="text" name="email" class="form-control" />
+
+    <label>Contenido</label>
+    <textarea class="form-control" name="contenido"></textarea>
+
+    <label>fecha</label>
+    <input type="date" name="fecha" class="form-control" />
+
+    <button class="btn btn-info">
+        Send
+    </button>
+</form>
+
+<h2 style="color:red;">
+    @ViewData["MENSAJE"]
+</h2>

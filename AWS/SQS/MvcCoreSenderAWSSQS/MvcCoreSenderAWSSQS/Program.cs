@@ -1,6 +1,13 @@
+using Amazon.SQS;
+using MvcCoreSenderAWSSQS.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddAWSService<IAmazonSQS>();
+builder.Services.AddTransient<ServiceSQS>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
