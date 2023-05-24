@@ -1,0 +1,48 @@
+﻿<ul id="personajes" class="list-group"></ul>
+
+@section Scripts {
+    <script>
+        $(document).ready(function(){
+            const api = "https://localhost:7212/api/Personajes";
+
+            //var settings = {
+            //    'cache': false,
+            //    'dataType': "json",
+            //    "async": true,
+            //    "crossDomain": true,
+            //    "url": api,
+            //    "method": "GET",
+            //    "headers": {
+            //        "accept": "application/json",
+            //        "Access-Control-Allow-Origin": "*"
+            //    }
+            //}
+
+            //$.ajax(settings).done(function (response) {
+            //    let html = "";
+
+            //    console.log(data);
+
+            //    data.forEach(personaje => {
+            //        html += `<li class="list-group-item">
+            //                ID: ${data.idPersonaje} Nombre: ${data.nombre}
+            //                </li>`
+            //    });
+
+            //    $("personajes").html(html);
+            //});
+
+            $.get(api, function (data) {
+                let html = "";
+
+                data.forEach(personaje => {
+                    html += `<li class="list-group-item">
+                    ID: ${data.idPersonaje} Nombre: ${data.nombre}
+                    </li>`
+                });
+
+                $("personajes").html(html);
+            });
+        });
+    </script>
+}
