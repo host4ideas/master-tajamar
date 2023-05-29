@@ -1,0 +1,22 @@
+﻿<h1 style="color: blue;">
+    Send Mail AWS
+</h1>
+
+<form method="post">
+    <label class="form-label">To</label>
+    <input type="text" name="to" class="form-control" />
+
+    <label class="form-label">Subject</label>
+    <input type="text" name="subject" class="form-control" />
+
+    <label class="form-label">Message</label>
+    <textarea name="body" class="form-control"></textarea>
+
+    <button class="btn btn-success">
+        Send email
+    </button>
+</form>
+
+<h2 style="color:red;">
+    @ViewData["MENSAJE"]
+</h2>

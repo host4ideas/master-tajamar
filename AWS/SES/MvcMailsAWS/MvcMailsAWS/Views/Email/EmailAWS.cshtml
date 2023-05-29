@@ -1,0 +1,25 @@
+﻿<h1 style="color: blue;">
+    Send Mail AWS
+</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <label class="form-label">To</label>
+    <input type="text" name="to" class="form-control" />
+
+    <label class="form-label">Subject</label>
+    <input type="text" name="subject" class="form-control" />
+
+    <label class="form-label">Message</label>
+    <textarea name="body" class="form-control"></textarea>
+
+    <label class="form-label">Attachment</label>
+    <input type="file" name="file" class="form-control" />
+
+    <button class="btn btn-success">
+        Send email
+    </button>
+</form>
+
+<h2 style="color:red;">
+    @ViewData["MENSAJE"]
+</h2>
