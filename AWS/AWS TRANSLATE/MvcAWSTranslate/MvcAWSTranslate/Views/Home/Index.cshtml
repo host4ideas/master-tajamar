@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <form method="post">
+        <label>Enter your text</label>
+        <input type="text" name="text" autofocus />
+
+        <button>
+            Process text
+        </button>
+    </form>
+
+    <h2>Result</h2>
+    <textarea>@ViewData["MODERATED_TEXT"]</textarea>
+</div>
