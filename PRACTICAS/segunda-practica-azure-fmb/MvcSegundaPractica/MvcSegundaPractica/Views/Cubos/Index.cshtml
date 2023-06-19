@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ApiSegundaPractica.Models.Cubo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CrearCubo" asp-controller="Cubos">Crear nuevo cubo</a>
+</p>
+
+<form method="post" asp-action="CubosMarca">
+    <label class="form-label">Marca:</label>
+    <input type="text" name="marca" class="form-control"/>
+
+    <button class="btn btn-primary">
+        Buscar por marca
+    </button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCubo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCubo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="300" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    <form method="post" asp-action="RealizarPedido">
+                        <input type="hidden" value="@item.IdCubo" name="idcubo" />
+
+                        <button class="btn btn-success">
+                            Comprar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

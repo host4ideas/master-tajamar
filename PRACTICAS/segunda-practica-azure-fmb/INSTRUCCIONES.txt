@@ -1,0 +1,2 @@
+Despliegue MVC: https://mvcsegundapractica20230508124214.azurewebsites.net/
+Despliegue API: https://apisegundapractica20230508100857.azurewebsites.net
