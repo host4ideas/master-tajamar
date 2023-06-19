@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <script src="./bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+        <link
+            rel="stylesheet"
+            href="./bootstrap-5.0.2-dist/css/bootstrap.css"
+        />
+        <script src="./js/getParamFromUrl.js"></script>
+        <script src="./js/Global.js"></script>
+        <title>Menu</title>
+    </head>
+    <body>
+        <div>
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/home.html">
+                        <img
+                            width="50"
+                            src="./assets/images/menu-icon.png"
+                            alt="Champions"
+                        />
+                    </a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                    >
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home.html"> Home </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/nuevoPersonaje.html">
+                                    Nuevo Personaje
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="/modificarPersonaje.html"
+                                >
+                                    Modificar Personaje
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Series
+                                </a>
+                                <ul
+                                    class="dropdown-menu"
+                                    id="dropdownMenu"
+                                ></ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <Outlet />
+        </div>
+        <script>
+            $(document).ready(function () {
+                const request = Global.urlSeries + "/api/Series";
+
+                $.ajax({
+                    url: request,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        let html = "";
+                        $.each(data, function (indice, serie) {
+                            html += `
+								<li key={index}>
+									<a
+										key={index}
+										class="dropdown-item"
+										href=/detallesSerie.html?idSerie=${serie.idSerie}
+									>
+										${serie.nombre}
+									</a>
+								</li>
+				`;
+                        });
+                        $("#dropdownMenu").html(html);
+                    },
+                    error: function (error) {
+                        console.log(error.message);
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>

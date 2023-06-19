@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <script src="./js/getParamFromUrl.js"></script>
+        <script src="./js/Global.js"></script>
+        <title>Detalles Serie</title>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div class="d-flex justify-content-center">
+            <div class="mt-5">
+                <div class="card" style="width: 18rem" id="content"></div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                // Cargamos el menu
+                $("#menu").load("./menu.html");
+
+                const idSerie = getParamFromUrl("idSerie");
+
+                const request = Global.urlSeries + `/api/Series/${idSerie}`;
+
+                $.ajax({
+                    url: request,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (serie) {
+                        let html = "";
+                        html += `
+                        <img
+                        width="500"
+                        src='${serie.imagen}'
+                        class="card-img-top"
+                        alt="Serie"
+                        />
+                            <div class="card-body">
+                                <h5 class="card-title">${serie.nombre}</h5>
+                                <p class="card-text">
+                                    <p>Año: ${serie.anyo}</p>
+                                    <p>
+                                        Puntuacion: ${serie.puntuacion}
+                                    </p>
+                                </p>
+                                <a
+                                    href=/personajesSerie.html?idSerie=${serie.idSerie}
+                                    class="btn btn-success"
+                                >
+                                    Personajes
+                                </a>
+                            </div>
+                            `;
+                        $("#content").html(html);
+                    },
+                    error: function (error) {
+                        console.log(error.message);
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>

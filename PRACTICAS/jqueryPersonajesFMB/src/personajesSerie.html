@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <script src="./js/getParamFromUrl.js"></script>
+        <script src="./js/Global.js"></script>
+        <title>Personaje serie</title>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody id="tableContent"></tbody>
+            </table>
+            <a class="btn btn-success" id="backButton"> Volver </a>
+        </div>
+    </body>
+    <script>
+        $(document).ready(function () {
+            // Cargamos el menu
+            $("#menu").load("./menu.html");
+            const idSerie = getParamFromUrl("idSerie");
+
+            $("#backButton").attr("href", `/detallesSerie.html?idSerie=${idSerie}`);
+
+            /**
+             * Peticion ajax para rellenar el select de personajes
+             */
+            const request =
+                Global.urlSeries + `/api/Series/PersonajesSerie/${idSerie}`;
+            $.ajax({
+                url: request,
+                method: "GET",
+                dataType: "json",
+                success: function (personajes) {
+                    let html = "";
+                    $.each(personajes, (index, personaje) => {
+                        html += `
+                        <tr>
+                        <th scope="row">${personaje.idPersonaje}</th>
+                        <td>${personaje.nombre}</td>
+                        <td>
+                            <img
+                                src="${personaje.imagen}"
+                                width="150"
+                                alt="Personaje"
+                            />
+                        </td>
+                    </tr>
+                        `;
+                    });
+                    $("#tableContent").html(html);
+                },
+                error: function (error) {
+                    console.log(error.message);
+                },
+            });
+        });
+    </script>
+</html>

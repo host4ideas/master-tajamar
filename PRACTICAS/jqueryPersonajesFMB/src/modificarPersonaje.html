@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <script src="./js/getParamFromUrl.js"></script>
+        <script src="./js/Global.js"></script>
+        <title>Modificar personaje</title>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div>
+            <h1>Modificar Personaje</h1>
+            <form class="m-4" id="modificarPersonajeForm">
+                <!-- Series  -->
+                <div class="row mb-3">
+                    <select
+                        id="selectSerie"
+                        class="form-select"
+                        aria-label="Default select example"
+                    ></select>
+                    <img id="imagenSerie" alt="Serie" width="150" />
+                </div>
+                <!--  Personajes  -->
+                <div class="row mb-3">
+                    <select
+                        id="selectPersonaje"
+                        class="form-select"
+                        aria-label="Default select example"
+                    ></select>
+                    <img id="imagenPersonaje" alt="Personaje" width="150" />
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        Modificar personaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        let personajesGlobal = [];
+        let seriesGlobal = [];
+
+        $(document).ready(function () {
+            // Cargamos el menu
+            $("#menu").load("./menu.html");
+
+            /**
+             * Peticion ajax para rellenar el select de series
+             */
+            let request = Global.urlSeries + `/api/Series`;
+            $.ajax({
+                url: request,
+                method: "GET",
+                dataType: "json",
+                success: function (series) {
+                    // Seteamos la variable global
+                    seriesGlobal = series;
+
+                    // Mostramos la primera imagen por defecto
+                    $("#imagenSerie").attr("src", series[0].imagen);
+
+                    let html = "";
+                    $.each(series, (index, serie) => {
+                        html += `
+                            <option value="${index}">
+                                ${serie.nombre}
+                            </option>
+                        `;
+                    });
+                    $("#selectSerie").html(html);
+                },
+                error: function (error) {
+                    console.log(error.message);
+                },
+            });
+
+            /**
+             * Peticion ajax para rellenar el select de personajes
+             */
+            request = Global.urlSeries + `/api/Personajes`;
+            $.ajax({
+                url: request,
+                method: "GET",
+                dataType: "json",
+                success: function (personajes) {
+                    // Seteamos la variable global
+                    personajesGlobal = personajes;
+
+                    // Mostramos la primera imagen por defecto
+                    $("#imagenPersonaje").attr("src", personajes[0].imagen);
+
+                    let html = "";
+                    $.each(personajes, (index, personaje) => {
+                        html += `
+                            <option value="${index}">
+                                ${personaje.nombre}
+                            </option>
+                        `;
+                    });
+                    $("#selectPersonaje").html(html);
+                },
+                error: function (error) {
+                    console.log(error.message);
+                },
+            });
+
+            $("#modificarPersonajeForm").submit(handleSubmit);
+            $("#selectSerie").change(changeSerie);
+            $("#selectPersonaje").change(changePersonaje);
+        });
+
+        /**
+         * Manejamos el evento submit del formulario para modificar un personaje a la BBDD
+         */
+        const handleSubmit = (ev) => {
+            ev.preventDefault();
+            // Cogemos el valor del select, el cual será el valor del índice del personaje
+            const selectPersonaje = $("#selectPersonaje").val();
+            // Cogemos el valor del select, el cual será el valor del índice de la serie
+            const selectSerie = $("#selectSerie").val();
+
+            const idPersonaje = personajesGlobal[selectPersonaje].idPersonaje;
+            const idSerie = seriesGlobal[selectSerie].idSerie;
+
+            const request =
+                Global.urlSeries + `/api/Personajes/${idPersonaje}/${idSerie}`;
+
+            $.ajax({
+                url: request,
+                method: "PUT",
+                success: function () {
+                    window.location.href = `/personajesSerie.html?idSerie=${idSerie}`;
+                    console.log("Personaje modificado");
+                },
+                error: function (error) {
+                    console.log(error.message);
+                },
+            });
+        };
+
+        const changePersonaje = (ev) => {
+            ev.preventDefault();
+            // Cogemos el valor del select, el cual será el valor del índice del personaje
+            const selectPersonaje = $("#selectPersonaje").val();
+
+            $("#imagenPersonaje").attr(
+                "src",
+                personajesGlobal[selectPersonaje].imagen
+            );
+        };
+
+        const changeSerie = (ev) => {
+            ev.preventDefault();
+            // Cogemos el valor del select, el cual será el valor del índice de la serie
+            const selectSerie = $("#selectSerie").val();
+
+            $("#imagenSerie").attr("src", seriesGlobal[selectSerie].imagen);
+        };
+    </script>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="./js/jquery-3.6.1.min.js"></script>
+        <script src="./js/getParamFromUrl.js"></script>
+        <script src="./js/Global.js"></script>
+        <title>Nuevo Personaje</title>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div>
+            <h1>Nuevo Personaje</h1>
+            <form class="m-4" onSubmit="handleSubmit">
+                <div class="row mb-3">
+                    <label
+                        htmlFor="colFormLabel"
+                        class="col-sm-2 col-form-label"
+                    >
+                        Nombre
+                    </label>
+                    <div class="col-sm-10">
+                        <input
+                            id="inputNombre"
+                            type="text"
+                            class="form-control"
+                            id="colFormLabel"
+                            placeholder="Introduce el nombre del personaje"
+                        />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label
+                        htmlFor="colFormLabel"
+                        class="col-sm-2 col-form-label"
+                    >
+                        Imagen
+                    </label>
+                    <div class="col-sm-10">
+                        <input
+                            id="inputImagen"
+                            type="text"
+                            class="form-control"
+                            id="colFormLabel"
+                            placeholder="Introduce la url de la imagen"
+                        />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        id="selectSerie"
+                    ></select>
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        Añadir personaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        $(document).ready(function () {
+            // Cargamos el menu
+            $("#menu").load("./menu.html");
+
+            $("#nuevaApuestaForm").submit(handleSubmit);
+
+            // Select para series
+            let request = Global.urlSeries + `/api/Series`;
+            $.ajax({
+                url: request,
+                method: "GET",
+                dataType: "json",
+                success: function (series) {
+                    let html = "";
+                    $.each(series, (index, serie) => {
+                        html += `
+                            <option key="{index}" value="${serie.idSerie}">
+                                ${serie.nombre}
+                            </option>
+                        `;
+                    });
+                    $("#selectSerie").html(html);
+                },
+                error: function (error) {
+                    console.log(error.message);
+                },
+            });
+        });
+
+        /**
+         * Submit del form para añadir un nevo personaje a la BBDD
+         */
+        const handleSubmit = (ev) => {
+            const request = Global.urlSeries + "/api/Personajes";
+
+            const selectSerie = $("#selectSerie").val();
+            const inputImagen = $("#inputImagen").val();
+            const inputNombre = $("#inputNombre").val();
+
+            const nuevoPersonaje = {
+                nombre: selectSerie,
+                imagen: inputImagen,
+                idSerie: inputNombre,
+            };
+
+            $.ajax({
+                type: "POST",
+                url: request,
+                data: nuevoPersonaje,
+                dataType: "json",
+                success: function (datos) {
+                    window.location.href = `/personajesSerie.html?idSerie=${selectSerie}`;
+                },
+                error: function (error) {
+                    console.error(error);
+                },
+            });
+        };
+    </script>
+</html>
